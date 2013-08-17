@@ -57,7 +57,15 @@ describe User do
 	describe "when email address is already taken" do
   	it "should not be valid" do 
   		user_two = FactoryGirl.create(:user_two)
-      user = FactoryGirl.build(:user_two, email: "najwa.azer@gmail.com")
+      user = FactoryGirl.build(:user, email: "najwa.azer@gmail.com")
+      expect(user).to be_invalid
+  	end
+	end
+
+	describe "when different case email address is already taken" do
+  	it "should be invalid" do 
+  		user_two = FactoryGirl.create(:user_two)
+      user = FactoryGirl.build(:user, email: "NAJWA.AZER@gmail.com")
       expect(user).to be_invalid
   	end
 	end
