@@ -1,8 +1,12 @@
 source 'https://rubygems.org'
 
+# Testing gems
+gem 'factory_girl_rails'
+gem 'rspec-rails'
+gem 'capybara'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
-gem 'factory_girl_rails'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

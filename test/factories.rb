@@ -5,5 +5,13 @@ FactoryGirl.define do
     email    							"tyler.sangster@gmail.com"
     password 							"foobar"
     password_confirmation "foobar"
+
+	  factory :user_two do
+	    first_name						"Najwa"
+	    last_name							"Azer"
+	    email    							"najwa.azer@gmail.com"
+	    password 							"foobar"
+	    password_confirmation "foobar"
+	  end
   end
 end
