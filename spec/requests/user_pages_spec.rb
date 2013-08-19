@@ -1,9 +1,9 @@
- require 'spec_helper'
+require 'spec_helper'
 
 describe "UserPages" do
 
-	subject { page }
-	
+  subject { page }
+  
   describe "signup page" do
     before { visit signup_path }
 
@@ -25,19 +25,19 @@ describe "UserPages" do
 
     describe "fill out form" do
       before do
-      	fill_in "First Name",   		with: "Tyler"
-	      fill_in "Last Name",   			with: "Sangster"
-	      fill_in "Email",        		with: "tyler.sangster@gmail.com"
-	      fill_in "Password",     		with: "foobar"
-	      fill_in "Confirm Password", with: "foobar"
-	    end
+        fill_in "First Name",       with: "Tyler"
+        fill_in "Last Name",        with: "Sangster"
+        fill_in "Email",            with: "tyler.sangster@gmail.com"
+        fill_in "Password",         with: "foobar"
+        fill_in "Confirm Password", with: "foobar"
+      end
 
-	    it "should increment user count" do
-      	expect { click_button "Create Account" }.to change(User,:count).by(1)
+      it "should increment user count" do
+        expect { click_button "Create Account" }.to change(User,:count).by(1)
       end
 
       describe "should display welcome message" do
-      	before { click_button "Create Account";}
+        before { click_button "Create Account";}
         let(:user) { FactoryGirl.build(:user) }
 
         it { should have_title("#{user.first_name} #{user.last_name}") }
@@ -50,6 +50,7 @@ describe "UserPages" do
   describe "edit" do
     let(:user) { FactoryGirl.create(:user) }
     before do 
+      login user
       visit edit_user_path(user) 
     end
 
@@ -58,14 +59,14 @@ describe "UserPages" do
       it { should have_title("Update your profile") }
     end
 
-	  describe "with invalid information" do
+    describe "with invalid information" do
       before { click_button "Save Changes" }
 
       it { should have_title("Update your profile") }
       it { should have_content("error") }
     end
 
-  	describe "with valid information" do
+    describe "with valid information" do
       let(:new_first_name)  { "Sam" }
       let(:new_last_name)  { "Powersampower" }
       let(:new_email) { "samkpower@example.com" }
@@ -88,11 +89,12 @@ describe "UserPages" do
     end
   end#edit
 
-
   describe "index" do
     let!(:user) { FactoryGirl.create(:user) }
+    let!(:user_two) { FactoryGirl.create(:user_two) }
+    let!(:admin_user) { FactoryGirl.create(:admin_user) }
     before(:each) do
-      # sign_in user
+      login user_two
       visit users_path
     end
     it { should have_title('All users') }
@@ -105,17 +107,20 @@ describe "UserPages" do
     it { should have_link('edit', href: edit_user_path(user)) }
 
     describe "delete links" do
+      it { should_not have_link('delete') }
+      
+      describe "as admin user" do
+        before { login admin_user; visit users_path }
+        it { should have_link('delete', href: user_path(User.first)) }
 
-      it { should have_link('delete', href: user_path(User.first)) }
-
-      it "should be able to delete user" do
-        expect do
-          click_link('delete', match: :first)
-        end.to change(User, :count).by(-1)
+        it "should be able to delete user" do
+          expect do
+            click_link('delete', match: :first)
+          end.to change(User, :count).by(-1)
+        end
+        it { should_not have_link('delete', href: user_path(admin_user)) }
       end
     end
-
-
   end#index
 end
 

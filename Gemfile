@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Custom gems
+gem 'bootstrap-sass'
+
 # Testing gems
 gem 'factory_girl_rails'
 gem 'rspec-rails'
@@ -40,6 +43,7 @@ end
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
+gem 'debugger'
 # Use unicorn as the app server
 # gem 'unicorn'
 

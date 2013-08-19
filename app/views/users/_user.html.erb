@@ -3,6 +3,7 @@
   <%= link_to user.last_name, user %>
   <%= link_to user.email, user %>
   <%= link_to "edit", edit_user_path(user) %>
-	<%= link_to "delete", user, method: :delete,
-                              data: { confirm: "Are you sure?" } %>
+	<% if @current_user.admin && @current_user != user %>
+	  <%= link_to "delete", user, method: :delete, data: { confirm: "Are you sure?" } %>
+  <% end %>
 </li>
