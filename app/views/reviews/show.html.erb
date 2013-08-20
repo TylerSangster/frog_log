@@ -1,0 +1,11 @@
+
+<% provide(:title, "#{@review.title}, #{@review.score}") %>
+
+    <div><%= @review.title %></div>
+    <div><%= @review.score %></div>
+    <div><%= @review.content %></div>
+    <div><%= @review.user.last_name %></div>
+    <div><%= @review.user.first_name %></div>
+
+    
+    <%= link_to "delete", @review, method: :delete, data: { confirm: "Are you sure?" } %>

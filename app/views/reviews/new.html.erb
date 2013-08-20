@@ -1,0 +1,10 @@
+<% provide(:title, 'Create a Review') %>
+
+<%= form_for @review do |f| %>
+	<%= render 'form', f: f %>
+	
+	<div>
+		<%= f.submit "Create review" %>
+	</div>
+	
+	<% end %>
