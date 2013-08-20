@@ -1,6 +1,10 @@
 require 'spec_helper'
 
+<<<<<<< HEAD
 describe "Authentication Pages" do
+=======
+describe "Authentication" do
+>>>>>>> 1e68820592a6af294b9224ca84034acb9f3e9a1b
 
   subject { page }
 
@@ -46,7 +50,12 @@ describe "Authentication Pages" do
 
   describe "authorization" do
 
+<<<<<<< HEAD
     describe "for non-signed-in users"
+=======
+    describe "for non-signed-in users" do
+    
+>>>>>>> 1e68820592a6af294b9224ca84034acb9f3e9a1b
       let(:user) { FactoryGirl.create(:user) }
     
       describe "in the Users controller" do
@@ -68,6 +77,7 @@ describe "Authentication Pages" do
           it { should have_title('Login') }
         end
       end
+<<<<<<< HEAD
         
     
       describe "in the Reviews controller" do
@@ -83,6 +93,9 @@ describe "Authentication Pages" do
         # end
       end
 
+=======
+    end
+>>>>>>> 1e68820592a6af294b9224ca84034acb9f3e9a1b
 
     describe "as wrong user" do
       

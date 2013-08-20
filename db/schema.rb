@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20130819184905) do
 
   create_table "reviews", force: true do |t|
@@ -21,6 +22,9 @@ ActiveRecord::Schema.define(version: 20130819184905) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+=======
+ActiveRecord::Schema.define(version: 20130819011809) do
+>>>>>>> 1e68820592a6af294b9224ca84034acb9f3e9a1b
 
   create_table "users", force: true do |t|
     t.string   "email"

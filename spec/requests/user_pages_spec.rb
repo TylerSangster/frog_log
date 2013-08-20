@@ -122,6 +122,7 @@ describe "UserPages" do
       end
     end
   end#index
+<<<<<<< HEAD
 
   describe "profile page" do
   
@@ -148,6 +149,8 @@ describe "UserPages" do
       it { should have_content("#{user.reviews.count} reviews") }
     end 
   end
+=======
+>>>>>>> 1e68820592a6af294b9224ca84034acb9f3e9a1b
 end
 
 

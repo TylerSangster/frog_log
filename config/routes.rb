@@ -1,12 +1,21 @@
 Frog::Application.routes.draw do
   resources :users
   resources :sessions
+<<<<<<< HEAD
   resources :reviews
+=======
+>>>>>>> 1e68820592a6af294b9224ca84034acb9f3e9a1b
   
   get 'signup',   to: 'users#new',  as: 'signup' 
   get 'login', to: 'sessions#new', as: 'login'
   delete 'logout', to: 'sessions#destroy', as: 'logout'
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 1e68820592a6af294b9224ca84034acb9f3e9a1b
   root 'users#index'
   
 

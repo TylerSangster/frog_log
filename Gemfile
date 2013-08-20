@@ -7,7 +7,10 @@ gem 'bootstrap-sass'
 gem 'factory_girl_rails'
 gem 'rspec-rails'
 gem 'capybara'
+<<<<<<< HEAD
 gem 'faker'
+=======
+>>>>>>> 1e68820592a6af294b9224ca84034acb9f3e9a1b
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
