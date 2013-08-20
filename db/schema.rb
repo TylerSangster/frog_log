@@ -12,6 +12,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20130819184905) do
 
   create_table "reviews", force: true do |t|
@@ -25,6 +26,22 @@ ActiveRecord::Schema.define(version: 20130819184905) do
 =======
 ActiveRecord::Schema.define(version: 20130819011809) do
 >>>>>>> 1e68820592a6af294b9224ca84034acb9f3e9a1b
+=======
+ActiveRecord::Schema.define(version: 20130819180152) do
+
+  create_table "resources", force: true do |t|
+    t.string   "name"
+    t.string   "subject"
+    t.string   "format"
+    t.text     "description"
+    t.integer  "cost"
+    t.string   "cost_type"
+    t.string   "provider"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+>>>>>>> 9f6ac1df02c4fd05f45cdb7ba4cc4ecd1b66423d
 
   create_table "users", force: true do |t|
     t.string   "email"

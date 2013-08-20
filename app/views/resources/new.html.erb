@@ -1,0 +1,10 @@
+<% provide(:title, 'New Resource') %>
+
+<%= form_for @resource do |f| %>
+  <%= render 'form', f: f %>
+  
+  <div>
+    <%= f.submit "Create Resource" %>
+  </div>
+  
+  <% end %>
