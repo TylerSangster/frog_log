@@ -71,10 +71,15 @@ describe "Authentication Pages" do
       end
 
       describe "in the Reviews controller" do
-      let(:review) { FactoryGirl.create(:review) }
-        describe "submitting to the create action" do
-          before { post reviews_path }
-          specify { expect(response).to redirect_to(login_path) }
+        let(:review) { FactoryGirl.create(:review, user: user) }
+        describe "visiting the new page" do
+          before { visit new_review_path }
+          it { should have_title('Login') }
+        end
+
+        describe "visiting the edit page" do
+          before { visit edit_review_path(review.id) }
+          it { should have_title('Login') }
         end
 
         # describe "submitting to the destroy action" do
@@ -87,14 +92,22 @@ describe "Authentication Pages" do
 
 
     describe "as wrong user" do
-      
       let(:user) { FactoryGirl.create(:user) }
       let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }
-      
+      let(:review) { FactoryGirl.create(:review, user: user) }      
+      let(:wrong_review) { FactoryGirl.create(:review, user: wrong_user) }
+
+      before { login user }
+
       describe "visiting Users#edit page" do
-        before { login user; visit edit_user_path(wrong_user) }
+        before { visit edit_user_path(wrong_user) }
         it { should_not have_title('Update your profile') }
       end
-    end
+
+      describe "visiting Reviews#edit page" do
+        before { visit edit_review_path(wrong_review) }
+        it { should_not have_title('Edit your review') }
+      end
+    end#signed in users
   end
 end

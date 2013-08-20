@@ -41,8 +41,12 @@ describe "UserPages" do
         let(:user) { FactoryGirl.build(:user) }
 
         it { should have_title("#{user.first_name} #{user.last_name}") }
-        
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+
+        describe "signing up automatically logs in user" do
+          it { should have_link('Logout', href: logout_path)    }
+        end
+
       end
     end
   end#signup

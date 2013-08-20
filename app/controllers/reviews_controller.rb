@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :require_current_user,    only: [:new, :create, :edit, :update]
+  before_action :require_current_user,    except: [:index, :show]
   
   def new
     @review = Review.new
@@ -27,6 +27,9 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
+    if @review.user_id != @current_user
+      redirect_to root_path, :error => "You cannot edit somebody else's review." 
+    end
   end
 
   def update

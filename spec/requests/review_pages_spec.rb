@@ -62,7 +62,12 @@ describe "Review pages" do
       it { should have_content(@review.user.first_name) }
       it { should have_content(@review.user.last_name) }
       it { should have_title("#{@review.title}, #{@review.score}") }
+      it { should have_link('Edit'), href: edit_review_path(user) }
     end
+
+      # describe "edit button shouldn't appear for wrong user" do
+      #   it { should_not have_link('Edit'), href: edit_review_path(wrong_user) }
+      # end
   end
 
 

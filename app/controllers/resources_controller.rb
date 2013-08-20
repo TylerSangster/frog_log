@@ -1,5 +1,5 @@
 class ResourcesController < ApplicationController
-  #before_action :require_current_user,    only: [:index, :edit, :update]
+  before_action :require_current_user,    only: [:new]
   def new
     @resource = Resource.new
   end
