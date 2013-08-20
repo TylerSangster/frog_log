@@ -122,7 +122,6 @@ describe "UserPages" do
       end
     end
   end#index
-<<<<<<< HEAD
 
   describe "profile page" do
   
@@ -149,24 +148,10 @@ describe "UserPages" do
       it { should have_content("#{user.reviews.count} reviews") }
     end 
   end
-=======
->>>>>>> 1e68820592a6af294b9224ca84034acb9f3e9a1b
 end
-
-
-
-# edit user profile
-# show user profile
-# delete user profile
-
-
-# only admin can:
-# => delete users other than him
-# => see users#index
 
 # LATER:
 # => check that creating a new user profile automatically signs in
-# => profile page should contain reviews
 
 
 

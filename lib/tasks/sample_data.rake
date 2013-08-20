@@ -31,7 +31,7 @@ namespace :db do
     5.times do
       score = 3
       title = Faker::Lorem.sentence(2)
-      content = "a "*200
+      content = "I hate yogurt. It's just stuff with bits in. You know when grown-ups tell you 'everything's going to be fine' and you think they're probably lying to make you feel better? I'm the Doctor, I'm worse than everyone's aunt. *catches himself* And that is not how I'm introducing myself. All I've got to do is pass as an ordinary human being. Simple. What could possibly go wrong?"
       users.each { |user| user.reviews.create!(score: score, title: title, content: content) }
     end
   end

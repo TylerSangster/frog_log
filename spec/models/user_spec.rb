@@ -13,19 +13,13 @@ describe User do
   it { should respond_to(:password_confirmation) }
 	it { should respond_to(:password_digest)}
 
-<<<<<<< HEAD
+
   it { should respond_to(:authenticate) }
   it { should respond_to(:admin) } 
   it { should_not be_admin }
 
   it { should respond_to(:reviews) }
 
-=======
-
-  it { should respond_to(:authenticate) }
-  it { should respond_to(:admin) } 
-  it { should_not be_admin }
->>>>>>> 1e68820592a6af294b9224ca84034acb9f3e9a1b
   it { should be_valid }
 
   describe "with admin attribute set to 'true'" do

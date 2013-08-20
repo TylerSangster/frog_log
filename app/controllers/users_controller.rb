@@ -13,10 +13,7 @@ class UsersController < ApplicationController
 
 	def show
     @user = User.find(params[:id])
-<<<<<<< HEAD
     @reviews = @user.reviews
-=======
->>>>>>> 1e68820592a6af294b9224ca84034acb9f3e9a1b
 	end
 
 	def create

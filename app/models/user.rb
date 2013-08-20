@@ -1,10 +1,7 @@
 class User < ActiveRecord::Base
 
-<<<<<<< HEAD
   has_many :reviews
 
-=======
->>>>>>> 1e68820592a6af294b9224ca84034acb9f3e9a1b
 	before_save { self.email = email.downcase }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i	
