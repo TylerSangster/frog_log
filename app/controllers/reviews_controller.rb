@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
-    if @review.user_id != @current_user
+    if @review.user != @current_user
       redirect_to root_path, :error => "You cannot edit somebody else's review." 
     end
   end

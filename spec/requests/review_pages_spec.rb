@@ -5,6 +5,9 @@ describe "Review pages" do
   subject { page }
 
   let(:user) { FactoryGirl.create(:user) }
+  let(:other_user) { FactoryGirl.create(:user_two) }
+  let(:admin_user) { FactoryGirl.create(:admin_user) }
+
   before { login user }
 
   describe "review creation" do
@@ -44,35 +47,40 @@ describe "Review pages" do
       before { visit review_path(review.id) }
 
       it "should delete a review" do
-        expect { click_link "delete" }.to change(Review, :count).by(-1)
+      expect { click_link "delete" }.to change(Review, :count).by(-1)
       end
     end
   end
 
   describe "review show page" do
-    before do 
-      @review = FactoryGirl.create(:review, user: user) 
-      visit review_path(@review)
-    end
+    let(:review) { FactoryGirl.create(:review, user: user) }
+    
+      before { visit review_path(review) }
+      it { should have_content(review.title) }
+      it { should have_content(review.score) }
+      it { should have_content(review.content) }
+      it { should have_content(review.user.first_name) }
+      it { should have_content(review.user.last_name) }
+      it { should have_title("#{review.title}, #{review.score}") }
+      it { should have_link('edit'), href: edit_review_path(review) }
+      it { should have_link('delete'), href: review_path(review) }
 
-    describe "content" do
-      it { should have_content(@review.title) }
-      it { should have_content(@review.score) }
-      it { should have_content(@review.content) }
-      it { should have_content(@review.user.first_name) }
-      it { should have_content(@review.user.last_name) }
-      it { should have_title("#{@review.title}, #{@review.score}") }
-      it { should have_link('Edit'), href: edit_review_path(user) }
-    end
+      describe "for another user's review" do
+        let(:other_user_review) { FactoryGirl.create(:review, user: other_user) }
+        before { visit review_path(other_user_review) }
+        it { should_not have_link('edit') }
+        it { should_not have_link('delete') }
+      end
 
-      # describe "edit button shouldn't appear for wrong user" do
-      #   it { should_not have_link('Edit'), href: edit_review_path(wrong_user) }
-      # end
-  end
+      describe "as an admin" do
+        before { login admin_user; visit review_path(review)}
+        it { should have_link('edit'), href: edit_review_path(review) }
+        it { should have_link('delete'), href: review_path(review) }
+      end
+    end
 
 
   describe "edit" do
-    let(:user) { FactoryGirl.create(:user) }
     let(:review) { FactoryGirl.create(:review, user: user) }
     before do 
       login user

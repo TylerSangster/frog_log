@@ -1,3 +1,8 @@
+# This spec walks through a login and logout process (=authentication)
+# and also makes sure our app blocks the wrong types of users
+# from controller-action combinations (=authorization)
+# eg. only an admin or the owner of a review can edit it
+
 require 'spec_helper'
 
 describe "Authentication Pages" do
