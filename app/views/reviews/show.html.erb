@@ -4,8 +4,10 @@
     <div><%= @review.title %></div>
     <div><%= @review.score %></div>
     <div><%= @review.content %></div>
-    <div><%= @review.user.last_name %></div>
-    <div><%= @review.user.first_name %></div>
+    <div>by <%= @review.user.first_name %> <%= @review.user.last_name %></div>
 
+    <% if same_user?(@review.user) or @current_user.admin? %>
+      <%= link_to "edit", edit_review_path(@review) %>    
+      <%= link_to "delete", @review, method: :delete, data: { confirm: "Are you sure?" } %>
+    <% end %>
     
-    <%= link_to "delete", @review, method: :delete, data: { confirm: "Are you sure?" } %>
