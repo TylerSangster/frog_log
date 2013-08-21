@@ -1,0 +1,26 @@
+<li>
+  <%= link_to resource.name, resource %>&nbsp
+  <%= link_to resource.subject, resource %>
+  <%= link_to resource.format, resource %>
+  <%= link_to resource.description, resource %>&nbsp
+  <%= link_to resource.cost, resource %>
+  <%= link_to resource.cost_type, resource %>
+  <%= link_to resource.provider, resource %>&nbsp
+  <%= link_to resource.url, resource %>
+
+  <% if @current_user && @current_user.admin? %>
+    <%= link_to "edit", edit_resource_path(resource) %>
+    <%= link_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" } %>
+  <% end %>
+
+</li>
+
+<%= form_for resource.reviews
+ do |f| %>
+  <%= render '/reviews/form', f: f %>
+  
+  <div>
+    <%= f.submit "Create review" %>
+  </div>
+  
+  <% end %>

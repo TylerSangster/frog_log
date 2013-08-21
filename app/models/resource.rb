@@ -1,4 +1,7 @@
 class Resource < ActiveRecord::Base
+  
+  has_many :reviews
+
   validates :name, :subject, :description, :format, :cost, :cost_type, :provider, presence: true
   validates :cost, numericality: { :greater_than_or_equal_to => 0, only_integer: true }
   validates :name, :uniqueness => true

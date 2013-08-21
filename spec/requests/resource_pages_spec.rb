@@ -26,16 +26,17 @@ describe "ResourcePages" do
     end
 
     describe "fill out New Resource form" do
+      let(:resource) { FactoryGirl.build(:resource) }
       before do
-        fill_in "Name",            with: "Ruby on Rails"
-        fill_in "Subject",         with: "Rails with ruby"
-        fill_in "Format",          with: "book"
-        fill_in "Description",     with: "Great book to learn ruby,rails and testings"
-        fill_in "Cost",            with: 1999
+        fill_in "Name",            with: resource.name
+        fill_in "Subject",         with: resource.subject
+        fill_in "Format",          with: resource.format
+        fill_in "Description",     with: resource.description
+        fill_in "Cost",            with: resource.cost
 
-        fill_in "Cost Type",       with: "one time"
-        fill_in "Provider",        with: "Mike Hartl"
-        fill_in "URL",             with: "http://ruby.railstutorial.org/ruby-on-rails-tutorial-book"
+        fill_in "Cost Type",       with: resource.cost_type
+        fill_in "Provider",        with: resource.provider
+        fill_in "URL",             with: resource.url
 
       end
 
@@ -44,10 +45,10 @@ describe "ResourcePages" do
       end
 
       describe "should display thank you message" do
-        before { click_button "Create Resource";}
+        before { click_button "Create Resource"; puts page.title }
         let(:resource) { FactoryGirl.build(:resource) }
 
-        it { should have_title("Show Resource") }
+        it { should have_title("#{resource.name}") }
         
         it { should have_selector('div.alert.alert-success', text: 'Thank you') }
       end
@@ -88,12 +89,12 @@ describe "ResourcePages" do
         fill_in "Description",        with: new_description
         fill_in "Format",             with: new_format
         fill_in "Cost",               with: new_cost
-        fill_in "Cost Type",   with: new_cost_type
+        fill_in "Cost Type",          with: new_cost_type
         click_button "Save Changes"
       end
 
 
-      it { should have_title("Show Resource") }
+      it { should have_title("#{new_name}") }
       it { should have_selector('div.alert.alert-success') }
 
       specify { expect(resource.reload.name).to  eq new_name }
@@ -125,23 +126,44 @@ describe "ResourcePages" do
     it { should have_content(resource.provider) }
     it { should have_content(resource.url) }
     
-    it { should have_link('edit', href: edit_resource_path(resource)) }
+    
 
     describe "delete links" do
       it { should_not have_link('delete') }
       
       describe "as admin user" do
         before { login admin_user; visit resources_path }
-        it { should have_link('delete', href: resource_path(Resource.first)) }
+        it { should have_link('edit', href: edit_resource_path(resource)) }
+
+        it { should have_link('delete', href: resource_path(resource)) }
 
         it "should be able to delete resource" do
           expect do
             click_link('delete', match: :first)
-          end.to change(User, :count).by(-1)
+          end.to change(Resource, :count).by(-1)
         end
-
       end
     end
   end#index
-end
 
+  describe "show page" do
+  
+    let(:user) { FactoryGirl.create(:user) }
+    let!(:resource) { FactoryGirl.create(:resource) }
+   
+    before { visit resource_path(resource) }
+    
+    it { should have_content("#{resource.name}") }
+    it { should have_title("#{resource.name}") }
+    
+    describe "resources" do
+      it { should have_content(resource.format) }
+      it { should have_content(resource.description) }
+      it { should have_content(resource.cost) }
+      it { should have_content(resource.cost_type) }
+      it { should have_content(resource.provider) }
+      it { should have_content(resource.url) }
+      # it { should have_content("#{resources.reviews.count} reviews") }
+    end 
+  end#show
+end

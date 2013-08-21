@@ -1,5 +1,9 @@
 class ResourcesController < ApplicationController
-  #before_action :require_current_user,    only: [:index, :edit, :update]
+  before_action :set_current_user,        only: [:index]
+  # before_action :require_current_user,    only: [:new]
+  # before_action :require_correct_user,    only: [:edit, :update]
+  # before_action :admin_user,              only: [:destroy]
+
   def new
     @resource = Resource.new
   end
@@ -17,6 +21,7 @@ class ResourcesController < ApplicationController
   end
 
   def show
+    @resource = Resource.find(params[:id])
   end
 
   def edit
@@ -35,6 +40,14 @@ class ResourcesController < ApplicationController
   end
 
   def index
+    @resources = Resource.all
+  end
+
+  def destroy
+    @resource_to_delete = Resource.find(params[:id])
+      @resource_to_delete.destroy
+      flash[:success] = "Resoure destroyed."
+      redirect_to resources_url
   end
 
   private
