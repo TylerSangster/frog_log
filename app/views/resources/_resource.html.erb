@@ -1,7 +1,7 @@
-<div>
+<div class="well">
   <div>
     <div>
-      Title: <%= link_to resource.name, resource %><br>
+      <h2>Title: <%= link_to resource.name, resource %><br></h2>
       Format: <%= link_to resource.format, resource %>
       Description: <%= link_to resource.description, resource %>&nbsp
       Cost: <%= link_to resource.cost, resource %>
@@ -34,11 +34,12 @@
   <%# end %> -->
   <div>
     <% @review = resource.reviews.build  %>
-    <% @review.resource_id = resource.id %>
+    <%# @review.resource_id = resource.id %>
     <%= form_for @review do |f| %>
     <%= render '/reviews/form', f: f %>
+    <%= f.hidden_field :resource_id, :value => resource.id %>
     <div>
-      <%= f.submit "Create review" %>
+      <%= f.submit "Create review", class: "btn" %>
     </div>
     <% end %>
   </div>

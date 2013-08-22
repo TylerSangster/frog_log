@@ -1,5 +1,5 @@
-<div><%= review.title %></div>
-    <div><%= review.score %></div>
+<div class="well"><h3>Title:<%= review.title %></h3>
+    <div>score: <%= review.score %></div>
     <div><%= review.content %></div>
     <div>by <%= review.user.first_name %> <%= review.user.last_name %></div>
 
@@ -7,3 +7,5 @@
       <%= link_to "edit", edit_review_path(review) %>    
       <%= link_to "delete", review, method: :delete, data: { confirm: "Are you sure?" } %>
     <% end %>
+
+</div>
