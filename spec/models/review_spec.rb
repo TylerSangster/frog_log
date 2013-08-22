@@ -12,6 +12,8 @@ describe Review do
   it { should respond_to(:score)}
   it { should respond_to(:title) }
   it { should respond_to(:content) }
+  it { should respond_to(:votes) }
+
   its(:user) { should eq user }
 
   it { should be_valid }

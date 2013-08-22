@@ -30,4 +30,16 @@ FactoryGirl.define do
     title                   "This is a review"
     content                 "Hello, this is a review. Hello, this is a review. Hello, this is a review. Hello, this is a review. "
   end
+
+  factory :vote do
+    user
+    review
+    kind                    "up"
+
+    factory :downvote do
+      user
+      review
+      kind                  "down"
+    end
+  end
 end
