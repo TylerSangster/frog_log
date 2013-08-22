@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 # Custom gems
 gem 'bootstrap-sass-rails'
+gem 'font-awesome-rails'
 
 # Testing gems
 gem 'factory_girl_rails'
