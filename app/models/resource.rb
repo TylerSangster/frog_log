@@ -7,6 +7,9 @@ class Resource < ActiveRecord::Base
   validates :name, :uniqueness => true
   
   validates :url, :presence => true, uniqueness: true, :format => /(^$)|(^((http|https):\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
+  
+  mount_uploader :resource_photo, ResourcePhotoUploader
+
   # before_save :add_http_to_url
 
 

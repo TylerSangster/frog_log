@@ -20,3 +20,11 @@
   <div>
     <%= f.text_area :content %>
   </div>
+    <div>
+    <%= f.label :resource_photo, "Resource Photo" %>
+  </div>
+  <div>
+    <%=f.file_field :resource_photo %>
+  </div>
+  <div><%= f.check_box :remove_resource_photo %><%= f.label :remove_resource_photo %>
+</div>
