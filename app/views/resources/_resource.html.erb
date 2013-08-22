@@ -1,46 +1,41 @@
-<div class="well">
-  <div>
-    <div>
-      <h2>Title: <%= link_to resource.name, resource %><br></h2>
-      Format: <%= link_to resource.format, resource %>
-      Description: <%= link_to resource.description, resource %>&nbsp
-      Cost: <%= link_to resource.cost, resource %>
-      Cost_type: <%= link_to resource.cost_type, resource %>
-      Provider: <%= link_to resource.provider, resource %>&nbsp
-      URL: <%= link_to resource.url, resource %>
-    <div>
-      Subject: <%= link_to resource.subject, resource %>
-    </div>
-    <div>
-      <% if @current_user && @current_user.admin? %>
-        <%= link_to "edit", edit_resource_path(resource) %>
-        <%= link_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" } %>
-      <% end %>
-    </div>
-  </div>
-
-
-  <div><%= render resource.reviews %>  </div>
-<!-- <%# debugger %>
-  <%#= if resource.reviews %>
-    <div>
-      <%#= form_for resource.reviews do |f| %>
-      <%#= render '/reviews/', f: f %>
+<tr>
+  <h2><%= link_to resource.name, resource %></h2>
+    <p>Format: <%= link_to resource.format, resource %></p>
+    <p>Description: <%= link_to resource.description, resource %></p>
+    <p>Cost: <%= number_to_currency(resource.cost/100) %>&nbsp<%= resource.cost_type %></p>
+    <p>Provider: <%= link_to resource.provider, resource %></p>
+    <p>URL: <%= link_to resource.url, resource %></p>
       <div>
-        <%#= f.submit "Create review" %>
+       <%= button_tag resource.subject, class:"btn btn-danger"  %>
       </div>
-      <%# end %>
-    </div>
-  <%# end %> -->
-  <div>
-    <% @review = resource.reviews.build  %>
-    <%# @review.resource_id = resource.id %>
-    <%= form_for @review do |f| %>
-    <%= render '/reviews/form', f: f %>
-    <%= f.hidden_field :resource_id, :value => resource.id %>
+      <div>
+        <% if @current_user && @current_user.admin? %>
+          <%= button_to "edit", edit_resource_path(resource), class:"btn btn-default" %>
+          <%= button_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-default" %>
+        <% end %>
+      </div>
+
+
+    <div><% render resource.reviews %>  </div>
+  <!-- <%# debugger %>
+    <%#= if resource.reviews %>
+      <div>
+        <%#= form_for resource.reviews do |f| %>
+        <%#= render '/reviews/', f: f %>
+        <div>
+          <%#= f.submit "Create review" %>
+        </div>
+        <%# end %>
+      </div>
+    <%# end %> -->
     <div>
-      <%= f.submit "Create review", class: "btn" %>
-    </div>
-    <% end %>
-  </div>
-</div>
+      <% @review = resource.reviews.build  %>
+      <%# @review.resource_id = resource.id %>
+      <% form_for @review do |f| %>
+      <% render '/reviews/form', f: f %>
+      <% f.hidden_field :resource_id, :value => resource.id %>
+      <div>
+        <% f.submit "Create review", class: "btn" %>
+      </div>
+      <% end %>
+</tr>
