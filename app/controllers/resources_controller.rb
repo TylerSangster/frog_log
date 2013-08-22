@@ -49,7 +49,7 @@ class ResourcesController < ApplicationController
   def destroy
     @resource_to_delete = Resource.find(params[:id])
       @resource_to_delete.destroy
-      flash[:success] = "Resoure destroyed."
+      flash[:success] = "Resource destroyed."
       redirect_to resources_url
   end
 

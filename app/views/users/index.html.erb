@@ -1,3 +1,14 @@
-<% provide(:title, 'All users') %>
-
-<%= render @users %>
+<div class = "container">
+  <span class="test-element"><% provide(:title, 'All users',)%></span>
+    <table class ="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @users %>
+      </tbody>
+    </table>
+</div>
