@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20130821203801) do
-=======
 ActiveRecord::Schema.define(version: 20130821211220) do
->>>>>>> voting-on-reviews
 
   create_table "resources", force: true do |t|
     t.string   "name"
