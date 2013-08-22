@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Custom gems
-gem 'bootstrap-sass'
+gem 'bootstrap-sass-rails'
 
 # Testing gems
 gem 'factory_girl_rails'
