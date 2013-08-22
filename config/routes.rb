@@ -3,7 +3,7 @@ Frog::Application.routes.draw do
   resources :sessions
   resources :reviews
   resources :resources
-
+  resources :votes, only: :create
   
   get 'signup',   to: 'users#new',  as: 'signup' 
   get 'login', to: 'sessions#new', as: 'login'

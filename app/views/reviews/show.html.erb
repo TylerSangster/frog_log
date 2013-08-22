@@ -1,13 +1,17 @@
 
 <% provide(:title, "#{@review.title}, #{@review.score}") %>
 
-    <div><%= @review.title %></div>
-    <div><%= @review.score %></div>
-    <div><%= @review.content %></div>
-    <div>by <%= @review.user.first_name %> <%= @review.user.last_name %></div>
+<div><%= @review.title %></div>
+<div><%= @review.score %></div>
+<div><%= @review.content %></div>
+<div>by <%= @review.user.first_name %> <%= @review.user.last_name %></div>
 
-    <% if same_user?(@review.user) or @current_user.admin? %>
-      <%= link_to "edit", edit_review_path(@review) %>    
-      <%= link_to "delete", @review, method: :delete, data: { confirm: "Are you sure?" } %>
-    <% end %>
-    
+<% if same_user?(@review.user) or @current_user.admin? %>
+  <%= link_to "edit", edit_review_path(@review) %>    
+  <%= link_to "delete", @review, method: :delete, data: { confirm: "Are you sure?" } %>
+<% end %>
+
+<div id="vote-results">
+<%= "#{@review.upvotes.count} of #{@review.votes.count} people found this review helpful." %>
+</div>
+<%= render '/shared/vote_form' unless same_user?(@review.user) %>

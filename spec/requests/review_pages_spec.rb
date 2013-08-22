@@ -62,20 +62,24 @@ describe "Review pages" do
       it { should have_content(review.user.first_name) }
       it { should have_content(review.user.last_name) }
       it { should have_title("#{review.title}, #{review.score}") }
-      it { should have_link('edit'), href: edit_review_path(review) }
-      it { should have_link('delete'), href: review_path(review) }
+      it { should have_link('edit', href: edit_review_path(review)) }
+      it { should have_link('delete', href: review_path(review)) }
+      it { should_not have_button('Yes')}
+      it { should_not have_button('No')}
 
       describe "for another user's review" do
         let(:other_user_review) { FactoryGirl.create(:review, user: other_user) }
         before { visit review_path(other_user_review) }
         it { should_not have_link('edit') }
         it { should_not have_link('delete') }
+        it { should have_button('Yes')}
+        it { should have_button('No')}
       end
 
       describe "as an admin" do
         before { login admin_user; visit review_path(review)}
-        it { should have_link('edit'), href: edit_review_path(review) }
-        it { should have_link('delete'), href: review_path(review) }
+        it { should have_link('edit', href: edit_review_path(review)) }
+        it { should have_link('delete', href: review_path(review)) }
       end
     end
 
