@@ -44,6 +44,6 @@ class ReviewsController < ApplicationController
   private
 
     def review_params
-      params.require(:review).permit(:title, :score, :content, :resource_photo, :remove_resource_photo)
+      params.require(:review).permit(:title, :score, :content)
     end
 end
