@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: { case_sensitive: false }, format: { with: VALID_EMAIL_REGEX }
 	validates :password, length: { minimum: 6 }
 	has_secure_password
+  
+  mount_uploader :avatar, AvatarUploader
 
 
   def vote!(review_id, kind)

@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20130822200235) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "resource_photo"
   end
 
   create_table "reviews", force: true do |t|
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(version: 20130822200235) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin",           default: false
+    t.string   "avatar"
   end
 
   create_table "votes", force: true do |t|

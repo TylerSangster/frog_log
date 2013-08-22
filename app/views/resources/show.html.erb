@@ -8,5 +8,15 @@
     <div>Cost Type: <%= @resource.cost_type %></div>
     <div>Provider: <%= @resource.provider %></div>
     <div>URL: <%= @resource.url %></div>
+    <div>Photo: <%= image_tag @resource.resource_photo %></div>
+
+    <div id="accordion">
+      <% if @resource.reviews %>
+        <% @resource.reviews.each do |review| %>
+          <h3><%= review.title %></h3>
+          <p><%= review.content %></p>
+        <% end %>
+      <% end %>
+    </div>
 
     <%= link_to "delete", @resource, method: :delete, data: { confirm: "Are you sure?" } %>

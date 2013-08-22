@@ -56,6 +56,6 @@ class ResourcesController < ApplicationController
   private
 
   def resource_params
-      params.require(:resource).permit(:name, :subject, :format, :description, :cost, :cost_type, :provider, :url)
+      params.require(:resource).permit(:name, :subject, :format, :description, :cost, :cost_type, :provider, :url, :resource_photo, :remove_resource_photo)
   end
 end
