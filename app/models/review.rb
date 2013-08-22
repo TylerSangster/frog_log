@@ -1,6 +1,6 @@
 class Review < ActiveRecord::Base
   belongs_to :user
-  belongs_to :user
+  belongs_to :resource
 
   validates :content, presence: true, length: { maximum: 1000, minimum: 100 }
   validates :title, presence: true, length: { maximum: 100, minimum: 10 }

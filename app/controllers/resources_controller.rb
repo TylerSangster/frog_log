@@ -1,13 +1,12 @@
 class ResourcesController < ApplicationController
-<<<<<<< HEAD
+
   before_action :set_current_user,        only: [:index]
   # before_action :require_current_user,    only: [:new]
   # before_action :require_correct_user,    only: [:edit, :update]
   # before_action :admin_user,              only: [:destroy]
 
-=======
   before_action :require_current_user,    only: [:new]
->>>>>>> 3898e7b443f8dd31f6f9b33405460dcc503f1b4f
+
   def new
     @resource = Resource.new
   end
