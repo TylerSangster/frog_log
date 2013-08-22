@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
     @review = @current_user.reviews.build(review_params)
     if @review.save
       flash[:success] = "Review created!"
-      redirect_to root_url
+      redirect_to @review
     else render 'new'
     end
   end
@@ -44,6 +44,6 @@ class ReviewsController < ApplicationController
   private
 
     def review_params
-      params.require(:review).permit(:title, :score, :content, :resource_photo, :remove_resource_photo)
+      params.require(:review).permit(:title, :score, :content)
     end
 end
