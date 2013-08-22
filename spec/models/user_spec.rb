@@ -26,6 +26,9 @@ describe User do
   it { should respond_to(:has_upvoted?) }
   it { should respond_to(:has_downvoted?) }
 
+  it { should respond_to(:interests) }
+  it { should respond_to(:interesting_resources) }
+
   it { should be_valid }
 
   describe "with admin attribute set to 'true'" do
@@ -161,4 +164,36 @@ describe User do
       #   before { }
   end
 
+  describe "expressing interest" do
+    let(:resource) { FactoryGirl.create(:resource) }
+    
+    it "should raise interested user counts" do
+      expect { user.interested!(resource) }.to change(resource.interested_users, :count)
+    end
+
+    it "should raise interesting resource counts" do
+      expect { user.interested!(resource) }.to change(user.interesting_resources, :count).by(1)
+    end
+
+    describe "should change interested flags" do 
+      before { user.interested!(resource) }
+      it { should be_interested(resource) }
+
+      describe "but only once" do
+        before { user.interested!(resource) }
+        it { should be_interested(resource) }
+        it "should only have one interesting resource" do
+          expect(user.interesting_resources.count).to eq 1 
+        end
+      end
+
+      it "and allow undoing" do
+        expect { user.not_interested!(resource) }.to change(user.interesting_resources, :count).by(-1)
+      end
+    end
+
+    it "cannot express disinterest except after expressing interest" do
+      expect { user.not_interested!(resource) }.not_to change(user.interesting_resources, :count)
+    end
+  end
 end
