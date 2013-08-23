@@ -5,7 +5,7 @@ class Resource < ActiveRecord::Base
   has_many :interested_users, through: :interests, source: :user  
 
 
-  acts_as_taggable_on :subjects, :formats, :providers raise nil
+  acts_as_taggable_on :subjects, :formats, :providers rescue nil
 
   validates :name, :subject, :description, :format, :cost, :cost_type, :provider, presence: true
   validates :cost, numericality: { :greater_than_or_equal_to => 0, only_integer: true }
