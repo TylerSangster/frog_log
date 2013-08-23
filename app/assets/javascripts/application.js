@@ -16,5 +16,5 @@
 //= require jquery.ui.widget
 //= require jquery.ui.all
 //= require jquery.ui.accordion
-//= require bootstrap
+//= require twitter/bootstrap
 //= require_tree .

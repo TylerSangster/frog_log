@@ -6,7 +6,20 @@
   <div>
     <%= f.text_field :name %>
   </div>
+  <div class="field">
+    <%= f.label :subject_list, "Subject (separated by commas)" %>
+    <%= f.text_field :subject_list %>
+  </div>
 
+  <div class="field">
+    <%= f.label :format_list, "Format (separated by commas)" %>
+    <%= f.text_field :format_list %>
+  </div>
+  <div class="field">
+    <%= f.label :provider_list, "Provider (separated by commas)" %>
+    <%= f.text_field :provider_list %>
+  </div>
+  
   <div>
     <%= f.label :subject, "Subject" %>
   </div>
