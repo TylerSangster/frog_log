@@ -1,5 +1,5 @@
 <tr>
-  <td><%= link_to user.first_name, user %>&nbsp<%= link_to user.last_name, user %></td>
+  <td><%= link_to "#{user.first_name} #{user.last_name}", user %></td>
   <td><%= link_to user.email, user %></td>
   <td><%= link_to "edit", edit_user_path(user) %></td>
 	<td>

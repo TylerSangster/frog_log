@@ -109,9 +109,7 @@ describe "ResourcePages" do
     let!(:resource) { FactoryGirl.create(:resource) }
     let!(:resource_two) { FactoryGirl.create(:resource_two) }
     let!(:admin_user) { FactoryGirl.create(:admin_user) }
-    before(:each) do
-      visit resources_path
-    end
+    before(:each) { visit resources_path }
 
     it { should have_title('All Resources') }
     it { should have_content('All Resources') }
@@ -121,13 +119,11 @@ describe "ResourcePages" do
     it { should have_content(resource.format) }
 
     it { should have_content(resource.description) }
-    it { should have_content(resource.cost) }
+    it { should have_content(resource.cost/100) }
     it { should have_content(resource.cost_type) }
     it { should have_content(resource.provider) }
     it { should have_content(resource.url) }
     
-    
-
     describe "delete links" do
       it { should_not have_link('delete') }
       

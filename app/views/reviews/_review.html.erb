@@ -1,11 +1,16 @@
-<div class="well"><h3>Title:<%= review.title %></h3>
-    <div>score: <%= review.score %></div>
-    <div><%= review.content %></div>
-    <div>by <%= review.user.first_name %> <%= review.user.last_name %></div>
-
-    <% if same_user?(review.user) or @current_user.admin? %>
-      <%= link_to "edit", edit_review_path(review) %>    
-      <%= link_to "delete", review, method: :delete, data: { confirm: "Are you sure?" } %>
-    <% end %>
-
+<div class="well">
+  <div><%= review.title %></div>
+  <div>by <%= link_to "#{review.user.last_name} #{review.user.first_name}", review.user %></div>
+  <div><%= review.score %> out of 5</div>
+  <div><%= review.content %></div>
 </div>
+
+<% if same_user?(review.user) or @current_user.admin? %>
+  <%= link_to "edit", edit_review_path(review) %>    
+  <%= link_to "delete", review, method: :delete, data: { confirm: "Are you sure?" } %>
+<% end %>
+
+<div id="vote-results">
+<%= "#{review.upvotes.count} of #{review.votes.count} people found this review helpful." %>
+</div>
+<%= render partial: '/shared/vote_form', locals: {review: review} unless same_user?(review.user) %>
