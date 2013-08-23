@@ -9,8 +9,10 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require bootstrap_override
+ *= require jquery.ui.core
+ *= require jquery.ui.theme
+ *= require jquery.ui.accordion
+ *= require jquery.ui.all
  *= require font-awesome
- *= require custom
  *= require_tree .
  */

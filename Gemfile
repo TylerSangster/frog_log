@@ -6,8 +6,6 @@ gem 'font-awesome-rails'
 
 gem 'acts-as-taggable-on'
 
-
-
 # Testing gems
 gem 'factory_girl_rails'
 gem 'rspec-rails'
@@ -52,7 +50,7 @@ end
 
 # Use sqlite3 as the database for Active Record
 group :development, :test  do
-  gem 'sqlite3'
+  gem 'sqlite3', '1.3.7', require: false
 end
 
 # Use ActiveModel has_secure_password
