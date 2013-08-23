@@ -2,13 +2,12 @@
   <div>
     <div>
       <h2>Title: <%= link_to resource.name, resource %><br></h2>
-      Format: <%= link_to resource.format, resource %>
-      Description: <%= link_to resource.description, resource %>&nbsp
-      Cost: <%= link_to resource.cost, resource %>
-      Cost_type: <%= link_to resource.cost_type, resource %>
-      Provider: <%= link_to resource.provider, resource %>&nbsp
+      Format: <%= resource.format %>
+      Description: <%= resource.description %>&nbsp
+      Cost: <%= resource.cost %>
+      Cost_type: <%= resource.cost_type %>
+      Provider: <%= resource.provider %>&nbsp
       URL: <%= link_to resource.url, resource %>
-    <div>
       Subject: <%= link_to resource.subject, resource %>
     </div>
     <div>
@@ -17,30 +16,22 @@
         <%= link_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" } %>
       <% end %>
     </div>
+    <div>
+        <%= render partial: 'interest_form', locals: {resource: resource} %>
+    </div>
   </div>
 
 
   <div><%= render resource.reviews %>  </div>
-<!-- <%# debugger %>
-  <%#= if resource.reviews %>
-    <div>
-      <%#= form_for resource.reviews do |f| %>
-      <%#= render '/reviews/', f: f %>
-      <div>
-        <%#= f.submit "Create review" %>
-      </div>
-      <%# end %>
-    </div>
-  <%# end %> -->
+
   <div>
     <% @review = resource.reviews.build  %>
-    <%# @review.resource_id = resource.id %>
     <%= form_for @review do |f| %>
-    <%= render '/reviews/form', f: f %>
-    <%= f.hidden_field :resource_id, :value => resource.id %>
-    <div>
-      <%= f.submit "Create review", class: "btn" %>
-    </div>
+      <%= render '/reviews/form', f: f %>
+      <%= f.hidden_field :resource_id, :value => resource.id %>
+      <div>
+        <%= f.submit "Create review", class: "btn" %>
+      </div>
     <% end %>
   </div>
 </div>

@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 # Custom gems
 gem 'bootstrap-sass'
+gem 'will_paginate', '~> 3.0'
 
 # Testing gems
 gem 'factory_girl_rails'

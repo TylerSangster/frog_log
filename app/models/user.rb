@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
     @interest.destroy! if @interest
   end
 
-  def interested?(resource)
-    return true if interests.find_by(resource_id: resource.id)
+  def interested?(resource_id)
+    return true if interests.find_by(resource_id: resource_id)
   end
 end
