@@ -12,5 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.core
+//= require jquery.ui.widget
+//= require jquery.ui.all
+//= require jquery.ui.accordion
 //= require bootstrap
 //= require_tree .

@@ -1,3 +1,13 @@
 <% provide(:title, 'All Resources') %>
 
 <%= render @resources %>
+
+
+<div id="accordion">
+  <% if @reviews %>
+    <% @reviews.each do |review| %>
+      <h3><%= review.title %></h3>
+      <p><%= review.content %></p>
+  <% end %>
+</div>
+<% end %>
