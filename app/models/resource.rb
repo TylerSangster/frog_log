@@ -1,6 +1,8 @@
 class Resource < ActiveRecord::Base
   
   has_many :reviews
+  has_many :interests
+  has_many :interested_users, through: :interests, source: :user  
 
 
   acts_as_taggable_on :subjects, :formats, :providers raise nil
@@ -15,10 +17,12 @@ class Resource < ActiveRecord::Base
 
 
 
+
   # before_save :add_http_to_url
 
+  mount_uploader :resource_photo, ResourcePhotoUploader
 
-
+  # before_save :add_http_to_url
 
   # private
 

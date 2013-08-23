@@ -14,6 +14,9 @@ describe Resource do
   it { should respond_to(:provider) }
   it { should respond_to(:url) }
 
+  it { should respond_to(:interests) }
+  it { should respond_to(:interested_users) }
+
   it { should be_valid }
 
   describe "when name is not present" do

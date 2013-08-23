@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
 
   has_many :reviews
   has_many :votes
+  has_many :interests
+  has_many :interesting_resources, through: :interests, source: :resource  
 
 	before_save { self.email = email.downcase }
 
@@ -10,6 +12,8 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: { case_sensitive: false }, format: { with: VALID_EMAIL_REGEX }
 	validates :password, length: { minimum: 6 }
 	has_secure_password
+  
+  mount_uploader :avatar, AvatarUploader
 
 
   def vote!(review_id, kind)
@@ -28,14 +32,27 @@ class User < ActiveRecord::Base
   end
 
   def has_voted?(review)
-    votes.find_by(review_id: review.id)
+    return true if votes.find_by(review_id: review.id)
   end
 
   def has_upvoted?(review)
-    votes.find_by(review_id: review.id, kind: "up")
+    return true if votes.find_by(review_id: review.id, kind: "up")
   end
 
   def has_downvoted?(review)
-    votes.find_by(review_id: review.id, kind: "down")
+    return true if votes.find_by(review_id: review.id, kind: "down")
+  end
+
+  def interested!(resource)
+    interests.create!(resource_id: resource.id) unless interested?(resource)
+  end
+
+  def not_interested!(resource)
+    @interest = interests.find_by(resource.id)
+    @interest.destroy! if @interest
+  end
+
+  def interested?(resource)
+    return true if interests.find_by(resource_id: resource.id)
   end
 end
