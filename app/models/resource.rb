@@ -20,7 +20,7 @@ class Resource < ActiveRecord::Base
 
   # before_save :add_http_to_url
 
-  mount_uploader :resource_photo, ResourcePhotoUploader
+ # mount_uploader :resource_photo, ResourcePhotoUploader
 
   # before_save :add_http_to_url
 
