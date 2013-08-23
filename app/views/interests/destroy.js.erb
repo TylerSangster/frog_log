@@ -1,1 +1,5 @@
-$("#interest_form").html("<%= escape_javascript(render partial: 'resources/add_to_interested', locals: {resource: @resource}) %>")
+<% resource_id = @resource.id %>
+
+$("#interest-form-<%= resource_id %>").html("<%= escape_javascript(render partial: 'resources/add_to_interested', locals: {resource: @resource}) %>")
+
+$("#interested-users-<%= resource_id %>").html("<%= escape_javascript(render partial: 'resources/interested_users', locals: {resource: @resource}) %>")

@@ -1,9 +1,11 @@
 <% if @current_user %>
-  <div id="interest_form">
-    <% if @current_user.interested?(resource) %>
-      <%= render partial: 'remove_from_interested', locals: {resource: resource} %>
-    <% else %>
-      <%= render partial: 'add_to_interested', locals: {resource: resource} %>
-    <% end %>
+  <div>
+    <span id="<%= "interest-form-#{resource.id}" %>">
+      <% if @current_user.interested?(resource) %>
+        <%= render partial: 'remove_from_interested', locals: {resource: resource} %>
+      <% else %>
+        <%= render partial: 'add_to_interested', locals: {resource: resource} %>
+      <% end %>
+    </span>
   </div>
 <% end %>

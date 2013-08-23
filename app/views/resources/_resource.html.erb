@@ -15,18 +15,11 @@
       <% end %>
     </div>
 
-    <div><%= render partial: 'interest_form', locals: {resource: resource} %></div>
-    
-    <div><% render resource.reviews %>  </div>
+    <%= render partial: 'interest_form', locals: {resource: resource} %>
 
-    <div>
-      <% @review = resource.reviews.build  %>
-      <% form_for @review do |f| %>
-        <% render '/reviews/form', f: f %>
-        <% f.hidden_field :resource_id, :value => resource.id %>
-        <div>
-          <% f.submit "Create review", class: "btn" %>
-        </div>
-      <% end %>
-    </div>
+    <%= render partial: 'interested_users', locals: {resource: resource} %>
+    
+    <%= render resource.reviews %>
+
+    <%= render partial: 'build_review_form', locals: {resource: resource} %>
 </tr>
