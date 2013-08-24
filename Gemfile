@@ -1,10 +1,13 @@
 source 'https://rubygems.org'
+ruby '2.0.0'
+
 
 # Custom gems
 gem 'bootstrap-sass-rails'
 gem 'font-awesome-rails'
 
 gem 'acts-as-taggable-on'
+gem 'will_paginate', '~> 3.0'
 
 # Testing gems
 gem 'factory_girl_rails'
@@ -22,7 +25,7 @@ gem 'sass-rails', '~> 4.0.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 gem 'carrierwave'
-#gem 'rmagick', '2.13.2'
+gem 'rmagick', '2.13.2'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'

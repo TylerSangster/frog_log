@@ -15,7 +15,7 @@ class ResourcesController < ApplicationController
     @resource = Resource.new(resource_params)
     if @resource.save
       # session[:resource_id] = @resource.resource_id
-      flash[:success] = "Thank you for submitting the resource, #{@resource.name.capitalize}!"      
+      flash[:success] = "Thank you for submitting the resource, #{@current_user.first_name.capitalize}!"      
       redirect_to @resource
     else
       flash[:error] = "Whoops! You've made an error while creating a resource."
@@ -43,19 +43,32 @@ class ResourcesController < ApplicationController
   end
 
   def index
-    @resources = Resource.all
+    if params[:subject]
+      @resources = Resource.tagged_with(params[:subject])
+    elsif params[:format]
+      @resources = Resource.tagged_with(params[:format])
+    elsif params[:provider]
+      @resources = Resource.tagged_with(params[:provider])
+    else
+      @resources = Resource.all
+    end
+      
   end
 
   def destroy
     @resource_to_delete = Resource.find(params[:id])
       @resource_to_delete.destroy
-      flash[:success] = "Resoure destroyed."
+      flash[:success] = "Resource destroyed."
       redirect_to resources_url
+  end
+
+  def interested
+    @resource = Resource.find(params[:id])
   end
 
   private
 
   def resource_params
-      params.require(:resource).permit(:name, :subject, :format, :description, :cost, :cost_type, :provider, :url)
+    params.require(:resource).permit(:name, :subject_list, :format_list, :description, :cost, :cost_type, :provider_list, :url, :resource_photo, :remove_resource_photo)
   end
 end

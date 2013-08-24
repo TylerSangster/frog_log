@@ -28,17 +28,20 @@ namespace :db do
   end
 
   def make_resources
-    5.times do |n|
+    interested_users = User.all[31..100]
+    5.times do |n|      
+      subject_list = "Rails, Ruby"
+      format_list = "book, screencast"
+      provider_list = "Hartl, Code School"
       name = Faker::Lorem.sentence(1)
-      subject = Faker::Lorem.sentence(1)
-      format = "book"
       description = "I hate yogurt. It's just stuff with bits in. You know when grown-ups tell you 'everything's going to be fine' and you think they're probably lying to make you feel better? I'm the Doctor, I'm worse than everyone's aunt. *catches himself* And that is not how I'm introducing myself. All I've got to do is pass as an ordinary human being. Simple. What could possibly go wrong?"
       cost = 1999
       cost_type = "monthly"
-      provider = "provider"
       url = "www.google#{n}.com"
-
-      Resource.create!(name: name, subject: subject, format: format, description: description, cost: cost, cost_type: cost_type, provider: provider, url: url )
+      resource = Resource.create!(name: name, description: description, cost: cost, cost_type: cost_type, url: url, subject_list: subject_list, format_list: format_list, provider_list: provider_list )
+      interested_users.each do |interested_user|
+          resource.interests.create!(user: interested_user) if rand(10)>4
+      end
     end
   end
 

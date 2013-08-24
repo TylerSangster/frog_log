@@ -1,0 +1,5 @@
+<%= form_for(@current_user.interests.build(resource_id: resource.id), 
+                                           remote: true) do |f| %>
+  <%= f.hidden_field :resource_id %>
+  <%= f.submit "Save / Interested", class: "btn btn-success" %>
+<% end %>

@@ -1,0 +1,25 @@
+<% interested_users = @resource.interested_users %>
+<% interested_user_count = interested_users.count %>
+
+<% provide(:title, "#{@resource.name}") %>
+
+<%= pluralize(interested_user_count, 'person') + 
+  if interested_user_count==1
+    " is "
+  else
+    " are "
+  end +
+     "interested in this course:" %> 
+
+<table class ="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render interested_users %>
+  </tbody>
+</table>
+</div>

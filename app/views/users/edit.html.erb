@@ -2,6 +2,9 @@
 
 <%= form_for @user do |f| %>
 	<%= render 'form', f: f %> 
+  <div>
+    <%= f.check_box :remove_avatar %><%= f.label :remove_avatar %>
+  </div>
 	<div>
 		<%= f.submit "Save Changes" %>
 	</div>

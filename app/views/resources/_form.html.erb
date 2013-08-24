@@ -6,19 +6,15 @@
   <div>
     <%= f.text_field :name %>
   </div>
-
-  <div>
-    <%= f.label :subject, "Subject" %>
-  </div>
-  <div>
-    <%= f.text_field :subject %>
+  
+  <div class="field">
+    <%= f.label :subject_list, "Subject (separated by commas)" %><br />
+    <%= f.text_field :subject_list %>
   </div>
 
-  <div>
-    <%= f.label :format, "Format" %>
-  </div>
-  <div>
-    <%= f.text_field :format %>
+  <div class="field">
+    <%= f.label :format_list, "Format (separated by commas)" %><br />
+    <%= f.text_field :format_list %>
   </div>
 
   <div>
@@ -42,11 +38,9 @@
     <%= f.text_field :cost_type %>
   </div>
 
-  <div>
-  <%= f.label :provider, "Provider" %>
-  </div>
-  <div>
-    <%= f.text_field :provider %>
+  <div class="field">
+    <%= f.label :provider_list, "Provider (separated by commas)" %><br />
+    <%= f.text_field :provider_list %>
   </div>
 
   <div>
@@ -55,3 +49,10 @@
   <div>
     <%= f.text_field :url %>
   </div>
+    <div>
+    <%= f.label :resource_photo, "Resource Photo" %>
+  </div>
+  <div>
+    <%=f.file_field :resource_photo %>
+  </div>
+
