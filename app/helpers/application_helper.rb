@@ -36,7 +36,4 @@ module ApplicationHelper
     redirect_to(root_url) unless set_current_user.admin?
   end
 
-  def current_user
-    @current_user ||= User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
-  end
 end

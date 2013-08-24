@@ -3,13 +3,18 @@
 
 <% provide(:title, "#{@resource.name}") %>
 
-<%= pluralize(interested_user_count, 'person') + 
-  if interested_user_count==1
-    " is "
-  else
-    " are "
-  end +
-     "interested in this course:" %> 
+
+<%=  if interested_user_count==0
+    "No users have expressed interest in this resource."
+    else
+      pluralize(interested_user_count, 'person') + 
+      if interested_user_count==1
+        " is "
+      elsif interested_user_count >= 2
+        " are "
+      end +
+      "interested in this resource:"
+      end %> 
 
 <table class ="table">
   <thead>

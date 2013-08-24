@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
   
   mount_uploader :avatar, AvatarUploader
 
-  before_create { generate_token(:auth_token) }
   before_create :create_remember_token
 
   def send_password_reset
