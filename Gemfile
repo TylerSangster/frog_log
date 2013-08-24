@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+ruby '2.0.0'
+
 
 # Custom gems
 gem 'bootstrap-sass-rails'

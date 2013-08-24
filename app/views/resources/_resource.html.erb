@@ -1,12 +1,16 @@
 <tr>
   <h2><%= link_to resource.name, resource %></h2>
-    <p>Format: <%= link_to resource.format, resource %></p>
+    <h4>Subject: <%= raw resource.subject_list.map { |subject| link_to subject, subject_path(subject), class: "label label-primary" }.join(', ') %></h4>
+    <h4>Format: <%= raw resource.format_list.map { |format| link_to format, format_path(format), class: "label label-success" }.join(', ') %></h4>
+
     <p>Description: <%= link_to resource.description, resource %></p>
     <p>Cost: <%= number_to_currency(resource.cost/100) %>&nbsp<%= resource.cost_type %></p>
-    <p>Provider: <%= link_to resource.provider, resource %></p>
+    
+    <h4>Provider: <%= raw resource.provider_list.map { |provider| link_to provider, provider_path(provider), class: "label label-warning" }.join(', ') %></h4>
+
     <p>URL: <%= link_to resource.url, resource %></p>
       <div>
-       <%= button_tag resource.subject, class:"btn btn-danger"  %>
+       <%= button_tag resource.name, class:"btn btn-danger"  %>
       </div>
       <div>
         <% if @current_user && @current_user.admin? %>
@@ -17,17 +21,7 @@
 
 
     <div><% render resource.reviews %>  </div>
-  <!-- <%# debugger %>
-    <%#= if resource.reviews %>
-      <div>
-        <%#= form_for resource.reviews do |f| %>
-        <%#= render '/reviews/', f: f %>
-        <div>
-          <%#= f.submit "Create review" %>
-        </div>
-        <%# end %>
-      </div>
-    <%# end %> -->
+
     <div>
       <% @review = resource.reviews.build  %>
       <%# @review.resource_id = resource.id %>
