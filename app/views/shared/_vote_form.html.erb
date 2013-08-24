@@ -1,13 +1,16 @@
-<%= "Was this review helpful to you?" %>
-  
-<%= form_for(current_user.votes.build(review_id: review.id, kind: "up"), remote: true) do |f| %>
-  <%= f.hidden_field :review_id %>
-  <%= f.hidden_field :kind %>
-<%= f.submit "Yes", class: "btn btn-success" %>
-<% end %>
+<% if signed_in? %>
+  <%= "Was this review helpful to you?" %>
+    
+  <%= form_for(current_user.votes.build(review_id: review.id, kind: "up"), remote: true) do |f| %>
+    <%= f.hidden_field :review_id %>
+    <%= f.hidden_field :kind %>
+  <%= f.submit "Yes", class: "btn btn-success" %>
+  <% end %>
 
-<%= form_for(current_user.votes.build(review_id: review.id, kind: "down"), remote: true) do |f| %>
-  <%= f.hidden_field :review_id %>
-  <%= f.hidden_field :kind %>
-  <%= f.submit "No", class: "btn btn-danger" %>
+  <%= form_for(current_user.votes.build(review_id: review.id, kind: "down"), remote: true) do |f| %>
+    <%= f.hidden_field :review_id %>
+    <%= f.hidden_field :kind %>
+    <%= f.submit "No", class: "btn btn-danger" %>
+  <% end %>
+
 <% end %>

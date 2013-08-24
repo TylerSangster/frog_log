@@ -1,6 +1,8 @@
 class ResourcesController < ApplicationController
 
-  before_action :require_signed_in,        only: [:new]
+  before_action :require_signed_in,    only: [:new]
+  
+  respond_to :html, :json, :xml, except: [:new]
 
   def new
     @resource = Resource.new
@@ -38,18 +40,17 @@ class ResourcesController < ApplicationController
   end
 
   def index
-    if params[:subject_list]
-      @resources = Resource.tagged_with(params[:subject_list])
-    elsif params[:format_list]
-      @resources = Resource.tagged_with(params[:format_list])
-    elsif params[:provider_list]
-      @resources = Resource.tagged_with(params[:provider_list])
+    if params[:subject]
+      @resources = Resource.tagged_with(params[:subject])
+    elsif params[:format]
+      @resources = Resource.tagged_with(params[:format])
+    elsif params[:provider]
+      @resources = Resource.tagged_with(params[:provider])
     else
       @resources = Resource.all
     end
-      @resources = @resources.paginate(:page => params[:page], :per_page => 10)
   end
-
+  
   def destroy
     @resource_to_delete = Resource.find(params[:id])
       @resource_to_delete.destroy
@@ -59,6 +60,11 @@ class ResourcesController < ApplicationController
 
   def interested
     @resource = Resource.find(params[:id])
+  end
+
+  def search
+    @results = Resource.search_for params[:query]
+    respond_with @results
   end
 
   private

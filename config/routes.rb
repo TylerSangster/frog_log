@@ -4,10 +4,14 @@ Frog::Application.routes.draw do
   resources :sessions
   resources :reviews
   resources :resources do
+    collection do
+      get :search
+    end
     member do
       get :interested
     end
   end
+
   resources :interests, only: [:create, :destroy]
   resources :votes, only: :create
   resources :password_resets
