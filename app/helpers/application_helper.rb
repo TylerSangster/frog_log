@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  @@base_title = "Frog-Log"
+  @@base_title = "Code Dojo"
 
   # Returns the full title on a per-page basis.
   def full_title(page_title)
@@ -36,4 +36,7 @@ module ApplicationHelper
     redirect_to(root_url) unless set_current_user.admin?
   end
 
+  def current_user
+    @current_user ||= User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
+  end
 end

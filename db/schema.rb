@@ -11,19 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130821211220) do
+ActiveRecord::Schema.define(version: 20130824053044) do
+
+  create_table "interests", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "resource_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "interests", ["resource_id"], name: "index_interests_on_resource_id"
+  add_index "interests", ["user_id", "resource_id"], name: "index_interests_on_user_id_and_resource_id", unique: true
+  add_index "interests", ["user_id"], name: "index_interests_on_user_id"
 
   create_table "resources", force: true do |t|
     t.string   "name"
     t.string   "subject"
     t.string   "format"
     t.text     "description"
-    t.integer  "cost"
+    t.decimal  "cost",           precision: 6, scale: 2
     t.string   "cost_type"
     t.string   "provider"
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "resource_photo"
   end
 
   create_table "reviews", force: true do |t|
@@ -36,6 +48,23 @@ ActiveRecord::Schema.define(version: 20130821211220) do
     t.integer  "resource_id"
   end
 
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", force: true do |t|
+    t.string "name"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email"
     t.string   "first_name"
@@ -43,8 +72,15 @@ ActiveRecord::Schema.define(version: 20130821211220) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "admin",           default: false
+    t.boolean  "admin",                  default: false
+    t.string   "avatar"
+    t.string   "auth_token"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
+    t.string   "remember_token"
   end
+
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
   create_table "votes", force: true do |t|
     t.integer  "user_id"

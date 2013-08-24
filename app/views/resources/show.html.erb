@@ -4,7 +4,7 @@
     <div>Subject: <%= @resource.subject %></div>
     <div>Format: <%= @resource.format %></div>
     <div>Description: <%= @resource.description %></div>
-    <div>Cost: <%= @resource.cost %></div>
+    <div>Cost: <%= number_to_currency(@resource.cost) %></div>
     <div>Cost Type: <%= @resource.cost_type %></div>
     <div>Provider: <%= @resource.provider %></div>
     <div>URL: <%= @resource.url %></div>

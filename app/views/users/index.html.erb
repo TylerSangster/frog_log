@@ -1,3 +1,6 @@
 <% provide(:title, 'All users') %>
 
 <%= render @users %>
+
+
+    <p><%= link_to "Log out", logout_path, method: :delete %></p>

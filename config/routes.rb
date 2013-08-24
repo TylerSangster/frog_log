@@ -4,13 +4,13 @@ Frog::Application.routes.draw do
   resources :reviews
   resources :resources
   resources :votes, only: :create
+  resources :password_resets
   
   get 'signup',   to: 'users#new',  as: 'signup' 
   get 'login', to: 'sessions#new', as: 'login'
   delete 'logout', to: 'sessions#destroy', as: 'logout'
 
   root 'users#index'
-  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
