@@ -1,0 +1,5 @@
+<% resource_id = @resource.id %>
+
+$("#interest-form-<%= resource_id %>").html("<%= escape_javascript(render partial: 'resources/remove_from_interested', locals: {resource: @resource}) %>")
+
+$("#interested-users-<%= resource_id %>").html("<%= escape_javascript(render partial: 'resources/interested_users', locals: {resource: @resource}) %>")

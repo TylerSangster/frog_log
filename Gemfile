@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+ruby '2.0.0'
+
 
 # Custom gems
 gem 'bootstrap-sass-rails'
@@ -6,7 +8,7 @@ gem 'font-awesome-rails'
 
 gem 'acts-as-taggable-on'
 
-
+gem 'will_paginate', '~> 3.0'
 
 # Testing gems
 gem 'factory_girl_rails'

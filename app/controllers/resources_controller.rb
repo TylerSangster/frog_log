@@ -43,7 +43,16 @@ class ResourcesController < ApplicationController
   end
 
   def index
-    @resources = Resource.all
+    if params[:subject]
+      @resources = Resource.tagged_with(params[:subject])
+    elsif params[:format]
+      @resources = Resource.tagged_with(params[:format])
+    elsif params[:provider]
+      @resources = Resource.tagged_with(params[:provider])
+    else
+      @resources = Resource.all
+    end
+      
   end
 
   def destroy
@@ -53,11 +62,13 @@ class ResourcesController < ApplicationController
       redirect_to resources_url
   end
 
+  def interested
+    @resource = Resource.find(params[:id])
+  end
+
   private
 
   def resource_params
-
-      params.require(:resource).permit(:name, :subject, :format, :description, :cost, :cost_type, :provider, :url, :subject_list, :format_list, :provider_list, :resource_photo, :remove_resource_photo)
-
+    params.require(:resource).permit(:name, :subject_list, :format_list, :description, :cost, :cost_type, :provider_list, :url, :resource_photo, :remove_resource_photo)
   end
 end

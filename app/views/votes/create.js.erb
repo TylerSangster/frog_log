@@ -1,1 +1,3 @@
-$("#vote-results").html('<%= "#{@review.upvotes.count} of #{@review.votes.count} people found this review helpful." %>')
+<% vote_span = "#vote-results-#{@review.id}" %>
+
+$("<%= vote_span %>").html('<%= "#{@review.upvotes.count} of #{@review.votes.count} people found this review helpful." %>')

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130822201029) do
+ActiveRecord::Schema.define(version: 20130823231518) do
 
   create_table "interests", force: true do |t|
     t.integer  "user_id"
@@ -26,12 +26,9 @@ ActiveRecord::Schema.define(version: 20130822201029) do
 
   create_table "resources", force: true do |t|
     t.string   "name"
-    t.string   "subject"
-    t.string   "format"
     t.text     "description"
     t.integer  "cost"
     t.string   "cost_type"
-    t.string   "provider"
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"

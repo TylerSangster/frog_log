@@ -1,7 +1,38 @@
 <div class="container">
+  <br />
+  <!-- <div class="well"> -->
+    <div class="btn-group col-md-4 well well-sm">
+      <%= link_to "All Subjects", resources_path, class: "btn btn-large btn-primary" %>
+      <% tag_cloud Resource.subject_counts, %w[s m l] do |subject| %>
+        <%= link_to subject.name, subject_path(subject.name), class: "btn btn-large btn-primary" %>
+      <% end %>
+    </div>
+    <div class="btn-group col-md-4 well well-sm">
+      <%= link_to "All Formats", resources_path, class: "btn btn-large btn-success" %>
+      <% tag_cloud Resource.format_counts, %w[s m l] do |format| %>
+        <%= link_to format.name, format_path(format.name), class: "btn btn-large btn-success" %>
+      <% end %>
+    </div>
+    <div class="btn-group col-md-4 well well-sm">
+      <%= link_to "All Providers", resources_path, class: "btn btn-large btn-warning" %>
+      <% tag_cloud Resource.provider_counts, %w[s m l] do |provider| %>
+        <%= link_to provider.name, provider_path(provider.name), class: "btn btn-large btn-warning" %>
+      <% end %>
+    </div>
+    <br/>
+  <!-- </div> -->
+
+<% provide(:title, 'All Resources') %>
 
 <table class="table table-hover table-bordered">
   <%= render @resources %>
 <table>
 
 </div>
+
+<!-- <div id="tab" class="btn-group" data-toggle="buttons-radio">
+  <a href="#prices2" class="btn btn-large btn-info active" data-toggle="tab">Prices</a>
+  <a href="#features2" class="btn btn-large btn-info" data-toggle="tab">Features</a>
+  <a href="#requests2" class="btn btn-large btn-info" data-toggle="tab">Requests</a>
+  <a href="#contact2" class="btn btn-large btn-info"  data-toggle="tab">Contact</a>
+</div> -->
