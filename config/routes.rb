@@ -1,4 +1,5 @@
 Frog::Application.routes.draw do
+  get "static_pages/welcome"
   resources :users
   resources :sessions
   resources :reviews

@@ -1,5 +1,6 @@
 body { 
   padding-top: 70px; 
+  font-family: Source Sans Pro, sans-serif;
 }
 
 .fake-image {
@@ -59,14 +60,14 @@ body {
     color: #555555;
     vertical-align: middle;
     background-color: white;
-    border: 2px solid #cccccc;
+    border: 2px solid #bdc3c7;
     border-radius: 6px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; }
+   /* -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);*/
+    -webkit-transition: border-color linear 0.25s, border linear 0.25s;
+    transition: border-color linear 0.25s, border linear 0.25s; }
     .form-control:focus {
-      border-color: #66afe9;
+      border-color: #1abc9c;
       outline: 0;
       -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
       box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); }
@@ -79,15 +80,30 @@ body {
 .navbar-inverse {
   background-color: #34495e;
   border-color: #34495e; }
+  .nav-btn { /* Added this class */
+    background-color: #f39c12;
+    color: white;
+    -webkit-transition: background-color linear 0.25s, background-color linear 0.25s;
+    transition: background-color linear 0.25s, background-color linear 0.25s;}
+    .navbar-inverse .nav-btn:hover, .navbar-inverse .nav-btn:focus {
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+      background-color: #1abc9c;
+      color: white;
+    }
   .navbar-inverse .navbar-brand {
-    color: white; }
+    color: white; 
+    -webkit-transition: color ease-in-out 0.35s, color ease-in-out 0.35s;
+    transition: color ease-in-out 0.35s, color ease-in-out 0.35s;}
     .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
       color: #1abc9c;
       background-color: transparent; }
   .navbar-inverse .navbar-text {
     color: white; }
   .navbar-inverse .navbar-nav > li > a {
-    color: white; }
+    color: white; 
+    -webkit-transition: color ease-in-out 0.35s, color ease-in-out 0.35s;
+    transition: color ease-in-out 0.35s, color ease-in-out 0.35s;}
     .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
       color: #1abc9c;
       background-color: transparent; }
@@ -111,10 +127,12 @@ body {
     color: white; }
   .navbar-inverse .navbar-nav > .dropdown > a:hover .caret {
     border-top-color: #1abc9c;
-    border-bottom-color: #1abc9c; }
+    border-bottom-color: #1abc9c;}
   .navbar-inverse .navbar-nav > .dropdown > a .caret {
     border-top-color: white;
-    border-bottom-color: white; }
+    border-bottom-color: white; 
+    -webkit-transition: border-top-color ease-in-out 0.35s, border-top-color ease-in-out 0.35s;
+    transition: border-top-color ease-in-out 0.35s, border-top-color ease-in-out 0.35s;}
   .navbar-inverse .navbar-nav > .open > a .caret, .navbar-inverse .navbar-nav > .open > a:hover .caret, .navbar-inverse .navbar-nav > .open > a:focus .caret {
     border-top-color: white;
     border-bottom-color: white; }
@@ -215,3 +233,35 @@ body {
   bottom: 0;
   top: 0;
   z-index: 990; }
+
+/* Carousel */
+
+.carousel{
+  margin-top: -40px;
+}
+
+.carousel > h1 {
+  font-family: Lato, sans-serif;
+}
+
+.carousel-caption {
+  bottom: 50%;
+}
+
+.carousel > .carousel-inner > .item > img {
+  opacity: 0;
+  width: 100%;
+  height: 50%;
+   }
+
+#slide-1 {
+  background: url('ladies-learning-code.jpg') no-repeat center center / cover;
+}
+
+#slide-2 {
+  background: url('women-learning-code.jpg') no-repeat center center / cover;
+}
+
+#slide-3 {
+  background: url('railsforzombies.png') no-repeat center center / cover;
+}
