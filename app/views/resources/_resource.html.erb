@@ -8,14 +8,29 @@
               <span class = "pull-right rating-show"><i class="icon-star solid-star"></i><i class="icon-star solid-star"></i><i class="icon-star solid-star"></i><i class="icon-star solid-star"></i><i class="icon-star solid-star"></i></span>
             </h2>
             <ul class="list-inline list-style">
-              <li><%= button_tag "RSpec", class:"btn btn-xs btn-danger" %></li>
-              <li><%= button_tag "Ruby on Rails", class:"btn btn-xs btn-danger" %></li>
-              <li><%= button_tag "Online", class:"btn btn-xs btn-primary" %></li>
-              <li><%= button_tag "Video Tutorials", class:"btn btn-xs btn-primary" %></li>
-              <li><%= button_tag "Exercises", class:"btn btn-xs btn-primary" %></li>
+              <% resource.subjects.each do |subject| %>
+                <li>
+                 <%= link_to(subject.name, 
+                          subject_path(subject.name), 
+                          class: "btn btn-xs btn-danger") %>
+                </li>
+              <% end %>
+              <% resource.formats.each do |format| %>
+                <li>
+                  <%= link_to(format.name, 
+                          format_path(format.name), 
+                          class: "btn btn-xs btn-primary") %>
+                </li>
+              <% end %>
             </ul>
             <ul class="list-inline list-style">
-              <li><%= button_tag "Code School", class:"btn btn-xs btn-warning" %></li>
+              <% resource.providers.each do |provider| %>
+                <li>
+                  <%= link_to(provider.name, 
+                          provider_path(provider.name), 
+                          class: "btn btn-xs btn-warning") %>
+                </li>
+              <% end %>
               <li><%= number_to_currency(resource.cost/100) %>&nbsp<%= resource.cost_type %></li>
             </ul>
             <p><%= resource.description %></p>
@@ -35,43 +50,3 @@
     </div>
   </td>
 </tr>    
-
-<tr>
-  <td>
-    <h2><%= link_to resource.name, resource %></h2>
-    <h4>Subject: <%= raw resource.subject_list.map { |subject| link_to subject, subject_path(subject), class: "label label-primary" }.join(', ') %></h4>
-    <h4>Format: <%= raw resource.format_list.map { |format| link_to format, format_path(format), class: "label label-success" }.join(', ') %></h4>
-
-    <p>Description: <%= link_to resource.description, resource %></p>
-    <p>Cost: <%= number_to_currency(resource.cost/100) %>&nbsp<%= resource.cost_type %></p>
-    
-    <h4>Provider: <%= raw resource.provider_list.map { |provider| link_to provider, provider_path(provider), class: "label label-warning" }.join(', ') %></h4>
-
-    <p>URL: <%= link_to resource.url, resource %></p>
-
-    <div>
-     <%= button_tag resource.name, class:"btn btn-danger"  %>
-    </div>
-    <div>
-      <% if @current_user && @current_user.admin? %>
-        <%= button_to "edit", edit_resource_path(resource), class:"btn btn-default" %>
-        <%= button_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-default" %>
-      <% end %>
-    </div>
-    <div class="col-md-4">
-    <%= link_to resource_path(resource) do %>
-      <%= image_tag "railsforzombies.png", class:"img-responsive img-thumbnail" %>
-    <% end %>
-  </div>
-    <%= render partial: 'interest_form', locals: {resource: resource} %>
-
-    <%= render partial: 'interested_users', locals: {resource: resource} %>
-    
-    <%= render partial: 'similar_resources', locals: {resource: resource} %>
-    <div id="accordion">
-      <%= render resource.reviews %>
-    </div>
-    
-    <%= render partial: 'build_review_form', locals: {resource: resource} %>
-  </td>
-</tr>

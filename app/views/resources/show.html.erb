@@ -1,13 +1,1 @@
-<% provide(:title, "#{@resource.name}") %>
-
-    <div>Name: <%= @resource.name %></div>
-    <div>Subject: <%= @resource.subject_list %></div>
-    <div>Format: <%= @resource.format_list %></div>
-    <div>Description: <%= @resource.description %></div>
-    <div>Cost: <%= number_to_currency(@resource.cost) %></div>
-    <div>Cost Type: <%= @resource.cost_type %></div>
-    <div>Provider: <%= @resource.provider_list %></div>
-    <div>URL: <%= @resource.url %></div>
-
-    <%= link_to "delete", @resource, method: :delete, data: { confirm: "Are you sure?" } %>
-
+<%= render partial: 'show_resource', locals: {resource: @resource} %>
