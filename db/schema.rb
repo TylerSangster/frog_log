@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20130824053044) do
-=======
 ActiveRecord::Schema.define(version: 20130823231518) do
->>>>>>> a335c77830f216994ab4af0cf21169d21b5aea51
 
   create_table "interests", force: true do |t|
     t.integer  "user_id"
@@ -31,7 +27,7 @@ ActiveRecord::Schema.define(version: 20130823231518) do
   create_table "resources", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.decimal  "cost",           precision: 6, scale: 2
+    t.integer  "cost"
     t.string   "cost_type"
     t.string   "url"
     t.datetime "created_at"
@@ -73,20 +69,9 @@ ActiveRecord::Schema.define(version: 20130823231518) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
-<<<<<<< HEAD
-    t.boolean  "admin",                  default: false
-    t.string   "avatar"
-    t.string   "auth_token"
-    t.string   "password_reset_token"
-    t.datetime "password_reset_sent_at"
-    t.string   "remember_token"
-=======
     t.boolean  "admin",           default: false
     t.string   "avatar"
->>>>>>> a335c77830f216994ab4af0cf21169d21b5aea51
   end
-
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
   create_table "votes", force: true do |t|
     t.integer  "user_id"
