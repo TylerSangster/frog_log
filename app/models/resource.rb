@@ -12,7 +12,6 @@ class Resource < ActiveRecord::Base
   acts_as_taggable_on :subjects, :formats, :providers rescue nil
 
   validates :name, :subject_list, :description, :format_list, :cost, :cost_type, :provider_list, presence: true
-  validates :cost, numericality: { :greater_than_or_equal_to => 0, only_integer: true }
   validates :name, :uniqueness => true
   validates :url, :presence => true, uniqueness: true, :format => /(^$)|(^((http|https):\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
   
