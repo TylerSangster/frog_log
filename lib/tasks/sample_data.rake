@@ -29,7 +29,7 @@ namespace :db do
 
   def make_resources
     interested_users = User.all[31..100]
-    10.times do |n|      
+    20.times do |n|      
       subject_list = ["Rails, Ruby", "RSpec, Capybara, Rails", "HTML5, CSS3", "jQuery, AJAX, Rails", "Coffescript"]
       format_list = ["book, screencast", "book, exercises", "blog post", "interactive tutorial, exercises, video", "podcast"]
       provider_list = ["Michael Hartl", "Code School", "Codecademy", "Treehouse", "Pragmatic Programmers"]
@@ -62,7 +62,7 @@ namespace :db do
     reviewers = users[1..10]
     voters    = users[11..30] 
     reviewers.each do |reviewer| 
-      10.times do |n|
+      15.times do |n|
         score = rand(4)+1
         title = Faker::Lorem.sentence(3)
         content = [ "You hate me; you want to kill me! Well, go on! Kill me! KILL ME! Sorry, checking all the water in this area; there's an escaped fish. Saving the world with meals on wheels. They're not aliens, they're Earth…liens!", 
