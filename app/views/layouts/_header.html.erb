@@ -25,4 +25,25 @@
       </ul>
     </div>
   </div>
+
+    <div class="btn-group col-md-4 well well-sm">
+      <%= link_to "All Subjects", resources_path, class: "btn btn-large btn-primary" %>
+      <% tag_cloud Resource.subject_counts, %w[s m l] do |subject| %>
+        <%= link_to subject.name, subject_path(subject.name), class: "btn btn-large btn-primary" %>
+      <% end %>
+    </div>
+    <div class="btn-group col-md-4 well well-sm">
+      <%= link_to "All Formats", resources_path, class: "btn btn-large btn-success" %>
+      <% tag_cloud Resource.format_counts, %w[s m l] do |format| %>
+        <%= link_to format.name, format_path(format.name), class: "btn btn-large btn-success" %>
+      <% end %>
+    </div>
+    <div class="btn-group col-md-4 well well-sm">
+      <%= link_to "All Providers", resources_path, class: "btn btn-large btn-warning" %>
+      <% tag_cloud Resource.provider_counts, %w[s m l] do |provider| %>
+        <%= link_to provider.name, provider_path(provider.name), class: "btn btn-large btn-warning" %>
+      <% end %>
+    </div>
+    <br/>
+  
 </header>
