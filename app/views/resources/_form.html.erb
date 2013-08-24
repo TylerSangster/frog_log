@@ -19,10 +19,9 @@
     <%= f.label :provider_list, "Provider (separated by commas)" %>
     <%= f.text_field :provider_list %>
   </div>
-  
+
   <div>
-    <%= f.label :subject, "Subject" %>
-  </div>
+    <%= f.label :subject %>
   <div>
     <%= f.text_field :subject %>
   </div>
@@ -74,5 +73,4 @@
   <div>
     <%=f.file_field :resource_photo %>
   </div>
-  <div><%= f.check_box :remove_resource_photo %><%= f.label :remove_resource_photo %>
-</div>
+
