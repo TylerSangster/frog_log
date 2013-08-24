@@ -4,12 +4,12 @@
   <% else %>
     People interested in this course: 
 
-    <% resource.interested_users.take(25).each do |user| %>
+    <% resource.interested_users.sample(25).each do |user| %>
       <%# TO DO: change to avatar eventually %>
       <%= link_to user.email, user %>
     <% end %>
 
-    <%= "(#{resource.interested_users.count} total)" %>
+    <%= link_to "(#{resource.interested_users.count} total)", interested_resource_path(resource.id) %>
 
   <% end %>
 </div>

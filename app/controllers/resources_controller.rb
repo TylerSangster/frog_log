@@ -53,6 +53,10 @@ class ResourcesController < ApplicationController
       redirect_to resources_url
   end
 
+  def interested
+    @resource = Resource.find(params[:id])
+  end
+
   private
 
   def resource_params

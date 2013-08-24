@@ -13,6 +13,22 @@ class Resource < ActiveRecord::Base
   
   validates :url, :presence => true, uniqueness: true, :format => /(^$)|(^((http|https):\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
   
+  def similar(n)
+    # http://stackoverflow.com/questions/8580497/how-to-get-first-n-elements-from-hash-in-ruby
+    # http://stackoverflow.com/questions/801824/clean-way-to-find-activerecord-objects-by-id-in-the-order-specified
+    similar_resources = []
+    interested_users.each do |user|
+      user.interesting_resources.each do |resource|
+        similar_resources.push(resource.id)
+      end
+    end
+    similar_with_counts = Hash.new(0)
+    similar_resources.each { |resource| similar_with_counts[resource] += 1 }
+    
+    top_similar_ids = p Hash[similar_with_counts.sort_by { |k,v| -v }[0..(n-1)]].keys
+    similar_records = Resource.find(top_similar_ids).group_by(&:id)
+    sorted_records = top_similar_ids.map { |id| similar_records[id].first }
+  end
 
 
 
