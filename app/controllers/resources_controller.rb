@@ -1,6 +1,6 @@
 class ResourcesController < ApplicationController
 
-  before_action :set_current_user,        only: [:index]
+  before_action :current_user,        only: [:index]
   # before_action :require_current_user,    only: [:new]
   # before_action :require_correct_user,    only: [:edit, :update]
   # before_action :admin_user,              only: [:destroy]
@@ -31,6 +31,12 @@ class ResourcesController < ApplicationController
 
   def edit
     @resource = Resource.find(params[:id])
+  end
+
+
+  def search
+    @results = Resource.search_for params[:query]
+    respond_with @results
   end
 
   def update
@@ -76,6 +82,6 @@ class ResourcesController < ApplicationController
   private
 
   def resource_params
-    params.require(:resource).permit(:name, :subject_list, :format_list, :provider_list, :description, :cost, :cost_type, :provider_list, :url, :resource_photo, :remove_resource_photo, :subject, :format, :provider)
+    params.require(:resource).permit(:name, :subject_list, :format_list, :provider_list, :description, :cost, :cost_type, :provider_list, :url, :resource_photo, :remove_resource_photo)
   end
 end
