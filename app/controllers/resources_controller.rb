@@ -15,7 +15,7 @@ class ResourcesController < ApplicationController
     @resource = Resource.new(resource_params)
     if @resource.save
       # session[:resource_id] = @resource.resource_id
-      flash[:success] = "Thank you for submitting the resource, #{@current_user.first_name.capitalize}!"      
+      flash[:success] = "Thank you for submitting the resource!"      
       redirect_to @resource
     else
       flash[:error] = "Whoops! You've made an error while creating a resource."
@@ -43,16 +43,16 @@ class ResourcesController < ApplicationController
   end
 
   def index
-    if params[:subject]
-      @resources = Resource.tagged_with(params[:subject])
-    elsif params[:format]
-      @resources = Resource.tagged_with(params[:format])
-    elsif params[:provider]
-      @resources = Resource.tagged_with(params[:provider])
+    if params[:subject_list]
+      @resources = Resource.tagged_with(params[:subject_list])
+    elsif params[:format_list]
+      @resources = Resource.tagged_with(params[:format_list])
+    elsif params[:provider_list]
+      @resources = Resource.tagged_with(params[:provider_list])
     else
       @resources = Resource.all
     end
-      
+      @resources = @resources.paginate(:page => params[:page], :per_page => 10)
   end
 
   def destroy
@@ -69,6 +69,6 @@ class ResourcesController < ApplicationController
   private
 
   def resource_params
-    params.require(:resource).permit(:name, :subject_list, :format_list, :description, :cost, :cost_type, :provider_list, :url, :resource_photo, :remove_resource_photo)
+    params.require(:resource).permit(:name, :subject_list, :format_list, :provider_list, :description, :cost, :cost_type, :provider_list, :url, :resource_photo, :remove_resource_photo, :subject, :format, :provider)
   end
 end

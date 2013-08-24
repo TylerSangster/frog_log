@@ -2,9 +2,13 @@ class Resource < ActiveRecord::Base
   
   has_many :reviews
   has_many :interests
-  has_many :interested_users, through: :interests, source: :user  
+  has_many :interested_users, through: :interests, source: :user
 
-  validates :name, :subject, :description, :format, :cost, :cost_type, :provider, presence: true
+  has_many :subject_lists
+  has_many :provider_lists
+  has_many :format_lists
+
+  # validates :name, :subject, :description, :format, :cost, :cost_type, :provider, presence: true
   validates :cost, :format => { :with => /\A\$?(?=\(.*\)|[^()]*$)\(?\d{1,3}(,?\d{3})?(\.\d\d?)?\)?\z/}, :numericality => {:greater_than_or_equal_to => 0}
 
   mount_uploader :resource_photo, ResourcePhotoUploader
