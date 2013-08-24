@@ -2,7 +2,12 @@ Frog::Application.routes.draw do
   resources :users
   resources :sessions
   resources :reviews
-  resources :resources
+  resources :resources do
+    member do
+      get :interested\
+    end
+  end
+  resources :interests, only: [:create, :destroy]
   resources :votes, only: :create
   
   get 'signup',   to: 'users#new',  as: 'signup' 

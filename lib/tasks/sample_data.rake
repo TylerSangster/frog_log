@@ -28,6 +28,7 @@ namespace :db do
   end
 
   def make_resources
+    interested_users = User.all[31..100]
     5.times do |n|
       name = Faker::Lorem.sentence(1)
       subject = Faker::Lorem.sentence(1)
@@ -37,8 +38,10 @@ namespace :db do
       cost_type = "monthly"
       provider = "provider"
       url = "www.google#{n}.com"
-
-      Resource.create!(name: name, subject: subject, format: format, description: description, cost: cost, cost_type: cost_type, provider: provider, url: url )
+      resource = Resource.create!(name: name, subject: subject, format: format, description: description, cost: cost, cost_type: cost_type, provider: provider, url: url )
+      interested_users.each do |interested_user|
+          resource.interests.create!(user: interested_user) if rand(10)>4
+      end
     end
   end
 
