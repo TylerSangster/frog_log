@@ -6,6 +6,7 @@
   <div>
     <%= f.text_field :name %>
   </div>
+  
   <div class="field">
     <%= f.label :subject_list, "Subject (separated by commas)" %><br />
     <%= f.text_field :subject_list %>
@@ -54,5 +55,4 @@
   <div>
     <%=f.file_field :resource_photo %>
   </div>
-  <div><%= f.check_box :remove_resource_photo %><%= f.label :remove_resource_photo %>
-</div>
+

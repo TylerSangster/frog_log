@@ -1,3 +1,4 @@
+<div class="container">
   <br />
   <!-- <div class="well"> -->
     <div class="btn-group col-md-4 well well-sm">
@@ -23,7 +24,11 @@
 
 <% provide(:title, 'All Resources') %>
 
+<table class="table table-hover table-bordered">
+  <%= render @resources %>
+<table>
 
+</div>
 
 <!-- <div id="tab" class="btn-group" data-toggle="buttons-radio">
   <a href="#prices2" class="btn btn-large btn-info active" data-toggle="tab">Prices</a>
@@ -31,7 +36,3 @@
   <a href="#requests2" class="btn btn-large btn-info" data-toggle="tab">Requests</a>
   <a href="#contact2" class="btn btn-large btn-info"  data-toggle="tab">Contact</a>
 </div> -->
-
-<table class = "table">
-    <%= render @resources %>
-</table>
