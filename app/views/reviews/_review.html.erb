@@ -4,7 +4,7 @@
   <div><%= review.score %> out of 5</div>
   <div><%= review.content %></div>
 
-  <% if same_user?(review.user) or @current_user.admin? %>
+  <% if same_user?(review.user) or current_user.admin? %>
     <%= link_to "edit", edit_review_path(review) %>    
     <%= link_to "delete", review, method: :delete, data: { confirm: "Are you sure?" } %>
   <% end %>

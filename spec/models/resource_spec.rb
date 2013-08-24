@@ -6,12 +6,12 @@ describe Resource do
   subject { resource }
 
   it { should respond_to(:name)}
-  it { should respond_to(:subject)}
-  it { should respond_to(:format) }
+  it { should respond_to(:subject_list) }
+  it { should respond_to(:format_list) }
   it { should respond_to(:description) }
   it { should respond_to(:cost) }
   it { should respond_to(:cost_type)}
-  it { should respond_to(:provider) }
+  it { should respond_to(:provider_list) }
   it { should respond_to(:url) }
 
   it { should respond_to(:interests) }
@@ -24,13 +24,13 @@ describe Resource do
     it { should_not be_valid }
   end
   
-  describe "when subject is not present" do
-    before { resource.subject = " " }
+  describe "when subject_list is not present" do
+    before { resource.subject_list = " " }
     it { should_not be_valid }
   end
   
-  describe "when format is not present" do
-    before { resource.format = " " }
+  describe "when format_list is not present" do
+    before { resource.format_list = " " }
     it { should_not be_valid }
   end
 
@@ -54,8 +54,8 @@ describe Resource do
     it { should_not be_valid }
   end
 
-  describe "when provider is not present" do
-    before { resource.provider = " " }
+  describe "when provider_list is not present" do
+    before { resource.provider_list = " " }
     it { should_not be_valid }
   end
 

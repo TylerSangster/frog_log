@@ -1,8 +1,8 @@
 class VotesController < ApplicationController
-  before_action :set_current_user 
+  before_action :require_signed_in 
 
   def create
-    @current_user.vote!(params[:vote][:review_id], params[:vote][:kind])
+    current_user.vote!(params[:vote][:review_id], params[:vote][:kind])
     @review = Review.find(params[:vote][:review_id])
     respond_to do |format|
       format.html { redirect_to @review }
