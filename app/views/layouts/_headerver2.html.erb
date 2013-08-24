@@ -24,9 +24,11 @@
     </ul>
     <form class="navbar-form navbar-left" role="search">
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Let's do this!">
+            <%= form_tag(search_resources_path, method: :get) do %>
+            <%= search_field_tag :query, "Let's do this!" %>
+        <% end %>
+        <%= submit_tag "Search", class:"btn nav-btn" %>
       </div>
-      <button type="submit" class="btn nav-btn">Submit</button>
     </form>
     <ul class="nav navbar-nav navbar-right">
       <% if set_current_user %>

@@ -6,6 +6,8 @@ class ResourcesController < ApplicationController
   # before_action :admin_user,              only: [:destroy]
 
   before_action :require_current_user,    only: [:new]
+  
+  respond_to :html, :json, :xml, except: [:new]
 
   def new
     @resource = Resource.new
@@ -64,6 +66,11 @@ class ResourcesController < ApplicationController
 
   def interested
     @resource = Resource.find(params[:id])
+  end
+
+  def search
+    @results = Resource.search_for params[:query]
+    respond_with @results
   end
 
   private
