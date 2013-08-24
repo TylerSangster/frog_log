@@ -29,7 +29,7 @@
                       class: "btn btn-xs btn-warning") %>
             </li>
           <% end %>
-          <li><%= number_to_currency(resource.cost/100) %>&nbsp<%= resource.cost_type %></li>
+          <li><%= number_to_currency(resource.cost) %>&nbsp<%= resource.cost_type %></li>
         </ul>
         <p><%= resource.description %></p>
         <p><%= link_to resource_path(resource) do %>

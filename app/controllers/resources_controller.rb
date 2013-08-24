@@ -28,6 +28,12 @@ class ResourcesController < ApplicationController
     @resource = Resource.find(params[:id])
   end
 
+
+  def search
+    @results = Resource.search_for params[:query]
+    respond_with @results
+  end
+
   def update
     @resource = Resource.find(params[:id])
     if @resource.update_attributes(resource_params)
@@ -70,6 +76,6 @@ class ResourcesController < ApplicationController
   private
 
   def resource_params
-    params.require(:resource).permit(:name, :subject_list, :format_list, :provider_list, :description, :cost, :cost_type, :provider_list, :url, :resource_photo, :remove_resource_photo, :subject, :format, :provider)
+    params.require(:resource).permit(:name, :subject_list, :format_list, :provider_list, :description, :cost, :cost_type, :provider_list, :url, :resource_photo, :remove_resource_photo)
   end
 end
