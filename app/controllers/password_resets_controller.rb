@@ -1,7 +1,8 @@
 class PasswordResetsController < ApplicationController
-  before_action :require_current_user
+  before_action :require_current_user,        only: [:edit, :show]
   
   def new
+    render :new
   end
 
   def show

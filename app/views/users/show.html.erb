@@ -1,6 +1,5 @@
 <% provide(:title, "#{@user.first_name} #{@user.last_name}") %>
 <%= image_tag @user.avatar %>
-    <%= link_to "Edit profile", edit_user_path(@user) %>
     
 <%= "#{@user.reviews.count} reviews" %>
 
