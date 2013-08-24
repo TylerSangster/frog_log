@@ -30,9 +30,9 @@ class Resource < ActiveRecord::Base
     sorted_records = top_similar_ids.map { |id| similar_records[id].first }
   end
 
-
-
-
+  def average_score
+    reviews.average(:score)
+  end
 
   # before_save :add_http_to_url
 
