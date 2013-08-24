@@ -15,7 +15,7 @@ class ResourcesController < ApplicationController
     @resource = Resource.new(resource_params)
     if @resource.save
       # session[:resource_id] = @resource.resource_id
-      flash[:success] = "Thank you for submitting the resource, #{@resource.name.capitalize}!"      
+      flash[:success] = "Thank you for submitting the resource, #{@current_user.first_name.capitalize}!"      
       redirect_to @resource
     else
       flash[:error] = "Whoops! You've made an error while creating a resource."

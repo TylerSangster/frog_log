@@ -26,8 +26,9 @@
     <%= render partial: 'interested_users', locals: {resource: resource} %>
     
     <%= render partial: 'similar_resources', locals: {resource: resource} %>
-
-    <%= render resource.reviews %>
-
+    <div id="accordion">
+      <%= render resource.reviews %>
+    </div>
+    
     <%= render partial: 'build_review_form', locals: {resource: resource} %>
 </tr>
