@@ -4,19 +4,21 @@
   <div class="col-md-12">      
     <div class="row">
       <div class="col-md-8">
-        <h2><%= link_to resource.name, resource %></h2>
+        <h2><%= link_to resource.name, resource %>
+          <span class = "pull-right rating-show"><i class="icon-star solid-star"></i><i class="icon-star solid-star"></i><i class="icon-star solid-star"></i><i class="icon-star solid-star"></i><i class="icon-star solid-star"></i></span>
+        </h2>
         <ul class="list-inline list-style">
-          <li><%= button_tag "RSpec", class:"btn btn-danger" %></li>
-          <li><%= button_tag "Ruby on Rails", class:"btn btn-danger" %></li>
-          <li><%= button_tag "Online", class:"btn btn-primary" %></li>
-          <li><%= button_tag "Video Tutorials", class:"btn btn-primary" %></li>
-          <li><%= button_tag "Exercises", class:"btn btn-primary" %></li>
+          <li><%= button_tag "RSpec", class:"btn btn-xs btn-danger" %></li>
+          <li><%= button_tag "Ruby on Rails", class:"btn btn-xs btn-danger" %></li>
+          <li><%= button_tag "Online", class:"btn btn-xs btn-primary" %></li>
+          <li><%= button_tag "Video Tutorials", class:"btn btn-xs btn-primary" %></li>
+          <li><%= button_tag "Exercises", class:"btn btn-xs btn-primary" %></li>
         </ul>
         <ul class="list-inline list-style">
-          <li><%= button_tag "Code School", class:"btn btn-warning" %></li>
+          <li><%= button_tag "Code School", class:"btn btn-xs btn-warning" %></li>
           <li><%= number_to_currency(resource.cost/100) %>&nbsp<%= resource.cost_type %></li>
         <p><%= resource.description %></p>
-        <p><% link_to resource_path(resource) do %>
+        <p><%= link_to resource_path(resource) do %>
             <%= resource.reviews.count %> Reviews
           <% end %>
         </p>
