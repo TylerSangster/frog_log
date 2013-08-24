@@ -1,4 +1,4 @@
-<%= form_for(@current_user.interests.find_by(resource_id: resource.id),
+<%= form_for(current_user.interests.find_by(resource_id: resource.id),
                                              html: { method: :delete },
                                              remote: true) do |f| %>
   <%= f.hidden_field :resource_id %>

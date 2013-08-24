@@ -5,19 +5,17 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email])
     if user && user.authenticate(params[:session][:password])     
-      session[:user_id] = user.id
-      flash[:success] = "Welcome to Code Dojo, #{user.first_name} #{user.last_name}!"
-      redirect_to user 
+      sign_in(user, remember: params[:session][:remember_me])
+      redirect_back_or(user)
     else
-      flash.now[:error] = 'Invalid username and password combination'
+      flash.now[:error] = 'Invalid email and password combination'
       render "new"
     end
   end
 
   def destroy
-    flash.now[:success] = 'Thank you using Code Dojo!'
-    reset_session
-    redirect_to new_session_path
+    sign_out
+    redirect_to root_url
   end
 
 end

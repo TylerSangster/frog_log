@@ -1,11 +1,6 @@
 class ResourcesController < ApplicationController
 
-  before_action :set_current_user,        only: [:index]
-  # before_action :require_current_user,    only: [:new]
-  # before_action :require_correct_user,    only: [:edit, :update]
-  # before_action :admin_user,              only: [:destroy]
-
-  before_action :require_current_user,    only: [:new]
+  before_action :require_signed_in,        only: [:new]
 
   def new
     @resource = Resource.new
@@ -15,7 +10,7 @@ class ResourcesController < ApplicationController
     @resource = Resource.new(resource_params)
     if @resource.save
       # session[:resource_id] = @resource.resource_id
-      flash[:success] = "Thank you for submitting the resource, #{@current_user.first_name.capitalize}!"      
+      flash[:success] = "Thank you for submitting the resource, #{current_user.first_name.capitalize}!"      
       redirect_to @resource
     else
       flash[:error] = "Whoops! You've made an error while creating a resource."

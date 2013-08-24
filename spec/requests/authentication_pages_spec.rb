@@ -16,7 +16,7 @@ describe "Authentication Pages" do
     it { should have_title('Login') }
 
     it { should_not have_link('Logout',    href: logout_path) }
-    it { should have_link('Login', href: login_path) }
+    it { should have_link('Log In', href: login_path) }
     it { should have_link('Sign Up', href: signup_path) }
   end
 
@@ -28,7 +28,7 @@ describe "Authentication Pages" do
 
 
       it { should have_title('Login') }
-      it { should have_selector('div.alert.alert-error', text: 'Invalid username and password combination') }
+      it { should have_selector('div.alert.alert-error', text: 'Invalid email and password combination') }
     end
     
     describe "with valid information" do
@@ -40,11 +40,11 @@ describe "Authentication Pages" do
       let(:user) { FactoryGirl.create(:user) }
   
   		it { current_path.should == "/users/#{user.id}" }
-      it { should have_selector('div.alert.alert-success', text: "Welcome to Frog Log, #{user.first_name} #{user.last_name}!") }
+      it { should have_selector('div.alert.alert-success', text: "Welcome to Code Dojo, #{user.first_name} #{user.last_name}!") }
 
       describe "followed by logout" do
         before { click_link "Logout" }
-        it { should have_link("Login") }
+        it { should have_link("Log In") }
       end
     end
   end

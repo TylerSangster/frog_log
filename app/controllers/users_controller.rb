@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :require_current_user,    only: [:index, :edit, :update]
+	before_action :require_signed_in,      only: [:index, :edit, :update]
 	before_action :require_correct_user,		only: [:edit, :update]
   before_action :require_admin_user,     	only: :destroy
 
@@ -20,8 +20,8 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
       UserMailer.welcome_email(@user).deliver
-      sign_in @user
-			flash[:success] = "Welcome to Code Dojo, #{@user.first_name.capitalize} #{@user.last_name.capitalize}!"
+      sign_in(@user, false) #do not permanently remember user
+			flash[:sucess] = "Welcome to Code Dojo, #{@user.first_name.capitalize} #{@user.last_name.capitalize}!"
 			redirect_to @user
 		else
 			render action: :new
