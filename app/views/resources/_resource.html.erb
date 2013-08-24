@@ -1,10 +1,6 @@
-<tr>
+<tr class="accordion">
   <td>
-    <div class="row">
-      <div class="col-md-12">      
-        <div class="row">
-          <div class="col-md-8">
-            <h2><%= link_to resource.name, resource %>
+            <h2 class="accordion_header"><%= link_to resource.name, resource %>
               <span class = "pull-right rating-show"><i class="icon-star solid-star"></i><i class="icon-star solid-star"></i><i class="icon-star solid-star"></i><i class="icon-star solid-star"></i><i class="icon-star solid-star"></i></span>
             </h2>
             <ul class="list-inline list-style">
@@ -31,7 +27,7 @@
                           class: "btn btn-xs btn-warning") %>
                 </li>
               <% end %>
-              <li><%= number_to_currency(resource.cost/100) %>&nbsp<%= resource.cost_type %></li>
+              <li><%= number_to_currency(resource.cost) %>&nbsp<%= resource.cost_type %></li>
             </ul>
             <p><%= resource.description %></p>
             <p><%= link_to resource_path(resource) do %>
@@ -44,9 +40,5 @@
                 <%= link_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-default" %>
               <% end %>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </td>
 </tr>    
