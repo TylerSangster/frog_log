@@ -50,7 +50,8 @@ namespace :db do
                                   url: url, 
                                   subject_list: subject_list[rand(4)], 
                                   format_list: format_list[rand(4)], 
-                                  provider_list: provider_list[rand(4)] )
+                                  provider_list: provider_list[rand(4)],
+                                  status: true )
       interested_users.each do |interested_user|
           resource.interests.create!(user: interested_user) if rand(10)>4
       end
