@@ -41,7 +41,7 @@
       <% end %>
     </p>
     <div>
-      <% if current_user || current_user.admin? %>
+      <% if current_user && current_user.admin? %>
         <% if params[:action] =="pending" %>
           <%= link_to "Aprove", status_resource_path(resource), class: "btn btn-success" %>
         <% end %>
