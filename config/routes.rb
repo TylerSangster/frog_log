@@ -6,9 +6,11 @@ Frog::Application.routes.draw do
   resources :resources do
     collection do
       get :search
+      get :pending
     end
     member do
       get :interested
+      get :status
     end
   end
 
@@ -20,7 +22,7 @@ Frog::Application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   delete 'logout', to: 'sessions#destroy', as: 'logout'
 
-  root 'resources#index'
+  root 'static_pages#welcome'
 
   get 'subject/:subject', to: 'resources#index', as: :subject
   get 'format/:format', to: 'resources#index', as: :format

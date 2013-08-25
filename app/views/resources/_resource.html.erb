@@ -41,9 +41,12 @@
       <% end %>
     </p>
     <div>
-      <% if current_user && current_user.admin? %>
-        <%= link_to "edit", edit_resource_path(resource), class:"btn btn-default" %>
-        <%= link_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-default" %>
+      <% if current_user || current_user.admin? %>
+        <% if params[:action] =="pending" %>
+          <%= link_to "Aprove", status_resource_path(resource), class: "btn btn-success" %>
+        <% end %>
+        <%= link_to "edit", edit_resource_path(resource), class: "btn btn-primary" %>
+        <%= link_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
       <% end %>
     </div>
   </td>

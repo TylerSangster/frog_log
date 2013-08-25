@@ -1,6 +1,7 @@
 class ResourcesController < ApplicationController
 
   before_action :require_signed_in,    only: [:new]
+  #before_action :require_admin_user    only: [:pending]
   
   respond_to :html, :json, :xml, except: [:new]
 
@@ -28,12 +29,6 @@ class ResourcesController < ApplicationController
     @resource = Resource.find(params[:id])
   end
 
-
-  def search
-    @results = Resource.search_for params[:query]
-    respond_with @results
-  end
-
   def update
     @resource = Resource.find(params[:id])
     if @resource.update_attributes(resource_params)
@@ -47,13 +42,13 @@ class ResourcesController < ApplicationController
 
   def index
     if params[:subject]
-      @resources = Resource.tagged_with(params[:subject]).paginate(:page => params[:page], :per_page => 10)
+      @resources = Resource.where(status: true).tagged_with(params[:subject]).where("h = true").paginate(:page => params[:page], :per_page => 10)
     elsif params[:format]
-      @resources = Resource.tagged_with(params[:format]).paginate(:page => params[:page], :per_page => 10)
+      @resources = Resource.where(status: true).tagged_with(params[:format]).paginate(:page => params[:page], :per_page => 10)
     elsif params[:provider]
-      @resources = Resource.tagged_with(params[:provider]).paginate(:page => params[:page], :per_page => 10)
+      @resources = Resource.where(status: true).tagged_with(params[:provider]).paginate(:page => params[:page], :per_page => 10)
     else
-      @resources = Resource.paginate(:page => params[:page], :per_page => 10)
+      @resources = Resource.where(status: true).paginate(:page => params[:page], :per_page => 10)
     end
   end
   
@@ -69,13 +64,29 @@ class ResourcesController < ApplicationController
   end
 
   def search
-    @results = Resource.search_for params[:query]
+    @results = Resource.where(status: true).search_for params[:query]
     respond_with @results
   end
+
+  def pending
+    @resources = Resource.where(status: false).paginate(:page => params[:page], :per_page => 10)
+  end
+
+  def status
+    @resource = Resource.where(status: false).find(params[:id])
+    if @resource.status
+      @resource.status = false
+    else
+      @resource.status = true
+    end
+    @resource.save
+    redirect_to pending_resources_path
+  end
+
 
   private
 
   def resource_params
-    params.require(:resource).permit(:name, :subject_list, :format_list, :provider_list, :description, :cost, :cost_type, :provider_list, :url, :resource_photo, :remove_resource_photo)
+    params.require(:resource).permit(:name, :subject_list, :format_list, :provider_list, :description, :cost, :cost_type, :provider_list, :url, :resource_photo, :remove_resource_photo, :status, :query)
   end
 end
