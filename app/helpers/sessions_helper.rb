@@ -28,7 +28,7 @@ module SessionsHelper
     user == current_user
   end
 
-  def require_current_user
+  def require_signed_in
     unless signed_in?
       store_location
       redirect_to login_url, notice: "Please log in."

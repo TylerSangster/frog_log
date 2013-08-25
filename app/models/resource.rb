@@ -42,6 +42,23 @@ class Resource < ActiveRecord::Base
     reviews.average(:score)
   end
 
+  def helpful_good_reviews(n)
+    helpful_reviews(n, ">=4")
+  end
+
+  def helpful_bad_reviews(n)
+    helpful_reviews(n, "<=3")
+  end
+
+  def helpful_reviews(n, condition)
+    reviews_with_upvotes = Hash.new(0)
+    reviews.where("score#{condition}").each do |review|
+      reviews_with_upvotes[review.id] = review.upvotes.count
+    end
+    top_review_ids = p Hash[reviews_with_upvotes.sort_by { |k,v| -v }[0..(n-1)]].keys
+    review_records = Review.find(top_review_ids).group_by(&:id)
+    sorted_records = top_review_ids.map { |id| review_records[id].first }
+  end
   # before_save :add_http_to_url
 
   # before_save :add_http_to_url

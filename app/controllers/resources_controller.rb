@@ -46,12 +46,8 @@ class ResourcesController < ApplicationController
   end
 
   def index
-    if params[:subject]
-      @resources = Resource.tagged_with(params[:subject]).paginate(:page => params[:page], :per_page => 10)
-    elsif params[:format]
-      @resources = Resource.tagged_with(params[:format]).paginate(:page => params[:page], :per_page => 10)
-    elsif params[:provider]
-      @resources = Resource.tagged_with(params[:provider]).paginate(:page => params[:page], :per_page => 10)
+    if params[:tag]
+      @resources = Resource.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 10)
     else
       @resources = Resource.paginate(:page => params[:page], :per_page => 10)
     end
