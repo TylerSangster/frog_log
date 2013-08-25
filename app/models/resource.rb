@@ -2,9 +2,12 @@ class Resource < ActiveRecord::Base
   
   has_many :reviews
   has_many :interests
-  has_many :interested_users, through: :interests, source: :user  
+  has_many :interested_users, through: :interests, source: :user
 
-  validates :name, :subject, :description, :format, :cost, :cost_type, :provider, presence: true
+  has_many :subject_lists
+  has_many :provider_lists
+  has_many :format_lists
+
   validates :cost, :format => { :with => /\A\$?(?=\(.*\)|[^()]*$)\(?\d{1,3}(,?\d{3})?(\.\d\d?)?\)?\z/}, :numericality => {:greater_than_or_equal_to => 0}
 
   mount_uploader :resource_photo, ResourcePhotoUploader
@@ -14,7 +17,10 @@ class Resource < ActiveRecord::Base
   validates :name, :subject_list, :description, :format_list, :cost, :cost_type, :provider_list, presence: true
   validates :name, :uniqueness => true
   validates :url, :presence => true, uniqueness: true, :format => /(^$)|(^((http|https):\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
+  validates :cost, :format => { :with => /\A\$?(?=\(.*\)|[^()]*$)\(?\d{1,3}(,?\d{3})?(\.\d\d?)?\)?\z/}, :numericality => {:greater_than_or_equal_to => 0}
   
+  scoped_search on: [:subject_list, :format_list, :provider_list]
+
   def similar(n)
     # http://stackoverflow.com/questions/8580497/how-to-get-first-n-elements-from-hash-in-ruby
     # http://stackoverflow.com/questions/801824/clean-way-to-find-activerecord-objects-by-id-in-the-order-specified

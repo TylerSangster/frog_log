@@ -1,12 +1,12 @@
 class ReviewsController < ApplicationController
-  before_action :require_current_user,    except: [:index, :show]
+  before_action :require_signed_in,    except: [:index, :show]
   
   def new
     @review = Review.new
   end
 
   def create
-    @review = @current_user.reviews.build(review_params)
+    @review = current_user.reviews.build(review_params)
     if @review.save
       flash[:success] = "Review created!"
       redirect_to @review
@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
-    if @review.user != @current_user
+    if @review.user != current_user
       redirect_to root_path, :error => "You cannot edit somebody else's review." 
     end
   end

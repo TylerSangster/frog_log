@@ -3,4 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $("#accordion").accordion()
+  $(".accordion").accordion
+    header: ".accordion_header"
+    collapsible: true
+    active: false

@@ -1,11 +1,8 @@
 class ResourcesController < ApplicationController
 
-  before_action :set_current_user,        only: [:index]
-  # before_action :require_current_user,    only: [:new]
-  # before_action :require_correct_user,    only: [:edit, :update]
-  # before_action :admin_user,              only: [:destroy]
-
-  before_action :require_current_user,    only: [:new]
+  before_action :require_signed_in,    only: [:new]
+  
+  respond_to :html, :json, :xml, except: [:new]
 
   def new
     @resource = Resource.new
@@ -15,7 +12,7 @@ class ResourcesController < ApplicationController
     @resource = Resource.new(resource_params)
     if @resource.save
       # session[:resource_id] = @resource.resource_id
-      flash[:success] = "Thank you for submitting the resource, #{@current_user.first_name.capitalize}!"      
+      flash[:success] = "Thank you for submitting the resource!"      
       redirect_to @resource
     else
       flash[:error] = "Whoops! You've made an error while creating a resource."
@@ -31,6 +28,12 @@ class ResourcesController < ApplicationController
     @resource = Resource.find(params[:id])
   end
 
+
+  def search
+    @results = Resource.search_for params[:query]
+    respond_with @results
+  end
+
   def update
     @resource = Resource.find(params[:id])
     if @resource.update_attributes(resource_params)
@@ -44,17 +47,16 @@ class ResourcesController < ApplicationController
 
   def index
     if params[:subject]
-      @resources = Resource.tagged_with(params[:subject])
+      @resources = Resource.tagged_with(params[:subject]).paginate(:page => params[:page], :per_page => 10)
     elsif params[:format]
-      @resources = Resource.tagged_with(params[:format])
+      @resources = Resource.tagged_with(params[:format]).paginate(:page => params[:page], :per_page => 10)
     elsif params[:provider]
-      @resources = Resource.tagged_with(params[:provider])
+      @resources = Resource.tagged_with(params[:provider]).paginate(:page => params[:page], :per_page => 10)
     else
-      @resources = Resource.all
+      @resources = Resource.paginate(:page => params[:page], :per_page => 10)
     end
-      
   end
-
+  
   def destroy
     @resource_to_delete = Resource.find(params[:id])
       @resource_to_delete.destroy
@@ -66,9 +68,14 @@ class ResourcesController < ApplicationController
     @resource = Resource.find(params[:id])
   end
 
+  def search
+    @results = Resource.search_for params[:query]
+    respond_with @results
+  end
+
   private
 
   def resource_params
-    params.require(:resource).permit(:name, :subject_list, :format_list, :description, :cost, :cost_type, :provider_list, :url, :resource_photo, :remove_resource_photo)
+    params.require(:resource).permit(:name, :subject_list, :format_list, :provider_list, :description, :cost, :cost_type, :provider_list, :url, :resource_photo, :remove_resource_photo)
   end
 end

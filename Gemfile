@@ -7,6 +7,8 @@ gem 'font-awesome-rails'
 
 gem 'acts-as-taggable-on'
 gem 'will_paginate', '~> 3.0'
+gem 'scoped_search'
+gem 'dynamic_form'
 
 # Testing gems
 gem 'factory_girl_rails'
@@ -33,7 +35,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', "~> 2.3.0"
 gem 'jquery-ui-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
