@@ -52,7 +52,7 @@ body {
 .navbar {
   .form-control {
     display: block;
-    width: 100%;
+    width: 200%;
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
@@ -79,7 +79,7 @@ body {
 
 .navbar-inverse {
   background-color: #34495e;
-  border-color: #34495e; }
+  border-color: #2c3e50; }
   .nav-btn { /* Added this class */
     background-color: #f39c12;
     color: white;
@@ -246,6 +246,10 @@ body {
 
 .carousel-caption {
   bottom: 50%;
+}
+
+.carousel-caption > h1{
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
 }
 
 .carousel > .carousel-inner > .item > img {
