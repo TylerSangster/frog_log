@@ -269,3 +269,19 @@ body {
 #slide-3 {
   background: url('railsforzombies.png') no-repeat center center / cover;
 }
+
+/* Form Sign-in */
+.form-signin{
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.form-signup{
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+#file-field {
+  display: none;
+}
