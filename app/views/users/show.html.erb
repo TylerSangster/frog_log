@@ -6,14 +6,23 @@
     <%= image_tag @user.avatar, class:"img-responsive avatar" %>
   </div>
 
-  <p><%= "#{@user.reviews.count} reviews" %></p>
-
   <% if @user == current_user %>
   <p><%= link_to "Edit your profile", edit_user_path %></p>
   <% end %>
-    
-  <%= render partial: "reviews/review", collection: @reviews %>
-  <%= render partial: "user_reviews", collection: @user.reviews, as: "review" %>
+
+
+  <p><%= "#{@user.reviews.count} reviews" %></p>
+
+ 
+  <% if @user.reviews %>
+    <%= render partial: "user_reviews", collection: @user.reviews, as: "review" %>
+  <% end %>
+
+  <% if @user.interests %>
+    <%= render partial: "interesting_resources", collection: @user.interesting_resources, as: "resource" %>
+  <% else %>
+    <%= "#{user.first_name} hasn't saved any resources to their list yet." %> 
+  <% end %>
 </div>
 
 

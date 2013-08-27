@@ -28,7 +28,7 @@ namespace :db do
   end
 
   def make_resources
-    interested_users = User.all[31..100]
+    interested_users = User.all[1..100]
     20.times do |n|      
       subject_list = ["Rails, Ruby", "RSpec, Capybara, Rails", "HTML5, CSS3", "jQuery, AJAX, Rails", "Coffescript"]
       format_list = ["book, screencast", "book, exercises", "blog post", "interactive tutorial, exercises, video", "podcast"]
