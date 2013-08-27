@@ -1,7 +1,12 @@
-The following items match your search:
 
-<ul>
-  <% @results.each do |result| %>
-    <li><%= link_to result.title, result %></li>
-  <% end %>
-</ul>
+<div class="col-md-7 col-md-offset-1">
+  <% provide(:title, '') %>
+  <table class="table">
+    <%= render @results %>
+  </table>
+  <%= will_paginate @results %>
+</div>
+
+<div class="col-md-3">
+  <%= render 'tag_filter' %>
+</div>

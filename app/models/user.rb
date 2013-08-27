@@ -17,10 +17,15 @@ class User < ActiveRecord::Base
 	validates :email, :first_name, :last_name, presence: true
   validates :email, uniqueness: { case_sensitive: false }, format: { with: VALID_EMAIL_REGEX }
 	# validates :password, length: { minimum: 6 }, :unless => :password_resets
-  validates :password, presence: true, length: { minimum: 6 }
-  validates :password_confirmation, presence: true
+  validates :password, presence: true, length: { minimum: 6 }, if: :validate_password?
+  validates :password_confirmation, presence: true, if: :validate_password?
 
   mount_uploader :avatar, AvatarUploader
+
+
+  def validate_password?
+    new_record? || !password.nil?
+  end
 
   def send_password_reset
     generate_token(:password_reset_token)

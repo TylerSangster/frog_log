@@ -22,7 +22,7 @@ Frog::Application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   delete 'logout', to: 'sessions#destroy', as: 'logout'
 
-  root 'static_pages#welcome'
+  root 'resources#index'
 
   get 'subject/:subject', to: 'resources#index', as: :subject
   get 'format/:format', to: 'resources#index', as: :format

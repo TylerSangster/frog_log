@@ -40,7 +40,7 @@ namespace :db do
                      "Gaa laa laalaa laalaa laalaa doo goo boo-boo. Dada dada sissy doodoo ga googoo mama.",
                      "Da gaagaa laa doo yaya doodoo laalaa gaga yaya yaya laa googoo."
                     ]      
-      cost = [900, 0, 1999, 2500, 3500]
+      cost = [9.00, 0, 19.99, 25.00, 35.00]
       cost_type = ["monthly", "one-time", "weekly", "yearly", "bi-weekly"]
       url = "www.google#{n}.com"
       resource = Resource.create!(name: name, 

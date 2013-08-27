@@ -1,38 +1,9 @@
-<div class="container">
-  <br />
-  <!-- <div class="well"> -->
-  <div class = "btn-toolbar col-md-4 well well-sm">
-    <%= form_tag(resources_path, method: "get") do |form| %>
-    <!-- <div class="btn-group"> -->
-      <%= link_to "All Subjects", resources_path, class: "btn btn-mini btn-primary" %>
-      <% tag_cloud Resource.subject_counts, %w[s m l] do |tag| %>
-        <%= check_box_tag("tag[]", tag.name, params[:tag] && params[:tag].include?(tag.name)) %>
-        <%= content_tag :div, tag.name, class: "btn btn-mini btn-primary" %>
-      <% end %>
-    <!-- </div> -->
-    <!-- <div class="btn-group">           -->
-      <%= link_to "All Formats", resources_path, class: "btn btn-mini btn-success" %>
-      <% tag_cloud Resource.format_counts, %w[s m l] do |tag| %>
-      <%= check_box_tag("tag[]", tag.name, params[:tag] && params[:tag].include?(tag.name)) %>
-      <%= content_tag :div, tag.name, class: "btn btn-mini btn-success" %>
-      <% end %>
-    <!-- </div> -->
-    <!-- <div class="btn-group">           -->
-      <%= link_to "All Providers", resources_path, class: "btn btn-mini btn-warning" %>
-      <% tag_cloud Resource.provider_counts, %w[s m l] do |tag| %>
-        <%= check_box_tag("tag[]", tag.name, params[:tag] && params[:tag].include?(tag.name)) %>
-        <%= content_tag :div, tag.name, class: "btn btn-mini btn-warning" %>
-      <% end %>
-    <!-- </div> -->
-    <%= submit_tag "Filter", class: "btn btn-large btn-primary" %>
-    <% end %>
-  </div>
-
-<% provide(:title, 'All Resources') %>
-
-<table class="table table-hover table-bordered">
-  <%= render @resources %>
-</table>
-
+<div class="col-md-8 col-md-offset-1">
+  <% provide(:title, '') %>
+    <%= render @resources %>
+  <%= will_paginate @resources %>
 </div>
-<%= will_paginate @resources %>
+
+<div class="col-md-3">
+  <%= render 'tag_filter' %>
+</div>
