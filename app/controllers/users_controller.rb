@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 		if @user.save
       UserMailer.welcome_email(@user).deliver
       sign_in(@user, false) #do not permanently remember user
-			flash[:sucess] = "Welcome to Code Dojo, #{@user.first_name.capitalize} #{@user.last_name.capitalize}!"
+			flash[:success] = "Welcome to Code Dojo, #{@user.first_name.capitalize} #{@user.last_name.capitalize}!"
 			redirect_to @user
 		else
 			render action: :new

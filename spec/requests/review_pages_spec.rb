@@ -61,7 +61,7 @@ describe "Review pages" do
       it { should have_content(review.content) }
       it { should have_content(review.user.first_name) }
       it { should have_content(review.user.last_name) }
-      it { should have_title("#{review.title}, #{review.score}") }
+      it { should have_title("#{review.title}") }
       it { should have_link('edit', href: edit_review_path(review)) }
       it { should have_link('delete', href: review_path(review)) }
       it { should_not have_button('Yes')}

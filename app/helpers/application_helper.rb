@@ -15,5 +15,4 @@ module ApplicationHelper
   def header_text(page_title)
     page_title || @@base_title
   end
-
 end

@@ -1,7 +1,12 @@
+<% content_for(:scripts) do %>
+  <%= javascript_include_tag 'star_rating' %>
+<% end %>
+
 <% @review = resource.reviews.build  %>
 
-<% form_for @review do |f| %>
-  <% render '/reviews/form', f: f %>
-  <% f.hidden_field :resource_id, :value => resource.id %>
-  <% f.submit "Create review", class: "btn" %>
+<%= form_for @review do |f| %>
+  <%= render '/reviews/form', f: f %>
+  <%= f.hidden_field :resource_id, :value => resource.id %>
+  <%= f.submit "Create review", class: "btn btn-primary" %>
 <% end %>
+
