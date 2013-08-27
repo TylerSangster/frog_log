@@ -54,7 +54,7 @@
           </ul>
         </li>
       <% end %>
-        <li><%= link_to "Add Resource", new_resource_path, class: "btn btn-default navbar-btn", method: "get" %>
+        <li><%= button_to "Add Resource", new_resource_path, class: "btn btn-default navbar-btn", method: "get" %>
         <li>
       <% else %>
         <li><%= link_to '<i class="icon-user icon-white"></i> Sign Up'.html_safe, signup_path %></li>
