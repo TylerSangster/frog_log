@@ -165,13 +165,13 @@ body {
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
   text-decoration: none;
   color: white;
-  background-color: #428bca; }
+  background-color: #1abc9c; }
 
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
   color: white;
   text-decoration: none;
   outline: 0;
-  background-color: #428bca; }
+  background-color: #1abc9c; }
 
 .dropdown-menu > .disabled > a, .dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {
   color: #999999; }
@@ -300,22 +300,47 @@ form label.rating.glow { background-position: 0 -32px; }
   margin:0;
 }
 
-.panel-default .panel-heading > a{
-  text-decoration: none;
+.panel .panel-heading > a {
+   a:hover, a:focus {
+  text-decoration: none; }
 }
 
-.panel-default .subject {
+.panel .subject {
   color: white;
-  background-color: #8e44ad;
-  border-color: #8e44ad; }
+  background-color: #c0392b;
+  border-color: #c0392b; }
 
-.panel-default .format {
+.panel .format {
   color: white;
-  background-color: #27ae60;
-  border-color: #27ae60; }
+  background-color: #2980b9;
+  border-color: #2980b9; }
 
-.panel-default .provider {
+.panel .provider {
   color: white;
   background-color: #f39c12;
   border-color: #f39c12; }
 
+.btn-main {
+  color: white;
+  background-color: #1abc9c;
+}
+
+.panel-default > a {
+  color: white;
+  text-decoration: none; }
+  a:hover, a:focus {
+    text-decoration: none; }
+
+/* User show page */
+
+.avatar-container {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+
+.avatar {
+  width: 100px;
+  height: auto;
+  margin-top: -50%;
+}
