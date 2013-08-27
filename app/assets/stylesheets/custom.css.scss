@@ -370,10 +370,10 @@ form label.rating.glow { background-position: 0 -32px; }
 
 /*Resource Index Page*/
 
-h2 {
-  margin-top: 0;
-}
-
 .resource-item {
   margin-bottom: 30px;
+  h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+  }
 }
