@@ -10,9 +10,21 @@
   <div>
     <%= f.label :score, "Score" %>
   </div>
+
   <div>
-    <%= f.number_field :score %>
+    <%= f.label("score_1", content_tag(:span, '1'), {:class=>"rating", :id=>"1"})   %>
+    <%=  radio_button_tag("review[score]", 1, !params[:review].nil? && params[:review][:score]=='1', :class => 'rating_button') %>
+    <%= f.label("score_2", content_tag(:span, '2'), {:class=>"rating", :id=>"2"})   %>
+    <%=  radio_button_tag("review[score]", 2, !params[:review].nil? && params[:review][:score]=='2', :class => 'rating_button') %>
+    <%= f.label("score_3", content_tag(:span, '3'), {:class=>"rating", :id=>"3"}) %>
+    <%= radio_button_tag("review[score]", 3, !params[:review].nil? && params[:review][:score]=='3', :class => 'rating_button') %>
+    <%= f.label("score_4", content_tag(:span, '4'), {:class=>"rating", :id=>"4"})      %>
+    <%=  radio_button_tag("review[score]", 4, !params[:review].nil? && params[:review][:score]=='4', :class => 'rating_button') %>
+    <%= f.label("score_5", content_tag(:span, '5'), {:class=>"rating", :id=>"5"})      %>
+    <%=  radio_button_tag("review[score]", 5, !params[:review].nil? && params[:review][:score]=='5', :class => 'rating_button') %>
   </div>
+
+  <div></div>
 
   <div>
     <%= f.label :content, "Content" %>

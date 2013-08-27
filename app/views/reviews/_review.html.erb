@@ -1,7 +1,9 @@
 <div class="well">
   <div><%= review.title %></div>
-  <div>by <%= link_to "#{review.user.last_name} #{review.user.first_name}", review.user %></div>
-  <div><%= review.score %> out of 5</div>
+  <div>by <%= link_to "#{review.user.first_name} #{review.user.last_name}", review.user %></div>
+  <div>
+      <i class="<%= star_classes(review.score) %>"></i>
+  </div>
   <div><%= review.content %></div>
 
   <% if current_user && (same_user?(review.user) or current_user.admin?) %>

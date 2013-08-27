@@ -16,7 +16,7 @@ class ResourcesController < ApplicationController
       flash[:success] = "Thank you for submitting the resource!"      
       redirect_to @resource
     else
-      flash[:error] = "Whoops! You've made an error while creating a resource."
+      flash[:danger] = "Whoops! You've made an error while creating a resource."
       render action: :new
     end
   end
@@ -35,7 +35,7 @@ class ResourcesController < ApplicationController
       flash[:success] = "Your resource was updated"
       redirect_to @resource
     else
-      flash[:error] = "Please check the errors in your update"
+      flash[:danger] = "Please check the errors in your update"
       render 'edit'
     end
   end
