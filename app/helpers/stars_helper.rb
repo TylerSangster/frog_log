@@ -10,7 +10,9 @@ module StarsHelper
         partial_stars = "qtr"
       elsif partial < 0.625
         partial_stars = "half"
-      else partial_stars = "3qtr"
+      elsif partial < 0.875
+        partial_stars = "3qtr"
+      else partial_starts = "1"
       end
     end
     star_classes = "star star-#{full_stars} " + if partial_boolean then "star-#{partial_stars}" else "" end

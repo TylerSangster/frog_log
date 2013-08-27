@@ -1,1 +1,24 @@
-<%= render partial: 'show_resource_ver2', locals: {resource: @resource} %>
+<div class="col-md-7 col-md-offset-1">
+  <h2><%= @resource.name %></h2>
+</div>
+<div class="row">
+  <div class="col-md-7 col-md-offset-1">
+    <%= render partial: 'show_resource_ver2', locals: {resource: @resource} %>
+  </div>
+      
+  <div class="col-md-3">
+    <%= render partial: 'interest_form', locals: {resource: @resource} %>
+      <br>
+    <%= render partial: 'interested_users', locals: {resource: @resource} %>
+      <br>
+    <%= render partial: 'similar_resources', locals: {resource: @resource} %>
+  </div>
+</div>
+
+<div class="row clearfix">
+  <div class="row container col-md-offset-1 col-lg-offset-1">
+    <%= @resource.reviews.count %> Reviews
+    <%= render @resource.reviews %>
+    <%= render partial: 'build_review_form', locals: {resource: @resource} %>
+  </div>
+</div>

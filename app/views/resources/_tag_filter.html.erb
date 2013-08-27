@@ -1,0 +1,66 @@
+<h2>Filter Your Results</h2>
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading subject">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          By Subject
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <%= form_tag(resources_path, method: "get") do |form| %>
+          <%= link_to "All Subjects", resources_path, class: "btn btn-mini btn-block" %>
+          <% tag_cloud Resource.subject_counts, %w[s m l] do |tag| %>
+            <label class="btn btn-block">
+              <%= check_box_tag("tag[]", tag.name, params[:tag] && params[:tag].include?(tag.name), class:"pull-right") %><%= tag.name %>
+            </label>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading format">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          By Format
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+      <%= link_to "All Formats", resources_path, class: "btn btn-mini btn-format btn-block" %>
+        <% tag_cloud Resource.format_counts, %w[s m l] do |tag| %>
+          <label class="btn btn-block"><%= tag.name %>
+            <%= check_box_tag("tag[]", tag.name, params[:tag] && params[:tag].include?(tag.name), class:"pull-right") %>
+          </label>
+      <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading provider">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          By Provider
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+        <%= link_to "All Providers", resources_path, class: "btn btn-mini btn-block" %>
+          <% tag_cloud Resource.provider_counts, %w[s m l] do |tag| %>
+            <label class="btn btn-block"><%= tag.name %>
+              <%= check_box_tag("tag[]", tag.name, params[:tag] && params[:tag].include?(tag.name), class:"pull-right") %>
+            </label>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="form-group">
+  <%= submit_tag "Filter", class: "btn btn-large btn-main btn-block" %>
+  <% end %>
+</div>

@@ -1,8 +1,11 @@
-<% provide(:title, 'Search Results') %>
-
-<table class="table table-hover table-bordered">
-  <%= render @results %>
-</table>
-
+<div class="col-md-7 col-md-offset-1">
+  <% provide(:title, '') %>
+  <table class="table">
+    <%= render @results %>
+  </table>
+  <%= will_paginate @results %>
 </div>
-<%#= will_paginate @resources %>
+
+<div class="col-md-3">
+  <%= render 'tag_filter' %>
+</div>
