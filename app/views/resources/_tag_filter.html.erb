@@ -57,24 +57,6 @@
       <% end %>
       </div>
     </div>
-      <div class="panel panel-default">
-    <div class="panel-heading cost">
-      <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-          By Cost
-        </a>
-      </h4>
-    </div>
-    <div id="collapseFour" class="panel-collapse collapse">
-      <div class="panel-body">
-
-          <% tag_cloud Resource.cost_counts, %w[s m l] do |tag| %>
-            <label class="btn btn-block"><%= tag.name %>
-              <%= check_box_tag("tag[]", tag.name, params[:tag] && params[:tag].include?(tag.name), class:"pull-right") %>
-            </label>
-      <% end %>
-      </div>
-    </div>
   </div>
 </div>
 <br>
