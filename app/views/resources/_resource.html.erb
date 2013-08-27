@@ -1,53 +1,55 @@
-<tr class="accordion">
+<tr>
   <td>
-    <h2 class="accordion_header">
-      <%= link_to resource.name, resource %>
-      <span class = "pull-right rating-show">
-        <i class="icon-star solid-star"></i>
-        <i class="icon-star solid-star"></i>
-        <i class="icon-star solid-star"></i>
-        <i class="icon-star solid-star"></i>
-        <i class="icon-star solid-star"></i></span>
-    </h2>
-    <ul class="list-inline list-style">
-      <% resource.subjects.each do |subject| %>
-        <li>
-         <%= link_to(subject.name, 
-                  subject_path(subject.name), 
-                  class: "btn btn-xs btn-danger") %>
-        </li>
-      <% end %>
-      <% resource.formats.each do |format| %>
-        <li>
-          <%= link_to(format.name, 
-                  format_path(format.name), 
-                  class: "btn btn-xs btn-primary") %>
-        </li>
-      <% end %>
-    </ul>
-    <ul class="list-inline list-style">
-      <% resource.providers.each do |provider| %>
-        <li>
-          <%= link_to(provider.name, 
-                  provider_path(provider.name), 
-                  class: "btn btn-xs btn-warning") %>
-        </li>
-      <% end %>
-      <li><%= number_to_currency(resource.cost) %>&nbsp<%= resource.cost_type %></li>
-    </ul>
-    <p><%= resource.description %></p>
-    <p><%= link_to resource_path(resource) do %>
-        <%= resource.reviews.count %> Reviews
-      <% end %>
-    </p>
-    <div>
-      <% if current_user && current_user.admin? %>
-        <% if params[:action] =="pending" %>
-          <%= link_to "Aprove", status_resource_path(resource), class: "btn btn-success" %>
+    <div class="row">
+      <h2>
+        <%= link_to resource.name, resource %>
+        <span class = "pull-right rating-show">
+          <i class="icon-star solid-star"></i>
+          <i class="icon-star solid-star"></i>
+          <i class="icon-star solid-star"></i>
+          <i class="icon-star solid-star"></i>
+          <i class="icon-star solid-star"></i></span>
+      </h2>
+      <ul class="list-inline list-style">
+        <% resource.subjects.each do |subject| %>
+          <li>
+           <%= link_to(subject.name, 
+                    subject_path(subject.name), 
+                    class: "btn btn-xs btn-danger") %>
+          </li>
         <% end %>
-        <%= link_to "edit", edit_resource_path(resource), class: "btn btn-primary" %>
-        <%= link_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-      <% end %>
+        <% resource.formats.each do |format| %>
+          <li>
+            <%= link_to(format.name, 
+                    format_path(format.name), 
+                    class: "btn btn-xs btn-primary") %>
+          </li>
+        <% end %>
+      </ul>
+      <ul class="list-inline list-style">
+        <% resource.providers.each do |provider| %>
+          <li>
+            <%= link_to(provider.name, 
+                    provider_path(provider.name), 
+                    class: "btn btn-xs btn-warning") %>
+          </li>
+        <% end %>
+        <li><%= number_to_currency(resource.cost) %>&nbsp<%= resource.cost_type %></li>
+      </ul>
+      <p><%= resource.description %></p>
+      <p><%= link_to resource_path(resource) do %>
+          <%= resource.reviews.count %> Reviews
+        <% end %>
+      </p>
+      <div>
+        <% if current_user && current_user.admin? %>
+          <% if params[:action] =="pending" %>
+            <%= link_to "Aprove", status_resource_path(resource), class: "btn btn-success" %>
+          <% end %>
+          <%= link_to "edit", edit_resource_path(resource), class: "btn btn-primary" %>
+          <%= link_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+        <% end %>
+      </div>
     </div>
   </td>
 </tr>    
