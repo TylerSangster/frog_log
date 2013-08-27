@@ -3,7 +3,11 @@
     <div class="row">
       <div class="col-md-8">
         <h2><%= link_to resource.name, resource %>
+<% javascript_include_tag 'jquery', 'jquery_ui', 'rails', 'application'%>
+          <span class = "pull-right rating-show"><i class="icon-star solid-star"></i><i class="icon-star solid-star"></i><i class="icon-star solid-star"></i><i class="icon-star solid-star"></i><i class="icon-star solid-star"></i></span>
+
           <i class="pull-right <%= star_classes(resource.average_score.to_f) %>"></i>
+
         </h2>
         <ul class="list-inline list-style">
           <% resource.subjects.each do |subject| %>
@@ -37,6 +41,10 @@
         <p><%= link_to resource_path(resource) do %>
             <%= resource.reviews.count %> Reviews
           <% end %>
+        </p>
+        <p>
+            <%= @reviews.average_rating %> Rating
+            <%= yield :scripts%>
         </p>
         <div>
           <% if current_user && current_user.admin? %>

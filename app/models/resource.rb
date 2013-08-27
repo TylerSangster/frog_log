@@ -1,8 +1,11 @@
 class Resource < ActiveRecord::Base
   
-  has_many :reviews
   has_many :interests
   has_many :interested_users, through: :interests, source: :user
+
+
+  has_many :ratings
+  has_many :rated_resources, :through => :ratings, :source => :resources
 
   has_many :subject_lists
   has_many :provider_lists
@@ -63,6 +66,15 @@ class Resource < ActiveRecord::Base
     top_review_ids = p Hash[reviews_with_upvotes.sort_by { |k,v| -v }[0..(n-1)]].keys
     review_records = Review.find(top_review_ids).group_by(&:id)
     sorted_records = top_review_ids.map { |id| review_records[id].first }
+  end
+
+  def average_rating
+    @value = 0
+    self.ratings.each do |rating|
+        @value = @value + rating.value
+    end
+    @total = self.ratings.size
+    @value.to_f / @total.to_f
   end
   # before_save :add_http_to_url
 

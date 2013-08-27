@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130825000140) do
+ActiveRecord::Schema.define(version: 20130826010506) do
 
   create_table "interests", force: true do |t|
     t.integer  "user_id"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 20130825000140) do
   add_index "interests", ["resource_id"], name: "index_interests_on_resource_id"
   add_index "interests", ["user_id", "resource_id"], name: "index_interests_on_user_id_and_resource_id", unique: true
   add_index "interests", ["user_id"], name: "index_interests_on_user_id"
+
+  create_table "ratings", force: true do |t|
+    t.string   "user_id"
+    t.string   "review_id"
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "resources", force: true do |t|
     t.string   "name"
