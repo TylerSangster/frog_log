@@ -1,12 +1,12 @@
-<% provide(:title, 'Update your profile') %>
+<% provide(:title, '') %>
 
-<%= form_for @user do |f| %>
-	<%= render 'form', f: f %> 
-  <div>
-    <%= f.check_box :remove_avatar %><%= f.label :remove_avatar %>
-  </div>
-	<div>
-		<%= f.submit "Save Changes" %>
-	</div>
+<div class="form-signin">
+  <h2 class="form-signin-heading">Edit Your Profile</h2>
+
+    <%= form_for @user do |f| %>
+    <%= render 'form', f: f %> 
+    <%= f.check_box :remove_avatar %>&nbsp<%= f.label "Remove Avatar" %>
+    </div>
+		<%= f.submit "Save Changes", class:"btn btn-lg btn-primary btn-block"  %>
 	
 	<% end %>
