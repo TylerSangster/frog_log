@@ -1,10 +1,13 @@
-<div>
-  People were also interested in:
-
-  <% resource.similar(3).each do |similar_resource| %>
-    <div>
-      <%= link_to similar_resource.name, similar_resource %>
-    </div>
-  <% end %>
+<div class="clearfix">
+  <p>People were also interested in:</p>
+  <table class="table">
+    <% resource.similar(3).each do |similar_resource| %>
+      <tr>
+        <td>
+        <%= link_to similar_resource.name, similar_resource %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
 
 </div>

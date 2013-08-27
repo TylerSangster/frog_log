@@ -344,3 +344,24 @@ form label.rating.glow { background-position: 0 -32px; }
   height: auto;
   margin-top: -50%;
 }
+
+.temp-avatar {
+  width: 50px;
+  height: 50px;
+  background-color: #95a5a6;
+  display: inline-block;
+  border-radius: 100%;
+  overflow: hidden;
+  img {  
+  width: 50px;
+  height: auto;
+  margin-top: -50%;
+  }
+}
+
+.interested-in {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  border-radius: 100%;
+}
