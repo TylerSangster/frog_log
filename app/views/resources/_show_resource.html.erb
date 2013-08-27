@@ -29,7 +29,9 @@
                       class: "btn btn-xs btn-warning") %>
             </li>
           <% end %>
-          <li><%= number_to_currency(resource.cost) %>&nbsp<%= resource.cost_type %></li>
+          <li>
+            <%= cost_to_display(resource.cost, resource.cost_type) %>
+          </li>
         </ul>
         <p><%= resource.description %></p>
         <p><%= link_to resource_path(resource) do %>
@@ -38,7 +40,10 @@
         </p>
         <div>
           <% if current_user && current_user.admin? %>
-            <%= link_to "edit", edit_resource_path(resource), class:"btn btn-default" %>
+         <% if params[:action] =="pending" %>
+            <%= link_to "Aprove", status_resource_path(resource), class: "btn btn-success" %>
+          <% end %>
+             <%= link_to "edit", edit_resource_path(resource), class:"btn btn-default" %>
             <%= link_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-default" %>
           <% end %>
         </div>

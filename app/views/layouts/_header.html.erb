@@ -14,15 +14,12 @@
 <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      
+      <%= form_tag(search_resources_path, class: "navbar-form navbar-left", method: :get) do %>
+      <%= search_field_tag :query, params[:query], {placeholder: "Search", class: "form-control"} %>
+    <% end %> 
     </ul>
-    <form class="navbar-form navbar-left" role="search">
-      <div class="form-group">
-        <%= form_tag(search_resources_path, method: :get) do %>
-          <%= search_field_tag :query, params[:query], {placeholder: "Search", class: "form-control"} %>
-        <% end %>
-      </div>
-    </form>
+
+
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Resources <b class="caret"></b></a>
@@ -42,6 +39,7 @@
           </ul>
         </li>
       <% end %>
+
       <% if signed_in? %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account&nbsp<b class="caret"></b></a>
@@ -56,6 +54,7 @@
         <li><%= button_to "Add Resource", new_resource_path, class: "btn btn-default navbar-btn", method: "get" %>
         </li>
       <% else %>
+
         <li><%= link_to '<i class="icon-user icon-white"></i> Sign Up'.html_safe, signup_path %></li>
         <li><%= link_to '<i class="icon-signin icon-white"></i> Log In'.html_safe, login_path %></li>
       <% end %>

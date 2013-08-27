@@ -41,11 +41,11 @@ class ResourcesController < ApplicationController
   end
 
   def index
-    if params[:tag]
-      @resources = Resource.where(status: true).tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 10)
-    else
-      @resources = Resource.where(status: true).paginate(:page => params[:page], :per_page => 10)
-    end
+    @resources = Resource.where(status: true)
+    @resources = @resources.tagged_with(params[:tag]) if params[:tag]
+    @resources = @resources.paginate(:page => params[:page], :per_page => 10)
+
+    respond_with @resources
   end
   
   def destroy
@@ -60,7 +60,7 @@ class ResourcesController < ApplicationController
   end
 
   def search
-    @results = Resource.where(status: true).search_for params[:query]
+    @results = Resource.where(status: true).search_for(params[:query]).paginate(:page => params[:page], :per_page => 10)
     respond_with @results
   end
 
