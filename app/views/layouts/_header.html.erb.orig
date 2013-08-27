@@ -45,16 +45,8 @@
           </ul>
         </li>
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
       <%# else %>
       <%# end %>
-=======
-      <% end %>
->>>>>>> Stashed changes
-=======
-      <% end %>
->>>>>>> Stashed changes
 =======
       <% end %>
 >>>>>>> Stashed changes
