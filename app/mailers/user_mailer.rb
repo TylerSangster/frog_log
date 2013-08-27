@@ -1,13 +1,13 @@
 class UserMailer < ActionMailer::Base
-  default from: "sensei@code-dojo.com"
+  default from: "codedojomailer@gmail.com"
 
   def welcome_email(user)
     @user = user
-    mail :to => user.email, :subject => "Welcome young padawan!"
+    mail :to => user.email, :subject => "Welcome to Code Doho!"
   end
 
   def password_reset(user)
     @user = user
-    mail :to => user.email, :subject => "Password Reset link"
+    mail :to => user.email, :subject => "Password Reset"
   end
 end
