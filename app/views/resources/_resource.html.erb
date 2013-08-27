@@ -1,55 +1,60 @@
-<tr>
-  <td>
-    <div class="row">
-      <h2>
-        <%= link_to resource.name, resource %>
-        <span class = "pull-right rating-show">
-          <i class="icon-star solid-star"></i>
-          <i class="icon-star solid-star"></i>
-          <i class="icon-star solid-star"></i>
-          <i class="icon-star solid-star"></i>
-          <i class="icon-star solid-star"></i></span>
-      </h2>
-      <ul class="list-inline list-style">
-        <% resource.subjects.each do |subject| %>
-          <li>
-           <%= link_to(subject.name, 
-                    subject_path(subject.name), 
-                    class: "btn btn-xs btn-danger") %>
-          </li>
+<div class="row resource-item">
+  <div class="col-md-4">
+    <%#= link_to image_tag(resource.image), resource %>
+    <%= link_to resource do %>
+      <% image_tag "railsforzombies.png", class:"img-responsive" %>
+    <% end %>
+  </div>
+  <div class="col-md-8">
+    <h2>
+      <%= link_to resource.name, resource %>
+      <span class = "pull-right rating-show">
+        <i class="icon-star solid-star"></i>
+        <i class="icon-star solid-star"></i>
+        <i class="icon-star solid-star"></i>
+        <i class="icon-star solid-star"></i>
+        <i class="icon-star solid-star"></i></span>
+    </h2>
+    <ul class="list-inline list-style">
+      <% resource.subjects.each do |subject| %>
+        <li>
+         <%= link_to(subject.name, 
+                  subject_path(subject.name), 
+                  class: "btn btn-xs btn-danger") %>
+        </li>
+      <% end %>
+      <% resource.formats.each do |format| %>
+        <li>
+          <%= link_to(format.name, 
+                  format_path(format.name), 
+                  class: "btn btn-xs btn-primary") %>
+        </li>
+      <% end %>
+    </ul>
+    <ul class="list-inline list-style">
+      <% resource.providers.each do |provider| %>
+        <li>
+          <%= link_to(provider.name, 
+                  provider_path(provider.name), 
+                  class: "btn btn-xs btn-warning") %>
+        </li>
+      <% end %>
+      <li><%= number_to_currency(resource.cost) %>&nbsp<%= resource.cost_type %></li>
+      <li><p><%= link_to resource_path(resource) do %>
+              <%= resource.reviews.count %> Reviews
+            <% end %>
+          </p>
+      </li>
+    </ul>
+    <p><%= resource.description %></p>
+    <div>
+      <% if current_user && current_user.admin? %>
+        <% if params[:action] =="pending" %>
+          <%= link_to "Aprove", status_resource_path(resource), class: "btn btn-success" %>
         <% end %>
-        <% resource.formats.each do |format| %>
-          <li>
-            <%= link_to(format.name, 
-                    format_path(format.name), 
-                    class: "btn btn-xs btn-primary") %>
-          </li>
-        <% end %>
-      </ul>
-      <ul class="list-inline list-style">
-        <% resource.providers.each do |provider| %>
-          <li>
-            <%= link_to(provider.name, 
-                    provider_path(provider.name), 
-                    class: "btn btn-xs btn-warning") %>
-          </li>
-        <% end %>
-        <li><%= number_to_currency(resource.cost) %>&nbsp<%= resource.cost_type %></li>
-      </ul>
-      <p><%= resource.description %></p>
-      <p><%= link_to resource_path(resource) do %>
-          <%= resource.reviews.count %> Reviews
-        <% end %>
-      </p>
-      <div>
-        <% if current_user && current_user.admin? %>
-          <% if params[:action] =="pending" %>
-            <%= link_to "Aprove", status_resource_path(resource), class: "btn btn-success" %>
-          <% end %>
-          <%= link_to "edit", edit_resource_path(resource), class: "btn btn-primary" %>
-          <%= link_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-        <% end %>
-      </div>
+        <%= link_to "edit", edit_resource_path(resource), class: "btn btn-primary" %>
+        <%= link_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+      <% end %>
     </div>
-  </td>
-</tr>    
+  </div>
+</div>
