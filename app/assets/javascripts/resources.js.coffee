@@ -4,6 +4,6 @@
 
 $ ->
   $(".accordion").accordion
-    header: ".accordion_header"
+    header: ".panel panel-default"
     collapsible: true
     active: false
