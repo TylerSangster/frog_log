@@ -2,7 +2,7 @@
   <% if resource.interested_users.count == 0 %>
   <p>Nobody is interested in this resource yet.</p>
   <% else %>
-    <p>People interested in this course:  <%= link_to "(#{resource.interested_users.count} total)", interested_resource_path(resource.id) %></p>
+    <p>People interested in this resource:  <%= link_to "(#{resource.interested_users.count} total)", interested_resource_path(resource.id) %></p>
     <div>
       <% resource.interested_users.sample(15).each do |user| %>
         <%# TO DO: change to avatar eventually %>
