@@ -1,58 +1,34 @@
-  <%= render 'error_messages' %>
-  
-  <div>
-    <%= f.label :name, "Name" %>
-  </div>
-  <div>
-    <%= f.text_field :name %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :subject_list, "Subject (separated by commas)" %><br />
-    <%= f.text_field :subject_list %>
-  </div>
+<%= render 'error_messages' %>
 
-  <div class="field">
-    <%= f.label :format_list, "Format (separated by commas)" %><br />
-    <%= f.text_field :format_list %>
-  </div>
-
-  <div>
-    <%= f.label :description, "Description" %>
-  </div>
-  <div>
-    <%= f.text_area :description %>
-  </div>
-
-  <div>
-    <%= f.label :cost, "Cost" %>
-  </div>
-  <div>
-    <%= f.text_field :cost %>
-  </div>
-
-  <div>
-  <%= f.label :cost_type, "Cost Type" %>
-  </div>
-  <div>
-    <%= f.text_field :cost_type %>
-  </div>
-
-  <div class="field">
-    <%= f.label :provider_list, "Provider (separated by commas)" %><br />
-    <%= f.text_field :provider_list %>
-  </div>
-
-  <div>
-  <%= f.label :url, "URL" %>
-  </div>
-  <div>
-    <%= f.text_field :url %>
-  </div>
-    <div>
-    <%= f.label :resource_photo, "Resource Photo" %>
-  </div>
-  <div>
-    <%=f.file_field :resource_photo %>
-  </div>
+<div class="form-group">
+  <%= f.text_field :name, {placeholder: "Name", class:"form-control"} %>
+</div>
+<div class="form-group">
+  <%= f.text_field :subject_list, {placeholder: "Subject", class:"form-control"} %>
+</div>
+<div class="form-group">
+  <%= f.text_field :format_list, {placeholder: "Format", class:"form-control"} %>
+</div>
+<div class="form-group">
+  <%= f.text_area(:description, {rows: 6, placeholder: "Description", class:"form-control"}) %>
+</div>
+<div class="form-group">
+  <%= f.text_field :provider_list, {placeholder: "Provider", class:"form-control"} %>
+</div>
+<div class="form-group">
+  <%= f.text_field :url, {placeholder: "URL", class:"form-control"} %>
+</div>
+<div class="form-group">
+  <%= f.text_field :cost, {placeholder: "Cost", class:"form-control"} %>
+</div>
+<div class="form-group">
+  <%= f.text_field :cost_type, {placeholder: "Payment method", class:"form-control"} %>
+</div>
+<div>
+  <%= f.label :resource_photo, "Resource Photo" %>
+</div>
+<div>
+  <%=f.file_field :resource_photo %>
+</div>
+<br />
 

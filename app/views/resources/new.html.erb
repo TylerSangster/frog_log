@@ -1,14 +1,11 @@
-<div class="container">
+<% provide(:title, '') %>
 
-<% provide(:title, 'New Resource') %>
-
-<%= form_for @resource do |f| %>
-  <%= render 'form', f: f %>
-  
-  <div>
-    <%= f.submit "Create Resource" %>
-  </div>
-  
+<div class="form-signin">
+  <h2 class="form-signin-heading">Create Resource</h2><br />
+  <%= form_for @resource do |f| %>
+    <%= render 'form', f: f %>
+    <div>
+      <%= f.submit "Create Resource", class: "btn btn-lg btn-primary btn-block" %>
+    </div> 
   <% end %>
-
 </div>
