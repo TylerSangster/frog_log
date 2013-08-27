@@ -270,7 +270,6 @@ body {
   background: url('railsforzombies.png') no-repeat center center / cover;
 }
 
-
 /*Star rating sprite*/
 i.star {
   background-image: url(star-sprite.png);
@@ -298,3 +297,19 @@ form label.rating span { display: none; }
 form label.rating { background-image: url(stars.png); }
 form label.rating.bright { background-position: 0 -16px; }
 form label.rating.glow { background-position: 0 -32px; }
+
+/* Form Sign-in */
+.form-signin{
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.form-signup{
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+#file-field {
+  display: none;
+}
