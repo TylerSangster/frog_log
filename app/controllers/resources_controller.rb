@@ -79,6 +79,11 @@ class ResourcesController < ApplicationController
     redirect_to pending_resources_path
   end
 
+  def import
+    Resource.import(params[:file])
+    redirect_to root_url, notice: "Products imported."
+  end
+
 
   private
 

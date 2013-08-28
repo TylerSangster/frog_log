@@ -1,17 +1,11 @@
-  <%= render 'reviews/error_messages' %>
-
-  <div>
-    <%= f.label :title, "Title" %>
+<%= render 'reviews/error_messages' %>
+<div class="form-group">
+  <div class="col-md-4">
+    <%= f.text_field :title, {placeholder: "Title", class:"form-control"}  %>
   </div>
-  <div>
-    <%= f.text_field :title %>
-  </div>
-
-  <div>
-    <%= f.label :score, "Score" %>
-  </div>
-
-  <div>
+  <div class="row">
+    <div class="pull-left"><h4>SCORE: <%#= f.label :score, "Score" %></h4>
+  
     <%= f.label("score_1", content_tag(:span, '1'), {:class=>"rating", :id=>"1"})   %>
     <%=  radio_button_tag("review[score]", 1, !params[:review].nil? && params[:review][:score]=='1', :class => 'rating_button') %>
     <%= f.label("score_2", content_tag(:span, '2'), {:class=>"rating", :id=>"2"})   %>
@@ -23,12 +17,10 @@
     <%= f.label("score_5", content_tag(:span, '5'), {:class=>"rating", :id=>"5"})      %>
     <%=  radio_button_tag("review[score]", 5, !params[:review].nil? && params[:review][:score]=='5', :class => 'rating_button') %>
   </div>
+</div>
+<div class="col-md-8">
+  <%= f.text_area :content, {placeholder: "Content", class:"form-control"} %>
+</div>
 
-  <div></div>
 
-  <div>
-    <%= f.label :content, "Content" %>
-  </div>
-  <div>
-    <%= f.text_area :content %>
-  </div>
+

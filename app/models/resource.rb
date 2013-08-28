@@ -32,15 +32,13 @@ class Resource < ActiveRecord::Base
     similar_resources = []
     interested_users.each do |user|
       user.interesting_resources.each do |resource|
-        similar_resources.push(resource.id)
+        similar_resources.push(resource)
       end
     end
     similar_with_counts = Hash.new(0)
     similar_resources.each { |resource| similar_with_counts[resource] += 1 }
     
-    top_similar_ids = p Hash[similar_with_counts.sort_by { |k,v| -v }[0..(n-1)]].keys
-    similar_records = Resource.find(top_similar_ids).group_by(&:id)
-    sorted_records = top_similar_ids.map { |id| similar_records[id].first }
+    top_similar_records = p Hash[similar_with_counts.sort_by { |k,v| -v }[0..(n-1)]].keys
   end
 
   def average_score
@@ -64,6 +62,16 @@ class Resource < ActiveRecord::Base
     review_records = Review.find(top_review_ids).group_by(&:id)
     sorted_records = top_review_ids.map { |id| review_records[id].first }
   end
+
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      resource = Resource.find_or_create_by(name: row["name"])
+      resource.update_attributes!(row.to_hash)
+      #binding.pry
+      #resource.save!
+    end
+  end
+
   # before_save :add_http_to_url
 
   # before_save :add_http_to_url

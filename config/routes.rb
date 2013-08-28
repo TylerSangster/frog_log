@@ -7,6 +7,7 @@ Frog::Application.routes.draw do
     collection do
       get :search
       get :pending
+      post :import
     end
     member do
       get :interested
