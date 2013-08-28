@@ -305,24 +305,42 @@ form label.rating.glow { background-position: 0 -32px; }
   text-decoration: none; }
 }
 
+.panel .panel-heading {
+  padding: 5px 15px;
+}
+
 .panel .subject {
   color: white;
   background-color: #c0392b;
+  border-color: #c0392b; }
+  .panel .subject:hover {
+  color: white;
+  background-color: #e74c3c;
   border-color: #c0392b; }
 
 .panel .format {
   color: white;
   background-color: #2980b9;
+  border-color: #3498db; }
+  .panel .format:hover {
+  color: white;
+  background-color: #3498db;
   border-color: #2980b9; }
+
 
 .panel .provider {
   color: white;
   background-color: #f39c12;
   border-color: #f39c12; }
+.panel .provider:hover {
+  color: white;
+  background-color: #f1c40f; }
+
 
 .btn-main {
   color: white;
   background-color: #1abc9c;
+  border-color: #16a085;
   font-size: 1.25em; }
   .btn-main:hover, .btn-main:focus {
     color: white;
@@ -335,7 +353,11 @@ form label.rating.glow { background-position: 0 -32px; }
     text-decoration: none; }
 
 .panel .btn {
-  font-size: 1.25em;
+  font-size: 1em;
+}
+
+.panel-padding {
+  margin-right: -20px;
 }
 
 /* User show page */
@@ -390,17 +412,13 @@ form label.rating.glow { background-position: 0 -32px; }
   }
 }
 
-h2 {
+h2, h3 {
   margin-top: 0;
 }
 
 .provider-tag > a {
   font-size: .75em;
   color: #f39c12;
-}
-
-.panel-padding {
-  padding-left: 40px;
 }
 
 /*Resource Show Page */

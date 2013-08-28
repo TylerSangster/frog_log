@@ -1,10 +1,17 @@
-<% provide(:title, '') %>
 <div class="row">
-  <div class="col-md-7 col-md-offset-1">
+  <div class="col-md-8 col-md-offset-1">
+     <div class="row">
+      <h4><%#= search results %> <%= @resources.count %> Results Found
+      <span class="pull-right">
+        Most Recent | Highest Rated</h4>
+      </span>
+    </div>
+    <table class="table">
     <%= render @resources %>
+    </table>
     <%= will_paginate @resources %>
   </div>
-  <div class="col-md-3 panel-padding">
+  <div class="col-md-2 panel-padding">
     <%= render 'tag_filter' %>
   </div>
 </div>

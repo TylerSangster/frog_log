@@ -41,7 +41,7 @@
 </ul>
 <ul class="list-inline list-style">
   <li>Cost:</li>
-  <li><%= number_to_currency(resource.cost) %>&nbsp<%= resource.cost_type %></li>
+  <li><%= cost_to_display(resource.cost, resource.cost_type) %></li>
 </ul>
 <div class="col-md-12">
   <p><%= resource.description %> This course is designed to be a fun introduction to the basics of programming in Python. Our main focus will be on building simple interactive games such as Pong, Blackjack and Asteroids.</p>

@@ -1,20 +1,22 @@
-<div class="row resource-item">
+<tr>
+<td>
+<div class="row">
   <div class="col-md-3">
     <%#= link_to image_tag(resource.image), resource %>
     <%= link_to resource do %>
-      <% image_tag "railsforzombies.png", class:"img-responsive" %>
+      <% image_tag "railsforzombies.png", class:"img-responsive img-thumbnail" %>
     <% end %>
   </div>
   <div class="col-md-9">
     <div class="row">
       <div class="col-md-10">
         <div class="row">
-          <h2>
+          <h3>
             <%= link_to resource.name, resource %>
               <%# if signed_in? && current_user.interested?(resource) %>
                <!--  <i class="icon-pushpin"></i> -->
               <%# end %>
-          </h2>
+          </h3>
         </div>
         <div class="row">
           <p><%= resource.description %></p>
@@ -48,6 +50,7 @@
         <p class="pull-right"><%= link_to resource_path(resource) do %>
         <%= resource.reviews.count %> Reviews </p>
             <% end %>
+        <p class="pull-right"><%= cost_to_display(resource.cost, resource.cost_type) %></p>
       </div>
     </div>
     </div>
@@ -59,3 +62,5 @@
         <%= link_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
       <% end %>
     </div>
+</td>
+</tr>

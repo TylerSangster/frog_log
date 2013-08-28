@@ -1,45 +1,34 @@
-<div class="row">
-  <div class="col-md-3 col-md-offset-1">
-
-    <div class="avatar-container">
-      <%= image_tag @user.avatar, class:"img-responsive avatar" %>
-    </div>
-
-    <h1><%= "#{@user.first_name} #{@user.last_name}" %></h1>
-
+<div class="col-md-10 col-md-offset-1">
+  <div class="page-header">
+    <h2><%= "#{@user.first_name} #{@user.last_name}" %>
     <% if @user == current_user %>
-    <p><%= link_to "Edit your profile", edit_user_path %></p>
-    <% end %>
-
-    <div class="row">
-      <div class="col-md-1"><h2><%=@user.reviews.count %></h2><p>Reviews</p></div>
-    </div>
-
-    <% if @user.interests %>
-      <%= render partial: "interesting_resources", collection: @user.interesting_resources, as: "resource" %>
-    <% else %>
-      <%= "#{user.first_name} hasn't saved any resources to their list yet." %> 
+      <small class="pull-right"><%= link_to "Edit your profile", edit_user_path %></small></h2>
     <% end %>
   </div>
+</div>
 
+<div class="col-md-3 col-md-offset-1">
+  <div class="avatar-container">
+    <%= image_tag @user.avatar, class:"img-responsive avatar" %>
+  </div>
+
+  <div class="side-bar-row col-md-12">
+    <div class="inline-block">
+      <h1><%= @user.reviews.count %></h1>
+      <p>Reviews</p>
+    </div>
+    <div class="inline-block">
+      <h1><%= @user.interests.count %></h1>
+      <p>Saved Resources</p>
+    </div>
+  </div>
+</div>
   <div class="col-md-7">    
     <%= render partial: "user_reviews", collection: @user.reviews, as: "review" %>
   </div>
- 
 
-</div>
-
-    <div class="side-bar-row col-md-12">
-      <div class="inline-block">
-        <h1><%= @resource.reviews.count %></h1>
-        <p>Reviews</p>
-      </div>
-      <div class="inline-block">
-        <h1><%= @resource.interested_users.count %></h1>
-        <p>Initiates</p>
-      </div>
-      <div class="inline-block">
-        <h1><%= @resource.average_score.to_f %></h1>
-        <p>Score</p>
-      </div>
-    </div>
+  <%# if @user.interests %>
+    <%#= render partial: "interesting_resources", collection: @user.interesting_resources, as: "resource" %>
+  <%# else %>
+    <%#= "#{user.first_name} hasn't saved any resources to their list yet." %> 
+  <%# end %>
