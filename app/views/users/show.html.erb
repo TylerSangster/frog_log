@@ -24,7 +24,8 @@
   </div>
   <% if @user.interests %>
     <div class="side-bar-row col-md-12">
-      <%= render partial: "interesting_resources", collection: @user.interesting_resources %>
+      <p>Resources this user is interested in:</p>
+      <%= render partial: "interesting_resources", collection: @user.interesting_resources, as: "interesting_resource" %>
       <% else %>
       <%= "#{user.first_name} hasn't saved any resources to their list yet." %> 
       <% end %>
