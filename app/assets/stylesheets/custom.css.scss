@@ -90,7 +90,7 @@ body {
       background-color: white; }
   .navbar-inverse .navbar-collapse,
   .navbar-inverse .navbar-form {
-    border-color: #1abc9c; }
+    border-color: #2c3e50; }
   .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
     background-color: #1abc9c;
     color: white; }
@@ -305,26 +305,47 @@ form label.rating.glow { background-position: 0 -32px; }
   text-decoration: none; }
 }
 
+.panel .panel-heading {
+  padding: 5px 15px;
+}
+
 .panel .subject {
   color: white;
   background-color: #c0392b;
+  border-color: #c0392b; }
+  .panel .subject:hover {
+  color: white;
+  background-color: #e74c3c;
   border-color: #c0392b; }
 
 .panel .format {
   color: white;
   background-color: #2980b9;
+  border-color: #3498db; }
+  .panel .format:hover {
+  color: white;
+  background-color: #3498db;
   border-color: #2980b9; }
+
 
 .panel .provider {
   color: white;
   background-color: #f39c12;
   border-color: #f39c12; }
+.panel .provider:hover {
+  color: white;
+  background-color: #f1c40f; }
+
 
 .btn-main {
   color: white;
   background-color: #1abc9c;
-}
-
+  border-color: #16a085;
+  font-size: 1.25em; }
+  .btn-main:hover, .btn-main:focus {
+    color: white;
+    background-color: #16a085; }
+ 
 .panel > a {
   color: white;
   text-decoration: none; }
@@ -332,7 +353,11 @@ form label.rating.glow { background-position: 0 -32px; }
     text-decoration: none; }
 
 .panel .btn {
-  font-size: 1.25em;
+  font-size: 1em;
+}
+
+.panel-padding {
+  margin-right: -20px;
 }
 
 /* User show page */
@@ -376,4 +401,43 @@ form label.rating.glow { background-position: 0 -32px; }
     margin-top: 0;
     font-size: 1.5em;
   }
+
+  li{
+    padding: 0;
+  }
+
+  btn-xs {
+    margin: 2px;
+    font-size: 1.10em;
+  }
+}
+
+h2, h3 {
+  margin-top: 0;
+}
+
+.provider-tag > a {
+  font-size: .75em;
+  color: #f39c12;
+}
+
+/*Resource Show Page */
+
+.inline-block {
+  display: inline-block;
+  margin: 0px 10px;
+  text-align: center;
+  *{
+    margin: 0;
+  }
+}
+
+.side-bar-row {
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-bottom: 15px;
+}
+
+.helpful-btn {
+  padding: 0px 10px;
 }

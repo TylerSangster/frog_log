@@ -1,45 +1,68 @@
-<div class="col-md-7 col-md-offset-1">
-  <h2><%= @resource.name %></h2>
-  <div class="row">
-    <span class='st_facebook_hcount' displayText='Facebook'></span>
-    <span class='st_twitter_hcount' displayText='Tweet'></span>
-    <span class='st_googleplus_hcount' displayText='Google +'></span>
-    <span class='st_sharethis_hcount' displayText='ShareThis'></span>
+<div class="col-md-10 col-md-offset-1">
+  <div class="page-header">
+    <h2>
+      <%= link_to @resource.name, @resource.url %>
+        <small class="pull-right">
+          <span class='st_facebook_large' displayText='Facebook'></span>
+          <span class='st_twitter_large' displayText='Tweet'></span>
+          <span class='st_reddit_large' displayText='Reddit'></span>
+          <span class='st_googleplus_large' displayText='Google +'></span>
+        </small>
+    </h2>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-7 col-md-offset-1">
-    <%= render partial: 'show_resource_ver2', locals: {resource: @resource} %>
-  </div>
-      
-  <div class="col-md-3">
+<div class="col-md-7 col-md-offset-1">
     <div class="row">
-      <div class="col-md-1">
-        <h1><%= @resource.reviews.count %></h1>
-        <p>Reviews</p>
-      </div>
-      <div class="col-md-1 col-md-offset-1">
-        <h1>10</h1>
-        <p>reviews</p>
-      </div>
-      <div class="col-md-1 col-md-offset-1">
-        <h1>10</h1>
-        <p>reviews</p>
+      <%= render partial: 'show_resource', locals: {resource: @resource} %>
+    </div>
+    <div class="row">
+      <h4><%= @resource.reviews.count %> Reviews
+      <span class="pull-right">
+        Newest | Most Helpful</h4>
+      </span>
+    </div>
+    <table class="table">
+      <%= render @resource.reviews %>
+    </table>
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+              Write a Review
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <%= render partial: 'build_review_form', locals: {resource: @resource} %>
+          </div>
+        </div>
       </div>
     </div>
-    <button class="btn btn-block btn-warning">Write a Review</button>
-    <br>
-    <%= render partial: 'interest_form', locals: {resource: @resource} %>
-      <br>
-    <%= render partial: 'interested_users', locals: {resource: @resource} %>
-      <br>
-    <%= render partial: 'similar_resources', locals: {resource: @resource} %>
   </div>
 </div>
 
-<div class="row clearfix">
-  <div class="row container col-md-offset-1 col-lg-offset-1">
-    <%= render @resource.reviews %>
-    <%= render partial: 'build_review_form', locals: {resource: @resource} %>
+<div class="col-md-3">
+    <div class="side-bar-row col-md-12">
+    <%= render partial: 'interest_form', locals: {resource: @resource} %>
+  </div>
+  <% if signed_in? %>
+    <div class="side-bar-row col-md-12">
+      <button class="btn btn-block btn-warning"><i class="icon-pencil"></i>&nbsp&nbspWrite a Review</button>
+    </div>
+  <% end %>
+  <div class="side-bar-row col-md-12">
+    <%= render partial: 'interested_users', locals: {resource: @resource} %>
+  </div>
+  <div class="side-bar-row col-md-12">
+    <%= render partial: 'similar_resources', locals: {resource: @resource} %>
+  </div>
+  <div class="side-bar-row col-md-12"> 
+    <p>Share with your fellow grasshoppers:</p>
+      <span class='st_facebook_large' displayText='Facebook'></span>
+      <span class='st_twitter_large' displayText='Tweet'></span>
+      <span class='st_reddit_large' displayText='Reddit'></span>
+      <span class='st_googleplus_large' displayText='Google +'></span>
   </div>
 </div>
