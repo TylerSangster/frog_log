@@ -12,11 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.all
-//= require jquery.ui.core
-//= require jquery.ui.widget
-//= require jquery.ui.accordion
-//= require jquery.ui.autocomplete
-//= require jquery.ui.slider
 //= require twitter/bootstrap
 //= require_tree .
