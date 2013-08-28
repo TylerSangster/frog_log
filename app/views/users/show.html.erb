@@ -1,28 +1,30 @@
-<% provide(:title, "") %>
-<div class="col-md-7 col-md-offset-1">
-  <h1><%= "#{@user.first_name} #{@user.last_name}" %></h1>
+<div class="row">
+  <div class="col-md-3 col-md-offset-1">
 
-  <div class="avatar-container">
-    <%= image_tag @user.avatar, class:"img-responsive avatar" %>
+    <div class="avatar-container">
+      <%= image_tag @user.avatar, class:"img-responsive avatar" %>
+    </div>
+
+    <h1><%= "#{@user.first_name} #{@user.last_name}" %></h1>
+
+    <% if @user == current_user %>
+    <p><%= link_to "Edit your profile", edit_user_path %></p>
+    <% end %>
+
+    <div class="row">
+      <div class="col-md-1"><h2><%=@user.reviews.count %></h2><p>Reviews</p></div>
+    </div>
+
+    <% if @user.interests %>
+      <%= render partial: "interesting_resources", collection: @user.interesting_resources, as: "resource" %>
+    <% else %>
+      <%= "#{user.first_name} hasn't saved any resources to their list yet." %> 
+    <% end %>
   </div>
 
-  <% if @user == current_user %>
-  <p><%= link_to "Edit your profile", edit_user_path %></p>
-  <% end %>
-
-
-  <p><%= "#{@user.reviews.count} reviews" %></p>
-
- 
-  <% if @user.reviews %>
+  <div class="col-md-7">    
     <%= render partial: "user_reviews", collection: @user.reviews, as: "review" %>
-  <% end %>
+  </div>
+ 
 
-  <% if @user.interests %>
-    <%= render partial: "interesting_resources", collection: @user.interesting_resources, as: "resource" %>
-  <% else %>
-    <%= "#{user.first_name} hasn't saved any resources to their list yet." %> 
-  <% end %>
 </div>
-
-

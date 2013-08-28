@@ -1,8 +1,8 @@
-<div class="row">
+<div class="row well">
   <div class="col-md-1 col-offset-1">
     <%= render partial: '/shared/vote_form', locals: {review: review} unless same_user?(review.user) %>
   </div>
-  <div class="well">
+  <div class="col-md-9">
     <div><%= review.title %><%= render partial: '/shared/vote_results', locals: {review: review} %></div>
     <div>by <%= link_to "#{review.user.first_name} #{review.user.last_name}", review.user %></div>
     <div>

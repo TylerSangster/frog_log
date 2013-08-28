@@ -1,9 +1,10 @@
-<div class="col-md-8 col-md-offset-1">
-  <% provide(:title, '') %>
+<% provide(:title, '') %>
+<div class="row">
+  <div class="col-md-7 col-md-offset-1">
     <%= render @resources %>
-  <%= will_paginate @resources %>
-</div>
-
-<div class="col-md-3">
-  <%= render 'tag_filter' %>
+    <%= will_paginate @resources %>
+  </div>
+  <div class="col-md-3 panel-padding">
+    <%= render 'tag_filter' %>
+  </div>
 </div>

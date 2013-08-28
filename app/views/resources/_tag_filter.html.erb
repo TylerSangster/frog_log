@@ -11,7 +11,6 @@
     <div id="collapseOne" class="panel-collapse collapse in">
       <div class="panel-body">
         <%= form_tag(resources_path, method: "get") do |form| %>
-          
           <% tag_cloud Resource.subject_counts, %w[s m l] do |tag| %>
             <label class="btn btn-block">
               <%= check_box_tag("tag[]", tag.name, params[:tag] && params[:tag].include?(tag.name), class:"pull-right") %><%= tag.name %>
@@ -30,7 +29,6 @@
     </div>
     <div id="collapseTwo" class="panel-collapse collapse">
       <div class="panel-body">
-
         <% tag_cloud Resource.format_counts, %w[s m l] do |tag| %>
           <label class="btn btn-block"><%= tag.name %>
             <%= check_box_tag("tag[]", tag.name, params[:tag] && params[:tag].include?(tag.name), class:"pull-right") %>
@@ -49,7 +47,6 @@
     </div>
     <div id="collapseThree" class="panel-collapse collapse">
       <div class="panel-body">
-
           <% tag_cloud Resource.provider_counts, %w[s m l] do |tag| %>
             <label class="btn btn-block"><%= tag.name %>
               <%= check_box_tag("tag[]", tag.name, params[:tag] && params[:tag].include?(tag.name), class:"pull-right") %>
