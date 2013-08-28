@@ -67,8 +67,6 @@ class Resource < ActiveRecord::Base
     CSV.foreach(file.path, headers: true) do |row|
       resource = Resource.find_or_create_by(name: row["name"])
       resource.update_attributes!(row.to_hash)
-      #binding.pry
-      #resource.save!
     end
   end
 

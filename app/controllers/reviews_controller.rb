@@ -41,6 +41,12 @@ class ReviewsController < ApplicationController
       render 'edit'
     end
   end
+
+  def import
+    Review.import(params[:file])
+    redirect_to root_url, notice: "Reviews imported."
+  end
+
   private
 
     def review_params

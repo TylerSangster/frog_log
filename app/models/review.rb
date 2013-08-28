@@ -15,4 +15,12 @@ class Review < ActiveRecord::Base
   def downvotes
     votes.where(kind: "down")
   end
+
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      review = Review.find_or_create_by(user_id: row["user_id"], resource_id: row["resource_id"] )
+      review.update_attributes!(row.to_hash)
+    end
+  end
+
 end

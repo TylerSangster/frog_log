@@ -1,0 +1,38 @@
+<% provide(:title, '') %>
+
+<div class="form-signin">
+  <h2 class="form-signin-heading">Import Products</h2><br />
+  <%= form_tag import_resources_path, multipart: true do %>
+    <div class="fileupload fileupload-new" data-provides="fileupload">
+
+      <%= file_field_tag :file, class:"fileupload fileupload-new " %>
+
+    </div>
+
+    <div><%= submit_tag "Import",class: "btn btn-lg btn-primary btn-block" %></div>
+  <% end %>
+</div>
+<br /><br /><br /><br /><br /><br /><br />
+<div class="form-signin">
+  <h2 class="form-signin-heading">Import Reviews</h2><br />
+  <%= form_tag import_reviews_path, multipart: true do %>
+    <div class="fileupload fileupload-new" data-provides="fileupload">
+
+      <%= file_field_tag :file, class:"fileupload fileupload-new " %>
+
+    </div>
+
+    <div><%= submit_tag "Import",class: "btn btn-lg btn-primary btn-block" %></div>
+  <% end %>
+</div>
+
+
+<!-- 
+
+<span class="btn btn-primary btn-file">Upload<input type="file" /></span>
+
+<div class="fileupload fileupload-new" data-provides="fileupload">
+  <div class="input-append">
+    <div class="uneditable-input span3"><i class="icon-file fileupload-exists"></i> <span class="fileupload-preview"></span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" /></span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+  </div>
+</div> -->
