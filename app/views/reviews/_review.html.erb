@@ -1,18 +1,18 @@
-<div class="row well">
-  <div class="col-md-1 col-offset-1">
+<tr>
+  <td class="col-md-1 col-offset-1">
     <%= render partial: '/shared/vote_form', locals: {review: review} unless same_user?(review.user) %>
-  </div>
-  <div class="col-md-9">
-    <div><%= review.title %><%= render partial: '/shared/vote_results', locals: {review: review} %></div>
+  </td>
+  <td class="col-md-9">
+    <div><h3><%= review.title %></h3></div>
     <div>by <%= link_to "#{review.user.first_name} #{review.user.last_name}", review.user %></div>
     <div>
         <i class="<%= star_classes(review.score) %>"></i>
     </div>
     <div><%= review.content %></div>
-
+<%= render partial: '/shared/vote_results', locals: {review: review} %>
     <% if current_user && (same_user?(review.user) or current_user.admin?) %>
       <%= link_to "edit", edit_review_path(review) %>    
       <%= link_to "delete", review, method: :delete, data: { confirm: "Are you sure?" } %>
     <% end %>
-  </div>
-</div>
+  </td>
+</tr>

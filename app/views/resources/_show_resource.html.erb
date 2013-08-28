@@ -1,34 +1,52 @@
-      <%= image_tag "railsforzombies.png", class:"img-responsive img-rounded"%>
-      <ul class="list-inline list-style">
-        <% resource.subjects.each do |subject| %>
-          <li>
-           <%= link_to(subject.name, 
-                    subject_path(subject), 
-                    class: "btn btn-xs btn-danger") %>
-          </li>
-        <% end %>
-        <% resource.formats.each do |format| %>
-          <li>
-            <%= link_to(format.name, 
-                    format_path(format), 
-                    class: "btn btn-xs btn-primary") %>
-          </li>
-        <% end %>
-      </ul>
-      <ul class="list-inline list-style">
-        <% resource.providers.each do |provider| %>
-          <li>
-            <%= link_to(provider.name, 
-                    provider_path(provider), 
-                    class: "btn btn-xs btn-warning") %>
-          </li>
-        <% end %>
-        <li><%= number_to_currency(resource.cost) %>&nbsp<%= resource.cost_type %></li>
-      </ul>
-      <p><%= resource.description %></p>
-        <% if current_user && current_user.admin? %>
-          <%= link_to "edit", edit_resource_path(resource), class:"btn btn-default" %>
-          <%= link_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-default" %>
-        <% end %>
+<div class="col-md-6">
+  <%= link_to resource.url do %>
+    <%= image_tag "railsforzombies.png", class:"img-responsive img-thumbnail"%>
+  <% end %>
+</div>
+
+<ul class="list-inline list-style">
+  <li>Average Rating:</li>
+  <li><i class="pull-right <%= star_classes(@resource.average_score.to_f) %>"></i></li>
+</ul>
+
+<ul class="list-inline list-style">
+  <li>Subject:</li>
+  <% resource.subjects.each do |subject| %>
+    <li>
+     <%= link_to(subject.name, 
+              subject_path(subject), 
+              class: "btn btn-xs btn-danger") %>
+    </li>
+  <% end %>
+</ul>
+<ul class="list-inline list-style">
+  <li>Format:</li>
+  <% resource.formats.each do |format| %>
+    <li>
+      <%= link_to(format.name, 
+              format_path(format), 
+              class: "btn btn-xs btn-primary") %>
+    </li>
+  <% end %>
+</ul>
+<ul class="list-inline list-style">
+  <li>Provider:</li>
+  <% resource.providers.each do |provider| %>
+    <li>
+      <%= link_to(provider.name, 
+              provider_path(provider), 
+              class: "btn btn-xs btn-warning") %>
+    </li>
+  <% end %>
+</ul>
+<ul class="list-inline list-style">
+  <li>Cost:</li>
+  <li><%= number_to_currency(resource.cost) %>&nbsp<%= resource.cost_type %></li>
+</ul>
+<p><%= resource.description %> This course is designed to be a fun introduction to the basics of programming in Python. Our main focus will be on building simple interactive games such as Pong, Blackjack and Asteroids.</p>
+  <% if current_user && current_user.admin? %>
+    <%= link_to "edit", edit_resource_path(resource), class:"btn btn-default" %>
+    <%= link_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-default" %>
+  <% end %>
 
 

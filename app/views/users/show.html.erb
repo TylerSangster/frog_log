@@ -28,3 +28,18 @@
  
 
 </div>
+
+    <div class="side-bar-row col-md-12">
+      <div class="inline-block">
+        <h1><%= @resource.reviews.count %></h1>
+        <p>Reviews</p>
+      </div>
+      <div class="inline-block">
+        <h1><%= @resource.interested_users.count %></h1>
+        <p>Initiates</p>
+      </div>
+      <div class="inline-block">
+        <h1><%= @resource.average_score.to_f %></h1>
+        <p>Score</p>
+      </div>
+    </div>

@@ -1,13 +1,13 @@
 <h2>Filter Your Results</h2>
 <div class="panel-group" id="accordion">
   <div class="panel panel-default">
-    <div class="panel-heading subject">
-      <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+      <div class="panel-heading subject">
+        <h4 class="panel-title">
           By Subject
-        </a>
-      </h4>
-    </div>
+        </h4>
+      </div>
+    </a>
     <div id="collapseOne" class="panel-collapse collapse in">
       <div class="panel-body">
         <%= form_tag(resources_path, method: "get") do |form| %>
@@ -20,13 +20,13 @@
     </div>
   </div>
   <div class="panel panel-default">
+    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
     <div class="panel-heading format">
       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-          By Format
-        </a>
+        By Format
       </h4>
     </div>
+    </a>
     <div id="collapseTwo" class="panel-collapse collapse">
       <div class="panel-body">
         <% tag_cloud Resource.format_counts, %w[s m l] do |tag| %>
@@ -38,13 +38,13 @@
     </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading provider">
-      <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+      <div class="panel-heading provider">
+        <h4 class="panel-title">
           By Provider
-        </a>
-      </h4>
-    </div>
+        </h4>
+      </div>
+    </a>
     <div id="collapseThree" class="panel-collapse collapse">
       <div class="panel-body">
           <% tag_cloud Resource.provider_counts, %w[s m l] do |tag| %>

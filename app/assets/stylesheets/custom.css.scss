@@ -90,7 +90,7 @@ body {
       background-color: white; }
   .navbar-inverse .navbar-collapse,
   .navbar-inverse .navbar-form {
-    border-color: #1abc9c; }
+    border-color: #2c3e50; }
   .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
     background-color: #1abc9c;
     color: white; }
@@ -323,8 +323,11 @@ form label.rating.glow { background-position: 0 -32px; }
 .btn-main {
   color: white;
   background-color: #1abc9c;
-}
-
+  font-size: 1.25em; }
+  .btn-main:hover, .btn-main:focus {
+    color: white;
+    background-color: #16a085; }
+ 
 .panel > a {
   color: white;
   text-decoration: none; }
@@ -391,6 +394,28 @@ h2 {
   margin-top: 0;
 }
 
+.provider-tag > a {
+  font-size: .75em;
+  color: #f39c12;
+}
+
 .panel-padding {
   padding-left: 40px;
+}
+
+/*Resource Show Page */
+
+.inline-block {
+  display: inline-block;
+  margin: 0px 10px;
+  text-align: center;
+  *{
+    margin: 0;
+  }
+}
+
+.side-bar-row {
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-bottom: 15px;
 }

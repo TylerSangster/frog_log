@@ -8,10 +8,25 @@
   <div class="col-md-9">
     <div class="row">
       <div class="col-md-10">
-        <h2>
-          <%= link_to resource.name, resource %>
-        </h2>
-        <ul class="list-inline list-style">
+        <div class="row">
+          <h2>
+            <%= link_to resource.name, resource %>
+              <%# if signed_in? && current_user.interested?(resource) %>
+               <!--  <i class="icon-pushpin"></i> -->
+              <%# end %>
+          </h2>
+        </div>
+        <div class="row">
+          <p><%= resource.description %></p>
+        </div>
+        <ul class="list-inline list-style row">
+          <% resource.providers.each do |provider| %>
+            <li>
+              <%= link_to(provider.name, 
+                      provider_path(provider.name), 
+                      class: "btn btn-xs btn-warning") %>
+            </li>
+             <% end %> 
           <% resource.subjects.each do |subject| %>
             <li>
              <%= link_to(subject.name, 
@@ -26,13 +41,6 @@
                       class: "btn btn-xs btn-primary") %>
             </li>
           <% end %>
-          <% resource.providers.each do |provider| %>
-            <li>
-              <%= link_to(provider.name, 
-                      provider_path(provider.name), 
-                      class: "btn btn-xs btn-warning") %>
-            </li>
-             <% end %> 
         </ul>
       </div>   
       <div class="col-md-2 pull-right">
@@ -40,9 +48,6 @@
         <p class="pull-right"><%= link_to resource_path(resource) do %>
         <%= resource.reviews.count %> Reviews </p>
             <% end %>
-      </div>
-      <div class="col-md-9">
-        <p><%= resource.description %></p>
       </div>
     </div>
     </div>
