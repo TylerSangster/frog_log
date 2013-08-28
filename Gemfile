@@ -3,6 +3,8 @@ ruby '2.0.0'
 
 # Custom gems
 gem 'bootstrap-sass-rails'
+gem 'jasny_bootstrap_extension_rails'
+
 gem 'font-awesome-rails'
 
 gem 'acts-as-taggable-on'
@@ -59,6 +61,8 @@ end
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
+
+gem "pry-rails"
 
 # Use unicorn as the app server
 # gem 'unicorn'

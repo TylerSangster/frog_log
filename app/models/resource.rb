@@ -62,6 +62,16 @@ class Resource < ActiveRecord::Base
     review_records = Review.find(top_review_ids).group_by(&:id)
     sorted_records = top_review_ids.map { |id| review_records[id].first }
   end
+
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      resource = Resource.find_or_create_by(name: row["name"])
+      resource.update_attributes!(row.to_hash)
+      #binding.pry
+      #resource.save!
+    end
+  end
+
   # before_save :add_http_to_url
 
   # before_save :add_http_to_url
