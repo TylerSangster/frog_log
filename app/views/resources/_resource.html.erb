@@ -13,9 +13,7 @@
         <div class="row">
           <h3>
             <%= link_to resource.name, resource %>
-              <%# if signed_in? && current_user.interested?(resource) %>
-               <!--  <i class="icon-pushpin"></i> -->
-              <%# end %>
+            <span class="index-cost pull-right"><%= cost_to_display(resource.cost, resource.cost_type) %></span>
           </h3>
         </div>
         <div class="row">
@@ -50,17 +48,9 @@
         <p class="pull-right"><%= link_to resource_path(resource) do %>
         <%= resource.reviews.count %> Reviews </p>
             <% end %>
-        <p class="pull-right"><%= cost_to_display(resource.cost, resource.cost_type) %></p>
       </div>
     </div>
-    </div>
-      <% if current_user && current_user.admin? %>
-        <% if params[:action] =="pending" %>
-            <%= link_to "Aprove", status_resource_path(resource), class: "btn btn-success" %>
-              <% end %>
-        <%= link_to "edit", edit_resource_path(resource), class: "btn btn-primary" %>
-        <%= link_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-      <% end %>
-    </div>
+  </div>
+</div>
 </td>
 </tr>

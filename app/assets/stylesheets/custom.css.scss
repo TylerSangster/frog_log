@@ -393,6 +393,10 @@ form label.rating.glow { background-position: 0 -32px; }
   border-radius: 100%;
 }
 
+.pull-left .list-inline {
+  padding-right: 0;
+}
+
 /*Resource Index Page*/
 
 .resource-item {
@@ -419,6 +423,11 @@ h2, h3 {
 .provider-tag > a {
   font-size: .75em;
   color: #f39c12;
+}
+
+.index-cost {
+  font-size: .75em;
+
 }
 
 /*Resource Show Page */

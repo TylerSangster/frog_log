@@ -2,15 +2,13 @@
   <div class="page-header">
     <h2><%= "#{@user.first_name} #{@user.last_name}" %>
     <% if @user == current_user %>
-      <small class="pull-right"><%= link_to "Edit your profile", edit_user_path %></small></h2>
+      <small class="pull-right"><%= link_to "Edit your profile", edit_user_path, class:"btn btn-primary btn-large" %></small></h2>
     <% end %>
   </div>
 </div>
 
 <div class="col-md-3 col-md-offset-1">
-  <div class="avatar-container">
-    <%= image_tag @user.avatar, class:"img-responsive avatar" %>
-  </div>
+  <%= image_tag @user.avatar, class:"img-responsive img-thumbnail" %>
 
   <div class="side-bar-row col-md-12">
     <div class="inline-block">
@@ -32,10 +30,16 @@
 </div>
   <div class="col-md-7">
     <div class="row">
-      <h4><%= @user.reviews.count %> Reviews
-      <span class="pull-right">
-        Newest | Most Helpful</h4>
-      </span>
+      <div class="col-md-6">
+        <h4><%= @user.reviews.count %> Results Found</h4>
+      </div>
+      <div class="col-md-6">
+        <ul class="pull-right list-inline list-style">
+          <li><%= link_to "Most Recent", resources_path, class:"btn btn-default" %></li>
+          <li><%= link_to "Highest Rated", resources_path, class:"btn btn-default" %></li>
+          <li><%= link_to "Cost", resources_path, class:"btn btn-default" %></li>
+        </ul>
+      </div>
     </div>
     <table class="table">
       <%= render partial: "user_reviews", collection: @user.reviews, as: "review" %>

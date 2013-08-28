@@ -2,12 +2,15 @@
   <div class="page-header">
     <h2>
       <%= link_to @resource.name, @resource.url %>
+      <% if current_user && current_user.admin? %>
         <small class="pull-right">
-          <span class='st_facebook_large' displayText='Facebook'></span>
-          <span class='st_twitter_large' displayText='Tweet'></span>
-          <span class='st_reddit_large' displayText='Reddit'></span>
-          <span class='st_googleplus_large' displayText='Google +'></span>
-        </small>
+        <% if params[:action] =="pending" %>
+          <%= link_to "Aprove", status_resource_path(resource), class: "btn btn-success" %>
+          <% end %>
+      <%= link_to "edit", edit_resource_path(resource), class: "btn btn-primary" %>
+      <%= link_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+      </small>
+      <% end %>
     </h2>
   </div>
 </div>
@@ -15,11 +18,19 @@
     <div class="row">
       <%= render partial: 'show_resource', locals: {resource: @resource} %>
     </div>
-    <div class="row">
-      <h4><%= @resource.reviews.count %> Reviews
-      <span class="pull-right">
-        Newest | Most Helpful</h4>
-      </span>
+      <br>
+      <br>
+     <div class="row">
+      <div class="col-md-6">
+        <h4><%= @resource.reviews.count %> Results Found</h4>
+      </div>
+      <div class="col-md-6">
+        <ul class="pull-right list-inline list-style">
+          <li><%= link_to "Most Recent", resources_path, class:"btn btn-default" %></li>
+          <li><%= link_to "Highest Rated", resources_path, class:"btn btn-default" %></li>
+          <li><%= link_to "Cost", resources_path, class:"btn btn-default" %></li>
+        </ul>
+      </div>
     </div>
     <table class="table">
       <%= render @resource.reviews %>
@@ -55,14 +66,14 @@
   <div class="side-bar-row col-md-12">
     <%= render partial: 'interested_users', locals: {resource: @resource} %>
   </div>
-  <div class="side-bar-row col-md-12">
-    <%= render partial: 'similar_resources', locals: {resource: @resource} %>
-  </div>
   <div class="side-bar-row col-md-12"> 
     <p>Share with your fellow grasshoppers:</p>
       <span class='st_facebook_large' displayText='Facebook'></span>
       <span class='st_twitter_large' displayText='Tweet'></span>
       <span class='st_reddit_large' displayText='Reddit'></span>
       <span class='st_googleplus_large' displayText='Google +'></span>
+  </div>
+  <div class="side-bar-row col-md-12">
+    <%= render partial: 'similar_resources', locals: {resource: @resource} %>
   </div>
 </div>

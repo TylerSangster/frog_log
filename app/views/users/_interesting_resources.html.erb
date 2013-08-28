@@ -2,8 +2,14 @@
 <table class="table">
   <% @user.interesting_resources.each do |interesting_resource| %>
     <tr>
+      <td class="col-md-6">
+        <%= link_to interesting_resource do %>
+          <% image_tag "railsforzombies.png", class:"img-responsive img-thumbnail" %>
+        <% end %>
+      </td>
       <td>
-      <%= link_to interesting_resource.name, interesting_resource %><i class="pull-right <%= star_classes(interesting_resource.average_score.to_f) %>"></i>
+        <%= link_to interesting_resource.name, interesting_resource %>
+        <i class="<%= star_classes(interesting_resource.average_score.to_f) %>"></i>
       </td>
     </tr>
   <% end %>
