@@ -1,4 +1,32 @@
-<div class = "well">
-    Would be great if the div with the image and resource name could be to the left of the one with the review. Like Amazon: http://www.amazon.com/gp/pdp/profile/A3AVGFV1EOUFM9/ref=cm_cr_pr_pdp
-    <%= review.resource.name %>
-</div>
+<tr>
+  <td class="col-md-2">
+    <h3><%=link_to review.resource.name, review.resource %></h3>
+    <%= link_to review.resource do %>
+      <% image_tag "railsforzombies.png", class:"img-responsive img-thumbnail" %>
+    <% end %>
+  </td>
+  <td class="col-md-9">
+    <div class="row">
+      <div class="col-md-6 pull-left">
+        <div><i class="<%= star_classes(review.score) %>"></i></div>
+      </div>
+      <div class="pull-right">Created on <%= review.created_at.strftime('%B %e, %Y') %></div>
+    </div>
+    <div><h4><%= review.title %></h4></div>
+    <div><%= review.content %></div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-md-5">
+        <p><%= render partial: '/shared/vote_results', locals: {review: review} %></p>
+      </div>
+      <div class="col-md-7 pull-right">
+        <%= render partial: '/shared/vote_form', locals: {review: review} unless same_user?(review.user) %>
+      </div>
+    <% if current_user && (same_user?(review.user) or current_user.admin?) %>
+      <%= link_to "edit", edit_review_path(review) %>    
+      <%= link_to "delete", review, method: :delete, data: { confirm: "Are you sure?" } %>
+    <% end %>
+  </td>
+</tr>
