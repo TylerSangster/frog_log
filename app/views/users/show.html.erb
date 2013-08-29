@@ -8,14 +8,16 @@
 </div>
 
 <div class="col-md-3 col-md-offset-1">
-  <%= image_tag @user.avatar, class:"img-responsive img-thumbnail" %>
+  <% if @user.avatar? %>
+    <%= image_tag @user.avatar, class:"img-responsive img-thumbnail" %>
+  <% end %>
 
   <div class="side-bar-row col-md-12">
-    <div class="inline-block">
+    <div class="col-md-6">
       <h1><%= @user.reviews.count %></h1>
       <p>Reviews</p>
     </div>
-    <div class="inline-block">
+    <div class="col-md-6">
       <h1><%= @user.interests.count %></h1>
       <p>Saved Resources</p>
     </div>
@@ -34,7 +36,7 @@
   <div class="col-md-7">
     <div class="row">
       <div class="col-md-6">
-        <h4><%= @user.reviews.count %> Results Found</h4>
+        <h4><%= @user.reviews.count %> Reviews</h4>
       </div>
       <div class="col-md-6">
         <ul class="pull-right list-inline list-style">

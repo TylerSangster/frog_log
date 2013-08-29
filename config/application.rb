@@ -1,8 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'csv'
-
-
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
@@ -23,6 +21,8 @@ module Frog
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+
+    config.active_record.auto_explain_threshold_in_seconds = 0.5
 
     config.assets.initialize_on_precompile = false
   end

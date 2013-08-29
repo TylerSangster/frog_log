@@ -416,6 +416,10 @@ form label.rating.glow { background-position: 0 -32px; }
   }
 }
 
+table > h4 {
+  margin-top: 0;
+}
+
 h2, h3 {
   margin-top: 0;
 }
@@ -449,4 +453,8 @@ h2, h3 {
 
 .helpful-btn {
   padding: 0px 10px;
+}
+
+.star-score {
+  margin-bottom: -5px;
 }
