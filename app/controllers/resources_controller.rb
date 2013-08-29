@@ -23,6 +23,8 @@ class ResourcesController < ApplicationController
 
   def show
     @resource = Resource.find(params[:id])
+    @existing_review = review_exists?(@resource)
+    @review = @existing_review || Review.new
   end
 
   def edit
@@ -41,7 +43,9 @@ class ResourcesController < ApplicationController
   end
 
   def index
-    @resources = Resource.where(status: true).order(params[:sort])
+
+    @resources = Resource.where(status: true).order(params[:sort]).includes([:providers, :subjects, :formats, :reviews])
+    @resources = Resource.where(status: true)
     @resources = @resources.tagged_with(params[:tag]) if params[:tag]
     @resources = @resources.paginate(:page => params[:page], :per_page => 10)
 

@@ -17,28 +17,28 @@
           </h3>
         </div>
         <div class="row">
-          <p><%= resource.description %></p>
+          <p><%= truncate resource.description, length:100 %></p>
         </div>
         <ul class="list-inline list-style row">
           <% resource.providers.each do |provider| %>
             <li>
               <%= link_to(provider.name, 
                       provider_path(provider.name), 
-                      class: "btn btn-xs btn-warning") %>
+                      class: "btn btn-xs provider") %>
             </li>
              <% end %> 
           <% resource.subjects.each do |subject| %>
             <li>
              <%= link_to(subject.name, 
                       subject_path(subject.name), 
-                      class: "btn btn-xs btn-danger") %>
+                      class: "btn btn-xs subject") %>
             </li>
           <% end %>
           <% resource.formats.each do |format| %>
             <li>
               <%= link_to(format.name, 
                       format_path(format.name), 
-                      class: "btn btn-xs btn-primary") %>
+                      class: "btn btn-xs format") %>
             </li>
           <% end %>
         </ul>
@@ -53,7 +53,7 @@
       <div class="col-md-2 pull-right">
         <i class="pull-right <%= star_classes(resource.average_score.to_f) %>"></i>
         <p class="pull-right"><%= link_to resource_path(resource) do %>
-        <%= resource.reviews.count %> Reviews </p>
+        <%= resource.reviews.length %> Reviews </p>
             <% end %>
       </div>
     </div>

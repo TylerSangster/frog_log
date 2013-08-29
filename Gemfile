@@ -53,6 +53,11 @@ group :production do
   gem 'rails_12factor', '0.0.2'
 end
 
+group :development do
+  gem "bullet"
+  gem "pry-rails"
+  gem 'newrelic_rpm'
+end
 
 # Use sqlite3 as the database for Active Record
 group :development, :test do
@@ -60,12 +65,8 @@ group :development, :test do
   gem 'sqlite3'
 end
 
-gem 'newrelic_rpm'
-
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
-
-gem "pry-rails"
 
 # Use unicorn as the app server
 # gem 'unicorn'

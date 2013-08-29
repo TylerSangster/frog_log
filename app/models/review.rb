@@ -22,5 +22,4 @@ class Review < ActiveRecord::Base
       review.update_attributes!(row.to_hash)
     end
   end
-
 end
