@@ -27,7 +27,8 @@ module ApplicationHelper
 
   def review_exists?(resource)
     @existing_review = Review.find_by(user_id: current_user.id, 
-                                    resource_id: resource.id)
+                                    resource_id: resource.id) if current_user
+    
   end
 
 end
