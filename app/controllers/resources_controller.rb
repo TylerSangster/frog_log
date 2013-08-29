@@ -41,7 +41,7 @@ class ResourcesController < ApplicationController
   end
 
   def index
-    @resources = Resource.where(status: true)
+    @resources = Resource.where(status: true).order(params[:sort])
     @resources = @resources.tagged_with(params[:tag]) if params[:tag]
     @resources = @resources.paginate(:page => params[:page], :per_page => 10)
 
@@ -89,5 +89,13 @@ class ResourcesController < ApplicationController
 
   def resource_params
     params.require(:resource).permit(:name, :subject_list, :format_list, :provider_list, :description, :cost, :cost_type, :provider_list, :url, :resource_photo, :remove_resource_photo, :status, :query)
+  end
+
+  def sort_column
+    Product.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+  
+  def sort_direction
+    params[:direction] || "asc"
   end
 end

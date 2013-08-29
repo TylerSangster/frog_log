@@ -9,6 +9,12 @@
           <li><%= link_to "Most Recent", resources_path, class:"btn btn-default" %></li>
           <li><%= link_to "Highest Rated", resources_path, class:"btn btn-default" %></li>
           <li><%= link_to "Cost", resources_path, class:"btn btn-default" %></li>
+
+          <tr>
+            <th><%= sortable "name" %></th>
+            <th><%= sortable "price" %></th>
+            <th><%= sortable "released_at", "Released" %></th>
+          </tr>
         </ul>
       </div>
     </div>
