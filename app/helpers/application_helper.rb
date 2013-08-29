@@ -24,4 +24,10 @@ module ApplicationHelper
     else "#{number_to_currency(cost)} #{cost_type}"
     end
   end
+
+  def review_exists?(resource)
+    @existing_review = Review.find_by(user_id: current_user.id, 
+                                    resource_id: resource.id)
+  end
+
 end

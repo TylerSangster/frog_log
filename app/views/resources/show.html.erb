@@ -31,13 +31,25 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-              Write a Review
+              <% if @existing_review %>
+                Edit your review
+              <% else %>
+                Write a review
+              <% end %>
             </a>
           </h4>
         </div>
         <div id="collapseOne" class="panel-collapse collapse in">
           <div class="panel-body">
-            <%= render partial: 'build_review_form', locals: {resource: @resource} %>
+            <% if signed_in? %>
+              <% if @existing_review %>
+                <%= render partial: 'edit_review_form', locals: {resource: @resource} %>
+              <% else %>
+                <%= render partial: 'build_review_form', locals: {resource: @resource} %>
+             <% end %>
+            <% else %>
+            <p><%= link_to "Please log in to add a review", login_path %></p>
+           <% end %>
           </div>
         </div>
       </div>

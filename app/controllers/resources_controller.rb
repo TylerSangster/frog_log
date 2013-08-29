@@ -23,6 +23,8 @@ class ResourcesController < ApplicationController
 
   def show
     @resource = Resource.find(params[:id])
+    @existing_review = review_exists?(@resource)
+    @review = @existing_review || Review.new
   end
 
   def edit

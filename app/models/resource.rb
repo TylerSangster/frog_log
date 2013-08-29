@@ -56,11 +56,9 @@ class Resource < ActiveRecord::Base
   def helpful_reviews(n, condition)
     reviews_with_upvotes = Hash.new(0)
     reviews.where("score#{condition}").each do |review|
-      reviews_with_upvotes[review.id] = review.upvotes.count
+      reviews_with_upvotes[review] = review.upvotes.count
     end
-    top_review_ids = p Hash[reviews_with_upvotes.sort_by { |k,v| -v }[0..(n-1)]].keys
-    review_records = Review.find(top_review_ids).group_by(&:id)
-    sorted_records = top_review_ids.map { |id| review_records[id].first }
+    top_reviews = p Hash[reviews_with_upvotes.sort_by { |k,v| -v }[0..(n-1)]].keys
   end
 
   def self.import(file)
