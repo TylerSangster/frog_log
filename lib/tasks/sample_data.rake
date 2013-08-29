@@ -1,11 +1,21 @@
 namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
-    make_users
-    make_resources
-    make_reviews
+    # make_users
+    #make_resources
+    #make_reviews
+    make_interests
   end
     
+  def make_interests
+    interested_users = User.all[1..20]
+    interested_users.each do |interested_user|
+      Resource.all.each do |resource|
+          resource.interests.create!(user: interested_user) if rand(10)>4
+        end
+      end
+  end
+
   def make_users
     User.create!(first_name: "Najwa",
                  last_name: "Azer", 

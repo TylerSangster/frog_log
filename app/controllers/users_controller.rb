@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_action :require_signed_in,      only: [:index, :edit, :update]
-	before_action :require_correct_user,		only: [:edit, :update]
+	# before_action :require_correct_user,		only: [:edit, :update]
   before_action :require_admin_user,     	only: :destroy
 
 	def index
