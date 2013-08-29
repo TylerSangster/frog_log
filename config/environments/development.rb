@@ -36,4 +36,11 @@ Frog::Application.configure do
     authentication: "login", enable_starttls_auto: true}
   
   config.action_mailer.default_url_options = { :host => "localhost:3000" }
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+  end
 end

@@ -43,7 +43,7 @@ class ResourcesController < ApplicationController
   end
 
   def index
-    @resources = Resource.where(status: true)
+    @resources = Resource.where(status: true).includes([:providers, :subjects, :formats, :reviews])
     @resources = @resources.tagged_with(params[:tag]) if params[:tag]
     @resources = @resources.paginate(:page => params[:page], :per_page => 10)
 

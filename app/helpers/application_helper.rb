@@ -19,7 +19,7 @@ module ApplicationHelper
   def cost_to_display(cost, cost_type)
     if cost == 0 
       "Free"
-    elsif cost_type = "one-time" 
+    elsif cost_type == "one-time" 
       number_to_currency(cost)
     else "#{number_to_currency(cost)} #{cost_type}"
     end
