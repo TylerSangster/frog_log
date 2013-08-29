@@ -1,4 +1,5 @@
 class ResourcesController < ApplicationController
+  helper_method :sort_column, :sort_direction
 
   before_action :require_signed_in,    only: [:new]
   #before_action :require_admin_user    only: [:pending]
@@ -43,10 +44,9 @@ class ResourcesController < ApplicationController
   end
 
   def index
-
-    @resources = Resource.where(status: true).order(params[:sort]).includes([:providers, :subjects, :formats, :reviews])
-    @resources = Resource.where(status: true)
+    @resources = Resource.where(status: true).includes([:providers, :subjects, :formats, :reviews])
     @resources = @resources.tagged_with(params[:tag]) if params[:tag]
+    @resources = @resources.order(sort_column + " " + sort_direction)
     @resources = @resources.paginate(:page => params[:page], :per_page => 10)
 
     respond_with @resources
@@ -89,6 +89,7 @@ class ResourcesController < ApplicationController
   end
 
 
+
   private
 
   def resource_params
@@ -96,10 +97,10 @@ class ResourcesController < ApplicationController
   end
 
   def sort_column
-    Product.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    Resource.column_names.include?(params[:sort]) ? params[:sort] : "name"
   end
   
   def sort_direction
-    params[:direction] || "asc"
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end
