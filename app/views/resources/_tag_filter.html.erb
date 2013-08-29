@@ -3,7 +3,7 @@
     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
       <div class="panel-heading subject">
         <h4 class="panel-title">
-          By Subject
+          By Subject<i class="icon-caret-down pull-right"></i>
         </h4>
       </div>
     </a>
@@ -11,9 +11,11 @@
       <div class="panel-body">
         <%= form_tag(resources_path, method: "get") do |form| %>
           <% tag_cloud Resource.subject_counts, %w[s m l] do |tag| %>
-            <label class="btn btn-block">
-              <%= check_box_tag("tag[]", tag.name, params[:tag] && params[:tag].include?(tag.name), class:"pull-right") %><%= tag.name %>
-            </label>
+            <a href="#">
+              <label class="btn btn-block"><%= tag.name %>
+                <%= check_box_tag("tag[]", tag.name, params[:tag] && params[:tag].include?(tag.name), class:"pull-right") %>
+              </label>
+            </a>
         <% end %>
       </div>
     </div>
@@ -22,7 +24,7 @@
     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
     <div class="panel-heading format">
       <h4 class="panel-title">
-        By Format
+        By Format<i class="icon-caret-down pull-right"></i>
       </h4>
     </div>
     </a>
@@ -40,7 +42,7 @@
     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
       <div class="panel-heading provider">
         <h4 class="panel-title">
-          By Provider
+          By Provider<i class="icon-caret-down pull-right"></i>
         </h4>
       </div>
     </a>
@@ -57,6 +59,6 @@
 </div>
 <br>
 <div class="form-group">
-  <%= submit_tag "Filter", class: "btn btn-large btn-main btn-block" %>
+  <%= submit_tag "Filter Your Results", class: "btn btn-large btn-main btn-block" %>
   <% end %>
 </div>
