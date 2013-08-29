@@ -59,6 +59,8 @@ group :development, :test do
   gem 'sqlite3'
 end
 
+gem 'newrelic_rpm'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
