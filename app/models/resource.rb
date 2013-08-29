@@ -38,7 +38,7 @@ class Resource < ActiveRecord::Base
     similar_with_counts = Hash.new(0)
     similar_resources.each { |resource| similar_with_counts[resource] += 1 }
     
-    top_similar_records = p Hash[similar_with_counts.sort_by { |k,v| -v }[0..(n-1)]].keys
+    top_similar_records = p Hash[similar_with_counts.sort_by { |k,v| -v }[1..(n)]].keys
   end
 
   def average_score
