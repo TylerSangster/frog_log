@@ -1,9 +1,10 @@
 <% interested_users = @resource.interested_users %>
-<% interested_user_count = interested_users.count %>
+<% interested_user_count = interested_users.length %>
 
-<% provide(:title, "#{@resource.name}") %>
-
-
+<%# provide(:title, "#{@resource.name}") %>
+<div class="container">
+<div class="page-header">
+  <h2><%= link_to @resource.name, @resource %><br><small>
 <%=  if interested_user_count==0
     "No users have expressed interest in this resource."
     else
@@ -14,7 +15,7 @@
         " are "
       end +
       "interested in this resource:"
-      end %> 
+      end %></small></h2>
 
 <table class ="table">
   <thead>
@@ -24,7 +25,11 @@
     </tr>
   </thead>
   <tbody>
-    <%= render interested_users %>
+    <% interested_users.each do |user| %>
+      <tr>
+        <td><%= link_to user.first_name, user %>&nbsp<%= link_to user.last_name, user %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 </div>

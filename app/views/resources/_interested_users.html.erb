@@ -1,13 +1,15 @@
 <div id="interested-users-<%=resource.id%>">
-  <% if resource.interested_users.count == 0 %>
+  <% if resource.interested_users.length == 0 %>
   <p>Nobody is interested in this resource yet.</p>
   <% else %>
-    <p>People interested in this resource:</p>
+    <p>People interested in this resource: <%= link_to "(#{resource.interested_users.count} total)", interested_resource_path(resource.id) %></p>
     <div>
       <% resource.interested_users.sample(15).each do |user| %>
         <%# TO DO: change to avatar eventually %>
-        <div class="temp-avatar"><%= link_to image_tag(user.avatar), user_path(user), class:"interested-in" %></div>
+        <div class="temp-avatar"><%= link_to image_tag(user.avatar), user_path(user) %></div>
       <% end %>
     </div>
   <% end %>
+  <span class="pull-right">
+  </span>
 </div>
