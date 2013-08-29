@@ -1,4 +1,5 @@
 class ResourcesController < ApplicationController
+  helper_method :sort_column, :sort_direction
 
   before_action :require_signed_in,    only: [:new]
   #before_action :require_admin_user    only: [:pending]
@@ -23,6 +24,8 @@ class ResourcesController < ApplicationController
 
   def show
     @resource = Resource.find(params[:id])
+    @existing_review = review_exists?(@resource)
+    @review = @existing_review || Review.new
   end
 
   def edit
@@ -43,6 +46,7 @@ class ResourcesController < ApplicationController
   def index
     @resources = Resource.where(status: true).includes([:providers, :subjects, :formats, :reviews])
     @resources = @resources.tagged_with(params[:tag]) if params[:tag]
+    @resources = @resources.order(sort_column + " " + sort_direction)
     @resources = @resources.paginate(:page => params[:page], :per_page => 10)
 
     respond_with @resources
@@ -85,9 +89,18 @@ class ResourcesController < ApplicationController
   end
 
 
+
   private
 
   def resource_params
     params.require(:resource).permit(:name, :subject_list, :format_list, :provider_list, :description, :cost, :cost_type, :provider_list, :url, :resource_photo, :remove_resource_photo, :status, :query)
+  end
+
+  def sort_column
+    Resource.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end

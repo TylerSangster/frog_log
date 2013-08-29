@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.build(review_params)
     if @review.save
       flash[:success] = "Review created!"
-      redirect_to @review
+      redirect_to resource_path(@review.resource_id)
     else render 'new'
     end
   end
@@ -36,11 +36,17 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     if @review.update_attributes(review_params)
       flash[:success] = "Your review was updated"
-      redirect_to @review
+      redirect_to resource_path(@review.resource_id)
     else
       render 'edit'
     end
   end
+
+  def import
+    Review.import(params[:file])
+    redirect_to root_url, notice: "Reviews imported."
+  end
+
   private
 
     def review_params

@@ -1,4 +1,6 @@
+<% if flash[:error] %><p><%= flash[:error] %></p><% end %>
 <%= render 'reviews/error_messages' %>
+
 <div class="form-group">
   <div class="row col-md-12">
     <div class="col-md-7">
@@ -8,22 +10,22 @@
       <ul class="list-inline list-style pull-right">
         <li><h4>Score:</h4></li>
         <li class="star-score">
-            <%= f.label("score_1", content_tag(:span, '1'), {:class=>"rating", :id=>"1"})   %>
-          <%=  radio_button_tag("review[score]", 1, !params[:review].nil? && params[:review][:score]=='1', :class => 'rating_button') %>
+          <%= f.label("score_1", content_tag(:span, '1'), {:class=>"rating", :id=>"1"})   %>
+          <%=  radio_button_tag("review[score]", 1, (!@review.score.nil? && @review.score == 1) || (!params[:review].nil? && params[:review][:score]=='1'), :class => 'rating_button') %>
           <%= f.label("score_2", content_tag(:span, '2'), {:class=>"rating", :id=>"2"})   %>
-          <%=  radio_button_tag("review[score]", 2, !params[:review].nil? && params[:review][:score]=='2', :class => 'rating_button') %>
+          <%=  radio_button_tag("review[score]", 2, (!@review.score.nil? && @review.score == 2) || (!params[:review].nil? && params[:review][:score]=='2'), :class => 'rating_button') %>
           <%= f.label("score_3", content_tag(:span, '3'), {:class=>"rating", :id=>"3"}) %>
-          <%= radio_button_tag("review[score]", 3, !params[:review].nil? && params[:review][:score]=='3', :class => 'rating_button') %>
+          <%= radio_button_tag("review[score]", 3, (!@review.score.nil? && @review.score == 3) || (!params[:review].nil? && params[:review][:score]=='3'), :class => 'rating_button') %>
           <%= f.label("score_4", content_tag(:span, '4'), {:class=>"rating", :id=>"4"})      %>
-          <%=  radio_button_tag("review[score]", 4, !params[:review].nil? && params[:review][:score]=='4', :class => 'rating_button') %>
+          <%=  radio_button_tag("review[score]", 4, (!@review.score.nil? && @review.score == 4) || (!params[:review].nil? && params[:review][:score]=='4'), :class => 'rating_button') %>
           <%= f.label("score_5", content_tag(:span, '5'), {:class=>"rating", :id=>"5"})      %>
-          <%=  radio_button_tag("review[score]", 5, !params[:review].nil? && params[:review][:score]=='5', :class => 'rating_button') %>
+          <%=  radio_button_tag("review[score]", 5, (!@review.score.nil? && @review.score == 5) || (!params[:review].nil? && params[:review][:score]=='5'), :class => 'rating_button') %>        
         </li>
       </ul>
     </div>
   </div>
   <div class="col-md-12">
-    <%= f.text_area :content, {placeholder: "Content", class:"form-control"} %>
+    <%= f.text_area :content, {placeholder: "Content", rows: 15, class:"form-control"} %>
   </div>
 </div>
 

@@ -24,4 +24,17 @@ module ApplicationHelper
     else "#{number_to_currency(cost)} #{cost_type}"
     end
   end
+
+  def sortable(column, title = nil)
+    title ||= column.titleize
+    css_class = column == sort_column ? "current #{sort_direction}" : nil
+    direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
+    link_to title, {:sort => column, :direction => direction}, {:class => css_class}
+  end
+
+  def review_exists?(resource)
+    @existing_review = Review.find_by(user_id: current_user.id, 
+                                    resource_id: resource.id) if current_user
+    
+  end
 end

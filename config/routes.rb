@@ -2,12 +2,18 @@ Frog::Application.routes.draw do
   get "static_pages/welcome"
   resources :users
   resources :sessions
-  resources :reviews
+  resources :reviews do
+    collection do
+      post :import
+    end
+  end
+  
   resources :resources do
     collection do
       get :search
       get :pending
       post :import
+      get :new_imports
     end
     member do
       get :interested

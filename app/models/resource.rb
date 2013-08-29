@@ -38,7 +38,7 @@ class Resource < ActiveRecord::Base
     similar_with_counts = Hash.new(0)
     similar_resources.each { |resource| similar_with_counts[resource] += 1 }
     
-    top_similar_records = p Hash[similar_with_counts.sort_by { |k,v| -v }[0..(n-1)]].keys
+    top_similar_records = p Hash[similar_with_counts.sort_by { |k,v| -v }[1..(n)]].keys
   end
 
   def average_score
@@ -56,19 +56,15 @@ class Resource < ActiveRecord::Base
   def helpful_reviews(n, condition)
     reviews_with_upvotes = Hash.new(0)
     reviews.where("score#{condition}").each do |review|
-      reviews_with_upvotes[review.id] = review.upvotes.count
+      reviews_with_upvotes[review] = review.upvotes.count
     end
-    top_review_ids = p Hash[reviews_with_upvotes.sort_by { |k,v| -v }[0..(n-1)]].keys
-    review_records = Review.find(top_review_ids).group_by(&:id)
-    sorted_records = top_review_ids.map { |id| review_records[id].first }
+    top_reviews = p Hash[reviews_with_upvotes.sort_by { |k,v| -v }[0..(n-1)]].keys
   end
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       resource = Resource.find_or_create_by(name: row["name"])
       resource.update_attributes!(row.to_hash)
-      #binding.pry
-      #resource.save!
     end
   end
 

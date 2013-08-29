@@ -1,32 +1,24 @@
-<div class="container">
-  <br />
-  <!-- <div class="well"> -->
-    <div class="btn-group col-md-4 well well-sm">
-      <%= link_to "All Subjects", resources_path, class: "btn btn-large btn-primary" %>
-      <% tag_cloud Resource.subject_counts, %w[s m l] do |subject| %>
-        <%= link_to subject.name, subject_path(subject.name), class: "btn btn-large btn-primary" %>
-      <% end %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-1">
+     <div class="row">
+      <div class="col-md-6">
+        <h4><%= @resources.count %> Results Found</h4>
+      </div>
+      <div class="col-md-6">
+        <ul class="pull-right list-inline list-style">
+          <li><%= link_to "Most Recent", resources_path, class:"btn btn-default" %></li>
+          <li><%= link_to "Highest Rated", resources_path, class:"btn btn-default" %></li>
+          <li><%= link_to "Cost", resources_path, class:"btn btn-default" %></li>
+        </ul>
+      </div>
     </div>
-    <div class="btn-group col-md-4 well well-sm">
-      <%= link_to "All Formats", resources_path, class: "btn btn-large btn-success" %>
-      <% tag_cloud Resource.format_counts, %w[s m l] do |format| %>
-        <%= link_to format.name, format_path(format.name), class: "btn btn-large btn-success" %>
-      <% end %>
-    </div>
-    <div class="btn-group col-md-4 well well-sm">
-      <%= link_to "All Providers", resources_path, class: "btn btn-large btn-warning" %>
-      <% tag_cloud Resource.provider_counts, %w[s m l] do |provider| %>
-        <%= link_to provider.name, provider_path(provider.name), class: "btn btn-large btn-warning" %>
-      <% end %>
-    </div>
-    <br/>
-  <!-- </div> -->
+    <table class="table">
+    <%= render @resources %>
 
-<% provide(:title, 'All Resources') %>
-
-<table class="table table-hover table-bordered">
-  <%= render @resources %>
-</table>
-
+    </table>
+    <%= will_paginate @resources %>
+  </div>
+  <div class="col-md-2 panel-padding">
+    <%= render 'tag_filter' %>
+  </div>
 </div>
-<%= will_paginate @resources %>

@@ -42,6 +42,13 @@
             </li>
           <% end %>
         </ul>
+        <small class="pull-right">
+          <% if params[:action] =="pending" %>
+            <%= link_to "Aprove", status_resource_path(resource), class: "btn btn-success" %>
+          <% end %>
+            <%= link_to "edit", edit_resource_path(resource), class: "btn btn-primary" %>
+            <%= link_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+        </small>
       </div>   
       <div class="col-md-2 pull-right">
         <i class="pull-right <%= star_classes(resource.average_score.to_f) %>"></i>

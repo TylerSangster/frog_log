@@ -6,9 +6,11 @@
       </div>
       <div class="col-md-6">
         <ul class="pull-right list-inline list-style">
-          <li><%= link_to "Most Recent", resources_path, class:"btn btn-default" %></li>
+          <li><div class="btn btn-default"><%= sortable "name" %></div></li>
+          
+          <li><div class="btn btn-default"><%= sortable "created_at", "Most Recent" %></div></li>
           <li><%= link_to "Highest Rated", resources_path, class:"btn btn-default" %></li>
-          <li><%= link_to "Cost", resources_path, class:"btn btn-default" %></li>
+          <li><div class="btn btn-default"><%= sortable "cost" %></div></li>
         </ul>
       </div>
     </div>
