@@ -22,6 +22,8 @@ module Frog
     # config.i18n.default_locale = :de
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
 
+    #config.assets.precompile += ['rails_admin/rails_admin.css', 'rails_admin/rails_admin.js']
+
     config.active_record.auto_explain_threshold_in_seconds = 0.5
 
     #config.assets.initialize_on_precompile = false
