@@ -26,6 +26,6 @@ module Frog
 
     config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-    #config.assets.initialize_on_precompile = false
+    config.assets.initialize_on_precompile = true
   end
 end
