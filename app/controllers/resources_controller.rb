@@ -47,8 +47,16 @@ class ResourcesController < ApplicationController
   def index
     @resources = Resource.where(status: true).includes([:providers, :subjects, :formats, :reviews])
     @resources = @resources.tagged_with(params[:tag]) if params[:tag]
-    @resources = @resources.order(sort_column + " " + sort_direction)
+
+    if params[:sort]
+      @resources = @resources.order(sort_column + " " + sort_direction)
+
+      
+    else
+      @resources.sort_by( &:average_score).reverse! 
+    end
     @resources = @resources.paginate(:page => params[:page], :per_page => 10)
+
 
     respond_with @resources
   end

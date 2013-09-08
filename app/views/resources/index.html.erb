@@ -9,13 +9,14 @@
           <li><div class="btn btn-default"><%= sortable "name" %></div></li>
           
           <li><div class="btn btn-default"><%= sortable "created_at", "Most Recent" %></div></li>
-          <li><%= link_to "Highest Rated", resources_path, class:"btn btn-default" %></li>
+
+          <li><div class="btn btn-default"><%= link_to "Highest Rated", root_path %></div></li>
           <li><div class="btn btn-default"><%= sortable "cost" %></div></li>
         </ul>
       </div>
     </div>
     <table class="table">
-    <%= render @resources.sort_by( &:average_score).reverse! %>
+    <%= render @resources %>
 
     </table>
     <%= will_paginate @resources %>
