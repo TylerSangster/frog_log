@@ -55,12 +55,12 @@ class ResourcesController < ApplicationController
     else
       @resources = @resources.tagged_with(params[:tag]) if params[:tag]
     end
-
-    if params[:sort]
-      @resources = @resources.order(sort_column + " " + sort_direction)  
-    else
-      @resources.sort_by( &:average_score).reverse! 
-    end
+    @resources = @resources.order(sort_column + " " + sort_direction)
+    # if params[:sort]
+    #   @resources = @resources.order(sort_column + " " + sort_direction)  
+    # else
+    #   @resources.sort_by( &:average_score).reverse! 
+    # end
     @resources = @resources.paginate(:page => params[:page], :per_page => 10)
 
 
