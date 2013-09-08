@@ -5,10 +5,10 @@
       <% if current_user && current_user.admin? %>
         <small class="pull-right">
           <% if params[:action] =="pending" %>
-            <%= link_to "Aprove", status_resource_path(@resource), class: "btn btn-success" %>
+            <%= link_to "Approve", status_resource_path(@resource), class: "btn btn-success" %>
             <% end %>
-          <%= link_to "edit", edit_resource_path(@resource), class: "btn btn-primary" %>
-          <%= link_to "delete", @resource, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+          <%= link_to "Edit", edit_resource_path(@resource), class: "btn btn-primary" %>
+          <%= link_to "Delete", @resource, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
         </small>
       <% end %>
 
@@ -16,24 +16,23 @@
   </div>
 </div>
 <div class="col-md-7 col-md-offset-1">
-    <div class="row">
-      <%= render partial: 'show_resource', locals: {resource: @resource} %>
+  <div class="row">
+    <%= render partial: 'show_resource', locals: {resource: @resource} %>
+  </div>
+    <br>
+    <br>
+   <div class="row">
+    <div class="col-md-6">
+      <h4><%= @resource.reviews.length %> Reviews</h4>
     </div>
-      <br>
-      <br>
-     <div class="row">
-      <div class="col-md-6">
-        <h4><%= @resource.reviews.length %> Reviews</h4>
-      </div>
-      <div class="col-md-6">
-        <ul class="pull-right list-inline list-style">
-          <li><%= link_to "Most Recent", resources_path, class:"btn btn-default" %></li>
-          <li><%= link_to "Highest Rated", resources_path, class:"btn btn-default" %></li>
-        </ul>
-      </div>
+    <div class="col-md-6">
+      <ul class="pull-right list-inline list-style">
+        <li><%= link_to "Most Recent", resources_path, class:"btn btn-default" %></li>
+        <li><%= link_to "Highest Rated", resources_path, class:"btn btn-default" %></li>
+      </ul>
     </div>
     <table class="table">
-      <%= render @resource.reviews %>
+    <%= render @resource.reviews %>
     </table>
   </div>
 </div>

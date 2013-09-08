@@ -1,6 +1,6 @@
 <tr>
   <td class="col-md-1 col-md-offset-1 review-avatar">
-    <div class="temp-avatar pull-right">
+    <div class="temp-avatar pull-right"><%= link_to image_tag(review.user.avatar), user_path(review.user) %></div>
   </td>
   <td class="col-md-9">
     <div class="row">
@@ -8,9 +8,12 @@
         <div>by <%= link_to "#{review.user.first_name} #{review.user.last_name}", review.user %>&nbsp&nbsp<i class="<%= star_classes(review.score) %>"></i></div>
       </div>
       <div class="pull-right">Created on <%= review.created_at.strftime('%B %e, %Y') %></div>
+
     </div>
-    <div><h4><%= review.title %></h4></div>
-    <div><%= review.content %></div>
+    <div>
+      <h4><%= review.title %></h4>
+      <%= review.content %>
+    </div>
 
     <br>
 
@@ -18,12 +21,13 @@
       <div class="col-md-6">
         <p><%= render partial: '/shared/vote_results', locals: {review: review} %></p>
       </div>
-      <div class="col-md-6 pull-right">
+      <div class="pull-right">
         <%= render partial: '/shared/vote_form', locals: {review: review} unless same_user?(review.user) %>
-      </div>
     <% if current_user && (same_user?(review.user) or current_user.admin?) %>
       <%= link_to "edit", edit_review_path(review) %>    
       <%= link_to "delete", review, method: :delete, data: { confirm: "Are you sure?" } %>
     <% end %>
+      </div>
+  </div>
   </td>
 </tr>
