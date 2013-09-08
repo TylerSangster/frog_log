@@ -6,7 +6,8 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = current_user.reviews.build(review_params)
+    @review = current_user.reviews.create(review_params)
+    @review.resource_id = session[:current_resource_id]
     if @review.save
       flash[:success] = "Review created!"
       redirect_to resource_path(@review.resource_id)
@@ -52,4 +53,5 @@ class ReviewsController < ApplicationController
     def review_params
       params.require(:review).permit(:title, :score, :content, :resource_id)
     end
+
 end

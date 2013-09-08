@@ -2,6 +2,7 @@ class ResourcesController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   before_action :require_signed_in,    only: [:new]
+  after_action :set_resource_id,      only: [:show]
   #before_action :require_admin_user    only: [:pending]
   
   respond_to :html, :json, :xml, except: [:new]
@@ -26,7 +27,6 @@ class ResourcesController < ApplicationController
     @resource = Resource.find(params[:id])
     @existing_review = review_exists?(@resource)
     @review = @existing_review || Review.new
-    @review.resource_id = @resource.id
   end
 
   def edit
@@ -109,6 +109,11 @@ class ResourcesController < ApplicationController
 
   def resource_params
     params.require(:resource).permit(:name, :subject_list, :format_list, :provider_list, :description, :cost, :cost_type, :url, :resource_photo, :remove_resource_photo, :status, :query)
+  end
+
+  def set_resource_id
+    @resource = Resource.find(params[:id])
+    session[:current_resource_id] = @resource.id
   end
 
   def sort_column
