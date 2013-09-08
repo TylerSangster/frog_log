@@ -41,9 +41,9 @@ class Resource < ActiveRecord::Base
     top_similar_records = p Hash[similar_with_counts.sort_by { |k,v| -v }[1..(n)]].keys
   end
 
+
   def average_score
-    #self.reviews.inject(0) { |sum, r| sum + (r.score ? r.score : 0) }
-    reviews.average(:score)
+    reviews.average(:score) ? reviews.average(:score) : 0
   end
 
   def helpful_good_reviews(n)
