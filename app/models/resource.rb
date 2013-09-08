@@ -16,7 +16,7 @@ class Resource < ActiveRecord::Base
 
   has_many :tags, :through => :taggings
 
-  validates :name, :subject_list, :description, :format_list, :cost, :cost_type, :provider_list, presence: true
+  validates :name, :subject_list, :description, :format_list, :cost, :provider_list, presence: true
   validates :name, :uniqueness => true
   validates :url, :presence => true, uniqueness: true, :format => /(^$)|(^((http|https):\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
   validates :cost, :format => { :with => /\A\$?(?=\(.*\)|[^()]*$)\(?\d{1,3}(,?\d{3})?(\.\d\d?)?\)?\z/}, :numericality => {:greater_than_or_equal_to => 0}
