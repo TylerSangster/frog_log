@@ -55,7 +55,7 @@
       <div class="col-md-2 pull-right">
         <i class="pull-right <%= star_classes(resource.average_score.to_f) %>"></i>
         <p class="pull-right"><%= link_to resource_path(resource) do %>
-        <%= resource.reviews.length %> Reviews </p>
+        Reviews <%= resource.reviews.length %><br />Score: <%= resource.average_score %> </p>
             <% end %>
       </div>
     </div>

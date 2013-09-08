@@ -46,12 +46,18 @@ class ResourcesController < ApplicationController
 
   def index
     @resources = Resource.where(status: true).includes([:providers, :subjects, :formats, :reviews])
-    @resources = @resources.tagged_with(params[:tag]) if params[:tag]
+    if params[:subject]
+      @resources = @resources.tagged_with(params[:subject])
+    elsif params[:format]
+      @resources = @resources.tagged_with(params[:format])
+    elsif params[:provider]
+      @resources = @resources.tagged_with(params[:provider])
+    else
+      @resources = @resources.tagged_with(params[:tag]) if params[:tag]
+    end
 
     if params[:sort]
-      @resources = @resources.order(sort_column + " " + sort_direction)
-
-      
+      @resources = @resources.order(sort_column + " " + sort_direction)  
     else
       @resources.sort_by( &:average_score).reverse! 
     end
@@ -102,7 +108,7 @@ class ResourcesController < ApplicationController
   private
 
   def resource_params
-    params.require(:resource).permit(:name, :subject_list, :format_list, :provider_list, :description, :cost, :cost_type, :provider_list, :url, :resource_photo, :remove_resource_photo, :status, :query)
+    params.require(:resource).permit(:name, :subject_list, :format_list, :provider_list, :description, :cost, :cost_type, :url, :resource_photo, :remove_resource_photo, :status, :query)
   end
 
   def sort_column
