@@ -7,4 +7,5 @@ class ApplicationController < ActionController::Base
   include StarsHelper
 
   helper_method :current_user
+
 end
