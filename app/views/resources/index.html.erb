@@ -15,7 +15,7 @@
       </div>
     </div>
     <table class="table">
-    <%= render @resources %>
+    <%= render @resources.sort_by( &:average_score).reverse! %>
 
     </table>
     <%= will_paginate @resources %>
