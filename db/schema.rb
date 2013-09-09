@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130825000140) do
+ActiveRecord::Schema.define(version: 20130908221217) do
 
   create_table "interests", force: true do |t|
     t.integer  "user_id"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20130825000140) do
     t.datetime "updated_at"
     t.string   "resource_photo"
     t.boolean  "status",                                 default: false
+    t.float    "average_score",                          default: 0.0
   end
 
   create_table "reviews", force: true do |t|

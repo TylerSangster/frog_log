@@ -9,6 +9,7 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.create(review_params)
     @review.resource_id = session[:current_resource_id]
     if @review.save
+      @review.update_resource_attribute
       flash[:success] = "Review created!"
       redirect_to resource_path(@review.resource_id)
     else render 'new'
@@ -35,6 +36,7 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
+    @review.update_resource_attribute
     if @review.update_attributes(review_params)
       flash[:success] = "Your review was updated"
       redirect_to resource_path(@review.resource_id)

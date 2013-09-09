@@ -42,8 +42,7 @@ class Resource < ActiveRecord::Base
   end
 
   def average_score
-    #self.reviews.inject(0) { |sum, r| sum + (r.score ? r.score : 0) }
-    reviews.average(:score)
+    reviews.average(:score).to_f
   end
 
   def helpful_good_reviews(n)

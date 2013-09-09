@@ -24,4 +24,15 @@ class Review < ActiveRecord::Base
       review.update_attributes!(row.to_hash)
     end
   end
+
+  def update_resource_attribute
+    update_average_score(self.resource_id)
+  end
+
+  def update_average_score(resource_id)
+    resource = Resource.find(resource_id)
+    updated_score = resource.reviews.average(:score).to_f
+    resource.update_attribute(:average_score, updated_score)
+    resource.save
+  end
 end
