@@ -1,12 +1,12 @@
 <tr>
 <td>
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-2">
     <%= link_to resource do %>
-      <% image_tag resource.resource_photo, class:"img-responsive img-thumbnail" %>
+      <% image_tag resource.resource_photo.resource_thumb, class:"img-responsive img-thumbnail" %>
     <% end %>
   </div>
-  <div class="col-md-9">
+  <div class="col-md-10">
     <div class="row">
       <div class="col-md-10">
         <div class="row">
@@ -53,9 +53,17 @@
       </div>   
       <div class="col-md-2 pull-right">
         <i class="pull-right <%= star_classes(resource.average_score) %>"></i>
-        <p class="pull-right"><%= link_to resource_path(resource) do %>
-        Reviews <%= resource.reviews.length %><br />Score: <%= resource.average_score %> </p>
+        <p class="pull-right">
+          <%= link_to resource_path(resource) do %>
+            <% if resource.reviews.length == 1 %>
+              1 Review
+            <% elsif resource.reviews.length == 0 %>
+              No Reviews
+            <% else %>
+              <%= resource.reviews.length %>Reviews
             <% end %>
+          <% end %>
+        </p>
       </div>
     </div>
   </div>

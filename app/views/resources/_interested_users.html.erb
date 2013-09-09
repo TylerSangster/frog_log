@@ -6,7 +6,7 @@
     <div>
       <% resource.interested_users.sample(15).each do |user| %>
         <%# TO DO: change to avatar eventually %>
-        <div class="temp-avatar"><%= link_to image_tag(user.avatar), user_path(user) %></div>
+        <div class="temp-avatar"><%= link_to image_tag(user.avatar.avatar_thumb), user_path(user) %></div>
       <% end %>
     </div>
   <% end %>
