@@ -57,13 +57,11 @@
           <%= link_to resource_path(resource) do %>
             <% if resource.reviews.length == 1 %>
               1 Review
-            <% elsif resource.reviews.length == 0 %>
-              No Reviews
             <% else %>
-              <%= resource.reviews.length %>Reviews
+              <%= resource.reviews.length %> Reviews
             <% end %>
           <% end %>
-        </p>
+        &nbsp&nbsp</p>
       </div>
     </div>
   </div>

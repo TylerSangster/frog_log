@@ -22,7 +22,7 @@
   <%= f.text_field :cost, {placeholder: "Cost", class:"form-control"} %>
 </div>
 <div class="form-group">
-  <%= f.select :cost_type, options_for_select([['Free', nil ], ['Per Month', 'Per Month'], ['One Time Payment', nil]]), {}, { class:"form-control", placeholder: "Payment Type"} %>
+  <%= f.select :cost_type, options_for_select([['Free', nil ], ['Monthly Subscription', 'monthly subscription'], ['One Time Payment', nil]]), {}, { class:"form-control", placeholder: "Payment Type"} %>
 </div>
 <div>
   <%= f.label :resource_photo, "Resource Photo" %>
