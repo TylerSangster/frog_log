@@ -41,15 +41,6 @@
             </li>
           <% end %>
         </ul>
-        <small class="pull-right">
-          <% if signed_in? && current_user.admin %>
-            <% if params[:action] =="pending" %>
-              <%= link_to "Approve", status_resource_path(resource), class: "btn btn-success" %>
-            <% end %>
-            <%= link_to "edit", edit_resource_path(resource), class: "btn btn-primary" %>
-            <%= link_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-          <% end %>
-        </small>
       </div>   
       <div class="col-md-2 pull-right">
         <i class="pull-right <%= star_classes(resource.average_score) %>"></i>
@@ -63,6 +54,17 @@
           <% end %>
         &nbsp&nbsp</p>
       </div>
+    </div>
+
+    <% if signed_in? && current_user.admin %>
+    <div class="btn-group pull-right btn-group-sm">
+      <button type="button" class="btn btn-default" disabled="disabled">Admin Options</button>
+      <% if params[:action] =="pending" %>
+        <%= link_to "Approve", status_resource_path(resource), class: "btn btn-success" %>
+      <% end %>
+      <%= link_to "edit", edit_resource_path(resource), class: "btn btn-primary" %>
+      <%= link_to "delete", resource, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    <% end %>
     </div>
   </div>
 </div>
