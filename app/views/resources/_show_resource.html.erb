@@ -14,7 +14,7 @@
   <% resource.subjects.each do |subject| %>
     <li>
      <%= link_to(subject.name, 
-              subject_path(subject), 
+              subject_path(subject.name), 
               class: "btn btn-xs subject") %>
     </li>
   <% end %>
@@ -24,7 +24,7 @@
   <% resource.formats.each do |format| %>
     <li>
       <%= link_to(format.name, 
-              format_path(format), 
+              format_path(format.name), 
               class: "btn btn-xs format") %>
     </li>
   <% end %>
@@ -34,7 +34,7 @@
   <% resource.providers.each do |provider| %>
     <li>
       <%= link_to(provider.name, 
-              provider_path(provider), 
+              provider_path(provider.name), 
               class: "btn btn-xs provider") %>
     </li>
   <% end %>
@@ -44,7 +44,7 @@
   <li><%= cost_to_display(resource.cost, resource.cost_type) %></li>
 </ul>
 <div class="col-md-12">
-  <p><%= resource.description %> This course is designed to be a fun introduction to the basics of programming in Python. Our main focus will be on building simple interactive games such as Pong, Blackjack and Asteroids.</p>
+  <p><%= resource.description %></p>
 </div>
   <% if current_user && current_user.admin? %>
     <%= link_to "edit", edit_resource_path(resource), class:"btn btn-default" %>
