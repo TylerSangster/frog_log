@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		if @user.save
-      UserMailer.welcome_email(@user).deliver
+      #UserMailer.welcome_email(@user).deliver
       sign_in(@user, false) #do not permanently remember user
 			flash[:success] = "Welcome to Code Dojo, #{@user.first_name.capitalize} #{@user.last_name.capitalize}!"
 			redirect_to @user
