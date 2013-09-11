@@ -3,7 +3,7 @@
     <td class="col-md-2">
       <h4><%=link_to review.resource.name, review.resource %></h4>
       <%= link_to review.resource do %>
-        <% image_tag review.resource.resource_photo, class:"img-responsive img-thumbnail" %>
+        <% image_tag review.resource.resource_photo.url(:resource_thumb), class:"img-responsive img-thumbnail" %>
       <% end %>
     </td>
     <td class="col-md-10">
