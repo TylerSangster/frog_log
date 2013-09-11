@@ -36,10 +36,10 @@ class ResourcesController < ApplicationController
   def update
     @resource = Resource.find(params[:id])
     if @resource.update_attributes(resource_params)
-      flash[:success] = "Your resource was updated"
+      flash[:success] = "Your resource was updated."
       redirect_to @resource
     else
-      flash[:danger] = "Please check the errors in your update"
+      flash[:danger] = "Please check the errors in your update."
       render 'edit'
     end
   end

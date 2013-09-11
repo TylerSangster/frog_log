@@ -38,7 +38,7 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @review.update_resource_attribute
     if @review.update_attributes(review_params)
-      flash[:success] = "Your review was updated"
+      flash[:success] = "Your review was updated."
       redirect_to resource_path(@review.resource_id)
     else
       render 'edit'
