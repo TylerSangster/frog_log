@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col-md-2">
     <%= link_to resource do %>
-      <% image_tag resource.resource_photo.resource_thumb, class:"img-responsive img-thumbnail" %>
+      <% image_tag resource.resource_photo.url(:resource_thumb), class:"img-responsive img-thumbnail" %>
     <% end %>
   </div>
   <div class="col-md-10">

@@ -9,7 +9,7 @@
 
 <div class="col-md-3 col-md-offset-1">
   <% if @user.avatar? %>
-    <%= image_tag @user.avatar, class:"img-responsive img-thumbnail" %>
+    <%= image_tag @user.avatar.url, class:"img-responsive img-thumbnail" %>
   <% end %>
 
   <div class="side-bar-row col-md-12 row">
@@ -35,15 +35,10 @@
 </div>
   <div class="col-md-7">
     <div class="row">
-      <div class="col-md-6">
-        <h4><%= @user.reviews.count %> Reviews</h4>
-      </div>
-      <div class="col-md-6">
-        <ul class="pull-right list-inline list-style">
-          <li><%= link_to "Most Recent", resources_path, class:"btn btn-default" %></li>
-          <li><%= link_to "Highest Rated", resources_path, class:"btn btn-default" %></li>
-        </ul>
-      </div>
+      <ul class="pull-right list-inline list-style">
+        <li><%= link_to "Most Recent", resources_path, class:"btn btn-default" %></li>
+        <li><%= link_to "Highest Rated", resources_path, class:"btn btn-default" %></li>
+      </ul>
     </div>
     <table class="table">
       <%= render partial: "user_reviews", collection: @user.reviews, as: "review" %>

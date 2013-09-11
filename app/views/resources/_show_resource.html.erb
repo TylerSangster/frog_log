@@ -1,6 +1,6 @@
 <div class="col-md-4">
   <%= link_to resource.url do %>
-    <%= image_tag resource.resource_photo.resource_thumb, class:"img-responsive img-thumbnail"%>
+    <%= image_tag resource.resource_photo.url(:resource_thumb), class:"img-responsive img-thumbnail"%>
   <% end %>
 </div>
 

@@ -1,6 +1,6 @@
 <tr>
   <td class="col-md-1 col-md-offset-1 review-avatar">
-    <div class="temp-avatar pull-right"><%= link_to image_tag(review.user.avatar.avatar_thumb), user_path(review.user) %></div>
+    <div class="temp-avatar pull-right"><%= link_to image_tag(review.user.avatar.url(:avatar_thumb), user_path(review.user) %></div>
   </td>
   <td class="col-md-9">
     <div class="row">
