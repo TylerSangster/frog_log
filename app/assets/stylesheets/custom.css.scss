@@ -88,7 +88,7 @@ body {
   .navbar-inverse .navbar-form {
     border-color: #2c3e50; }
   .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-    background-color: #1FE8B6;
+    background-color: #222222;
     color: white; }
   .navbar-inverse .navbar-nav > .dropdown > a:hover .caret {
     border-top-color: #1FE8B6;
@@ -402,6 +402,12 @@ form label.rating.glow { background-position: 0 -32px; }
 }
 
 /*Resource Index Page*/
+
+.sort-btn{
+  a{
+    color: #333333;
+  }
+}
 
 .resource-item {
   margin-bottom: 30px;

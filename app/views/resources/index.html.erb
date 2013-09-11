@@ -5,13 +5,11 @@
 <!--         <h4><%#= @resources.length %> Results Found</h4> -->
       </div>
       <div class="col-md-6">
-        <div class="btn-group pull-right">
-          <div class="btn btn-default"><%= sortable "name" %></div>
-          
-          <div class="btn btn-default"><%= sortable "created_at", "Most Recent" %></div>
-
-          <div class="btn btn-default"><%= sortable "average_score", "Score" %></div>
-          <div class="btn btn-default"><%= sortable "cost" %></div>
+        <ul class="list-inline list-style pull-right">
+          <li><div class="btn btn-default sort-btn"><%= sortable "name" %></li>
+          <li><div class="btn btn-default sort-btn"><%= sortable "created_at", "Date Added" %></div></li>
+          <li><div class="btn btn-default sort-btn"><%= sortable "average_score", "Score" %></div></li>
+          <li><div class="btn btn-default sort-btn"><%= sortable "cost" %></div></li>
         </ul>
       </div>
     </div>
