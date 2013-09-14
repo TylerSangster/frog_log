@@ -19,6 +19,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
+    @review.update_resource_attribute
     redirect_to root_url
     flash[:success] = "Review deleted!"
   end
