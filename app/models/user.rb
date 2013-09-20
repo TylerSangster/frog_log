@@ -69,8 +69,10 @@ class User < ActiveRecord::Base
   end
 
   def not_interested!(resource)
-    @interest = interests.find_by(resource.id)
-    @interest.destroy! if @interest
+    #@interest = interests.find_by(resource.id)
+    @interest = interests.where(resource_id: resource.id)
+    #@interest.destroy! if @interest
+    @interest.destroy_all if @interest
   end
 
   def interested?(resource)
